@@ -1,0 +1,9 @@
+torch==1.6.0+cpu torchvision==0.7.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+scipy==1.5.2
+pandas==1.1.2
+matplotlib==3.3.1
+gym==0.17.3
+pymoo==0.4.2.1
+sklearn
+git+https://github.com/naught101/sobol_seq@v0.2.0#egg=sobol_seq
+
