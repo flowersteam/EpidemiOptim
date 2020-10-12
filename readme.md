@@ -36,7 +36,7 @@ The EpidemiOptim library runs with Python>=3.6. All requirements are listed in t
 Experiments can be run with the `epidemioptim/train.py` script:
 
 ```
-python train.py --config goal_dqn --expe_name goal_dqn_study --trial_id 0
+python train.py --config goal_dqn --expe-name goal_dqn_study --trial_id 0
 ```
 
 The `--config` argument selects one of the configurations defined in `epidemioptim/configs/`. They include: ['dqn', 'goal_dqn', 'goal_dqn_constraints', 'nsga_ii'].
