@@ -8,6 +8,236 @@ from ipywidgets import *
 # Notebook utils
 # # # # # # # # # # # # # # # # # # # # # # # #
 
+def setup_diy(seed, run_eval, n_evals, deterministic_model):
+    from epidemioptim.environments.models import get_model
+    from epidemioptim.environments.cost_functions import get_cost_function
+    from epidemioptim.environments.gym_envs import get_env
+    from epidemioptim.configs.get_params import get_params
+
+    # Get the configuration
+    params = get_params(config_id='dqn')
+
+    if run_eval:
+        deterministic_model = False
+
+    if deterministic_model:
+        params['model_params']['stochastic'] = False
+    params['logdir'] = None  # get_repo_path() + 'data/results/experiments' + params['logdir'].split('EpidemicDiscrete-v0')[1]
+    model = get_model(model_id=params['model_id'],
+                      params=params['model_params'])
+
+    # update reward params
+    params['cost_params']['N_region'] = int(model.pop_sizes[params['model_params']['region']])
+    params['cost_params']['N_country'] = int(np.sum(list(model.pop_sizes.values())))
+
+    set_seeds(seed)
+
+    cost_function = get_cost_function(cost_function_id=params['cost_id'],
+                                      params=params['cost_params'])
+
+    # Form the Gym-like environment
+    env = get_env(env_id=params['env_id'],
+                  cost_function=cost_function,
+                  model=model,
+                  simulation_horizon=params['simulation_horizon'],
+                  seed=seed)
+
+
+    def run_env_with_actions(actions, reset_same_model):
+
+        additional_keys = ('costs', 'constraints')
+        # Setup saved values
+        episode = dict(zip(additional_keys, [[] for _ in range(len(additional_keys))] ))
+        env_states = []
+        aggregated_costs = []
+        dones = []
+        if reset_same_model:
+            env.reset_same_model()
+        state = env.reset()
+        env_states.append(state)
+
+        done = False
+        t = 0
+        counter = 0
+        while not done:
+            # Interact
+            next_state, agg_cost, done, info = env.step(actions[counter])
+
+            # Save stuff
+            state = next_state
+            t = env.unwrapped.t
+            counter += 1
+            aggregated_costs.append(agg_cost)
+            env_states.append(state)
+            dones.append(done)
+
+            for k in additional_keys:
+                episode[k].append(info[k])
+
+        # Form episode dict
+        episode.update(env_states=np.array(env_states),
+                       aggregated_costs=np.array(aggregated_costs),
+                       actions=np.array(actions),
+                       dones=np.array(dones))
+
+        aggregated_costs = np.sum(episode['aggregated_costs'])
+        costs = np.sum(episode['costs'], axis=0)
+        stats = env.unwrapped.get_data()
+
+        return stats, costs
+    global actions
+    actions = get_action_base('never')
+    stats, costs = run_env_with_actions(actions, reset_same_model=False)
+    fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+
+    # Define the update function
+    # def update(start, stop, nb_weeks, every, set_button, **button_widgets
+    #           ):
+    #
+    #     action_str = str(nb_weeks) + '_' + str(every)
+    #     if set_button:
+    #         print('Using checkboxes.')
+    #     else:
+    #         print('Closing {} weeks every {} weeks.'.format(nb_weeks, every))
+    #         if every < nb_weeks:
+    #             print('When "every" is superior or equal to "nb_weeks", lockdown is always on.')
+    #     actions = get_action_base(action_str, start, stop)
+    #
+    #     print(button_widgets['Week {}'.format(0)])
+    #     if set_button:
+    #         for i in range(53):
+    #             # print(button_widgets['Week {}'.format(i)])
+    #             button_widgets['Week {}'.format(i)] = widgets.Checkbox(value=bool(actions[i]),
+    #                                                                    description='Week {}'.format(i + 1),
+    #                                                                    disabled=False,
+    #                                                                    indent=False)
+    #     else:
+    #         for i in range(53):
+    #             actions[i] = int(button_widgets['Week {}'.format(i)])
+    #
+    #     stats, costs = run_env_with_actions(actions, reset_same_model=deterministic_model)
+    #
+    #     if run_eval:
+    #         all_costs = [run_env_with_actions(actions, reset_same_model=False)[1] for _ in range(n_evals)]
+    #         all_costs = np.array(all_costs)
+    #         print(all_costs)
+    #         means = all_costs.mean(axis=0)
+    #         stds = all_costs.std(axis=0)
+    #         msg = '\nEvaluation (over {} seeds):'.format(n_evals)
+    #         msg += '\n\t Death toll: {} +/- {}'.format(int(means[0]), int(stds[0]))
+    #         msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B.'.format(int(means[1]), int(stds[1]))
+    #         print(msg)
+    #     print('\nDeath toll: {}, Economic cost: {:.2f} B.'.format(int(costs[0]), costs[1]))
+    #     replot_stats(lines, stats, plots_i, cost_function, high)
+    #
+    #     fig.canvas.draw_idle()
+
+    # interact(update,
+    #          start=widgets.IntSlider(min=0, max=53, step=1, value=0,
+    #                                  description="# weeks before pattern starts",
+    #                                  layout=Layout(width='50%', height='80px'),
+    #                                  style={'description_width': 'initial', 'widget_width': '50%'}),
+    #          stop=widgets.IntSlider(min=0, max=53, step=1, value=53,
+    #                                 description="# weeks before pattern stops",
+    #                                 layout=Layout(width='50%', height='80px'),
+    #                                 style={'description_width': 'initial'}),
+    #          nb_weeks=widgets.IntSlider(min=0, max=53, step=1, value=0,
+    #                                     description="Duration of lockdown phase (weeks)",
+    #                                     layout=Layout(width='50%', height='80px'),
+    #                                     style={'description_width': 'initial'}),
+    #          every=widgets.IntSlider(min=1, max=53, step=1, value=0,
+    #                                  description="Duration of the cycle or period (weeks)",
+    #                                  layout=Layout(width='50%', height='80px'),
+    #                                  style={'description_width': 'initial'}),
+    #          set_button=widgets.ToggleButton(value=False,
+    #                                          description='Set to pattern',
+    #                                          disabled=False,
+    #                                          button_style='',  # 'success', 'info', 'warning', 'danger' or ''
+    #                                          layout=Layout(width='50%', height='80px'),
+    #                                          style={'description_width': 'initial'},
+    #                                          tooltip='Description',
+    #                                          icon='check'  # (FontAwesome names without the `fa-` prefix)
+    #                                          ),
+    #          **button_widgets);
+
+        # print(button_widgets)
+
+    checkboxes = [widgets.Checkbox(value=False,
+                                   description='Week {}'.format(i + 1),
+                                   disabled=False,
+                                   indent=False) for i in range(53)]
+    button_widgets_ = dict(zip(['Week {}'.format(i) for i in range(53)],
+                              checkboxes))
+
+    start = widgets.IntSlider(min=0, max=53, step=1, value=0,
+                              description="# weeks before pattern starts",
+                              layout=Layout(width='50%', height='80px'),
+                              style={'description_width': 'initial', 'widget_width': '50%'})
+    stop = widgets.IntSlider(min=0, max=53, step=1, value=53,
+                             description="# weeks before pattern stops",
+                             layout=Layout(width='50%', height='80px'),
+                             style={'description_width': 'initial'})
+    nb_weeks = widgets.IntSlider(min=0, max=53, step=1, value=0,
+                                 description="Duration of lockdown phase (weeks)",
+                                 layout=Layout(width='50%', height='80px'),
+                                 style={'description_width': 'initial'})
+    every = widgets.IntSlider(min=1, max=53, step=1, value=0,
+                              description="Duration of the cycle or period (weeks)",
+                              layout=Layout(width='50%', height='80px'),
+                              style={'description_width': 'initial'})
+    set_button = widgets.ToggleButton(value=False,
+                                      description='Set to pattern',
+                                      disabled=False,
+                                      button_style='',  # 'success', 'info', 'warning', 'danger' or ''
+                                      layout=Layout(width='50%', height='80px'),
+                                      style={'description_width': 'initial'},
+                                      tooltip='Description',
+                                      icon='check'  # (FontAwesome names without the `fa-` prefix)
+                                      )
+
+    @interact(start=start, stop=stop, nb_weeks=nb_weeks, every=every, set_button=set_button, **button_widgets_)
+    def update(start, stop, nb_weeks, every, set_button, **button_widgets):
+
+        action_str = str(nb_weeks) + '_' + str(every)
+        if set_button:
+            print('Using checkboxes.')
+        else:
+            print('Closing {} weeks every {} weeks.'.format(nb_weeks, every))
+            if every < nb_weeks:
+                print('When "every" is superior or equal to "nb_weeks", lockdown is always on.')
+        actions = get_action_base(action_str, start, stop)
+
+        if set_button:
+            for i in range(53):
+                button_widgets_['Week {}'.format(i)].value = bool(actions[i])
+        else:
+            for i in range(53):
+                actions[i] = int(button_widgets['Week {}'.format(i)])
+
+        stats, costs = run_env_with_actions(actions, reset_same_model=deterministic_model)
+
+        if run_eval:
+            all_costs = [run_env_with_actions(actions, reset_same_model=False)[1] for _ in range(n_evals)]
+            all_costs = np.array(all_costs)
+            print(all_costs)
+            means = all_costs.mean(axis=0)
+            stds = all_costs.std(axis=0)
+            msg = '\nEvaluation (over {} seeds):'.format(n_evals)
+            msg += '\n\t Death toll: {} +/- {}'.format(int(means[0]), int(stds[0]))
+            msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B.'.format(int(means[1]), int(stds[1]))
+            print(msg)
+        print('\nDeath toll: {}, Economic cost: {:.2f} B.'.format(int(costs[0]), costs[1]))
+        replot_stats(lines, stats, plots_i, cost_function, high)
+
+        fig.canvas.draw_idle()
+
+
+    return actions
+
+
+
+
 def setup_visualization(folder, algorithm_str, seed, deterministic_model):
     if seed is None:
         seed = np.random.randint(1e6)
@@ -247,3 +477,35 @@ def setup_fig_notebook(stats):
                               c='r')
         lines.append(line)
     return fig1, lines, plots_i, high, axs
+
+def get_action_base(action_str, start=None, stop=None, duration=53):
+    actions = np.zeros([duration])
+    if action_str == 'always':
+        actions = np.ones([duration])
+        if isinstance(start, int):
+            actions[:start] = 0
+        if isinstance(stop, int):
+            actions[stop:] = 0
+    elif action_str == 'never':
+        actions = np.zeros([duration])
+    else:
+        splitted_act_str = action_str.split('_')
+        nb_weeks = int(splitted_act_str[0])
+        every = int(splitted_act_str[-1])
+        start_week = 0
+        stop_week = 53
+        if isinstance(start, int):
+            start_week = start
+        if isinstance(stop, int):
+            stop_week = stop
+        counter = start_week
+        on = True
+        while counter < stop_week:
+            if on:
+                actions[counter: min(counter + nb_weeks, stop_week)] = 1
+                counter += nb_weeks
+                on = False
+            else:
+                on = True
+                counter += max(every - nb_weeks, 0)
+    return actions

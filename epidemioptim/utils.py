@@ -381,6 +381,8 @@ def set_seeds(seed):
     env: Gym Env
         Gym environment that should be seeded.
     """
+    if seed is None:
+        seed = np.random.randint(1e6)
     random.seed(seed)
     torch.manual_seed(seed)
     np.random.seed(seed)
