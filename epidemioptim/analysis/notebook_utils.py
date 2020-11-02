@@ -170,23 +170,43 @@ def setup_diy(seed, run_eval, n_evals, deterministic_model):
     button_widgets_ = dict(zip(['Week {}'.format(i) for i in range(53)],
                               checkboxes))
 
-    start = widgets.IntSlider(min=0, max=53, step=1, value=0,
-                              description="# weeks before pattern starts",
-                              layout=Layout(width='50%', height='80px'),
-                              style={'description_width': 'initial', 'widget_width': '50%'})
-    stop = widgets.IntSlider(min=0, max=53, step=1, value=53,
+    start = widgets.Dropdown(options=[str(i) for i in range(1, 54)],
+                             value='1',
+                             description="# weeks before pattern starts",
+                             layout=Layout(width='50%', height='80px'),
+                             style={'description_width': 'initial', 'widget_width': '50%'})
+
+    stop = widgets.Dropdown(options=[str(i) for i in range(1, 55)],
+                             value='54',
                              description="# weeks before pattern stops",
                              layout=Layout(width='50%', height='80px'),
-                             style={'description_width': 'initial'})
-    nb_weeks = widgets.IntSlider(min=0, max=53, step=1, value=0,
-                                 description="Duration of lockdown phase (weeks)",
-                                 layout=Layout(width='50%', height='80px'),
-                                 style={'description_width': 'initial'})
-    every = widgets.IntSlider(min=1, max=53, step=1, value=0,
-                              description="Duration of the cycle or period (weeks)",
-                              layout=Layout(width='50%', height='80px'),
-                              style={'description_width': 'initial'})
-    set_button = widgets.ToggleButton(value=False,
+                             style={'description_width': 'initial', 'widget_width': '50%'})
+
+    nb_weeks = widgets.Dropdown(options=[str(i) for i in range(0, 54)],
+                            value='0',
+                            description="Duration of lockdown phase (weeks)",
+                            layout=Layout(width='50%', height='80px'),
+                            style={'description_width': 'initial', 'widget_width': '50%'})
+
+    every = widgets.Dropdown(options=[str(i) for i in range(1, 54)],
+                                value='1',
+                                description="Duration of the cycle or period (weeks)",
+                                layout=Layout(width='50%', height='80px'),
+                                style={'description_width': 'initial', 'widget_width': '50%'})
+
+    # stop = widgets.IntSlider(min=0, max=53, step=1, value=53,
+    #                          description="# weeks before pattern stops",
+    #                          layout=Layout(width='50%', height='80px'),
+    #                          style={'description_width': 'initial'})
+    # nb_weeks = widgets.IntSlider(min=0, max=53, step=1, value=0,
+    #                              description="Duration of lockdown phase (weeks)",
+    #                              layout=Layout(width='50%', height='80px'),
+    #                              style={'description_width': 'initial'})
+    # every = widgets.IntSlider(min=1, max=53, step=1, value=0,
+    #                           description="Duration of the cycle or period (weeks)",
+    #                           layout=Layout(width='50%', height='80px'),
+    #                           style={'description_width': 'initial'})
+    set_button = widgets.ToggleButton(value=True,
                                       description='Set to pattern',
                                       disabled=False,
                                       button_style='',  # 'success', 'info', 'warning', 'danger' or ''
@@ -199,11 +219,16 @@ def setup_diy(seed, run_eval, n_evals, deterministic_model):
     @interact(start=start, stop=stop, nb_weeks=nb_weeks, every=every, set_button=set_button, **button_widgets_)
     def update(start, stop, nb_weeks, every, set_button, **button_widgets):
 
+        start = int(start) - 1
+        stop = int(stop) - 1
+        nb_weeks = int(nb_weeks)
+        every = int(every)
         action_str = str(nb_weeks) + '_' + str(every)
         if set_button:
-            print('Using checkboxes.')
+            print('Set to pattern. Closing {} weeks every {} weeks.'.format(nb_weeks, every))
         else:
-            print('Closing {} weeks every {} weeks.'.format(nb_weeks, every))
+            print('Custom strategy.')
+
             if every < nb_weeks:
                 print('When "every" is superior or equal to "nb_weeks", lockdown is always on.')
         actions = get_action_base(action_str, start, stop)
@@ -231,8 +256,6 @@ def setup_diy(seed, run_eval, n_evals, deterministic_model):
         replot_stats(lines, stats, plots_i, cost_function, high)
 
         fig.canvas.draw_idle()
-
-
     return actions
 
 
