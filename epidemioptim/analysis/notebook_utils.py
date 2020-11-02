@@ -1,7 +1,7 @@
 import json
 import numpy as np
 import matplotlib.pyplot as plt
-from epidemioptim.utils import set_seeds
+from epidemioptim.utils import set_seeds, get_repo_path
 from ipywidgets import *
 
 # # # # # # # # # # # # # # # # # # # # # # # #
@@ -9,39 +9,11 @@ from ipywidgets import *
 # # # # # # # # # # # # # # # # # # # # # # # #
 
 def setup_diy(seed, run_eval, n_evals, deterministic_model):
-    from epidemioptim.environments.models import get_model
-    from epidemioptim.environments.cost_functions import get_cost_function
-    from epidemioptim.environments.gym_envs import get_env
-    from epidemioptim.configs.get_params import get_params
-
-    # Get the configuration
-    params = get_params(config_id='dqn')
 
     if run_eval:
         deterministic_model = False
 
-    if deterministic_model:
-        params['model_params']['stochastic'] = False
-    params['logdir'] = None  # get_repo_path() + 'data/results/experiments' + params['logdir'].split('EpidemicDiscrete-v0')[1]
-    model = get_model(model_id=params['model_id'],
-                      params=params['model_params'])
-
-    # update reward params
-    params['cost_params']['N_region'] = int(model.pop_sizes[params['model_params']['region']])
-    params['cost_params']['N_country'] = int(np.sum(list(model.pop_sizes.values())))
-
-    set_seeds(seed)
-
-    cost_function = get_cost_function(cost_function_id=params['cost_id'],
-                                      params=params['cost_params'])
-
-    # Form the Gym-like environment
-    env = get_env(env_id=params['env_id'],
-                  cost_function=cost_function,
-                  model=model,
-                  simulation_horizon=params['simulation_horizon'],
-                  seed=seed)
-
+    algorithm, cost_function, env, params = setup_for_replay(get_repo_path() + "/data/data_for_visualization/NSGA/1/", seed, deterministic_model)
 
     def run_env_with_actions(actions, reset_same_model):
 
@@ -90,78 +62,29 @@ def setup_diy(seed, run_eval, n_evals, deterministic_model):
     stats, costs = run_env_with_actions(actions, reset_same_model=False)
     fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
 
+    #NSGA:
 
-    # Define the update function
-    # def update(start, stop, nb_weeks, every, set_button, **button_widgets
-    #           ):
-    #
-    #     action_str = str(nb_weeks) + '_' + str(every)
-    #     if set_button:
-    #         print('Using checkboxes.')
-    #     else:
-    #         print('Closing {} weeks every {} weeks.'.format(nb_weeks, every))
-    #         if every < nb_weeks:
-    #             print('When "every" is superior or equal to "nb_weeks", lockdown is always on.')
-    #     actions = get_action_base(action_str, start, stop)
-    #
-    #     print(button_widgets['Week {}'.format(0)])
-    #     if set_button:
-    #         for i in range(53):
-    #             # print(button_widgets['Week {}'.format(i)])
-    #             button_widgets['Week {}'.format(i)] = widgets.Checkbox(value=bool(actions[i]),
-    #                                                                    description='Week {}'.format(i + 1),
-    #                                                                    disabled=False,
-    #                                                                    indent=False)
-    #     else:
-    #         for i in range(53):
-    #             actions[i] = int(button_widgets['Week {}'.format(i)])
-    #
-    #     stats, costs = run_env_with_actions(actions, reset_same_model=deterministic_model)
-    #
-    #     if run_eval:
-    #         all_costs = [run_env_with_actions(actions, reset_same_model=False)[1] for _ in range(n_evals)]
-    #         all_costs = np.array(all_costs)
-    #         print(all_costs)
-    #         means = all_costs.mean(axis=0)
-    #         stds = all_costs.std(axis=0)
-    #         msg = '\nEvaluation (over {} seeds):'.format(n_evals)
-    #         msg += '\n\t Death toll: {} +/- {}'.format(int(means[0]), int(stds[0]))
-    #         msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B.'.format(int(means[1]), int(stds[1]))
-    #         print(msg)
-    #     print('\nDeath toll: {}, Economic cost: {:.2f} B.'.format(int(costs[0]), costs[1]))
-    #     replot_stats(lines, stats, plots_i, cost_function, high)
-    #
-    #     fig.canvas.draw_idle()
+    # Plot pareto front
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    sign = 1
+    a = sign * algorithm.res_eval['F'][:, 0]
+    b = sign * algorithm.res_eval['F'][:, 1]
+    sc = ax.scatter(a, b, picker=5)
+    data = sc.get_offsets().data
+    off_sets = sc.get_offsets()
+    nb_points = data.shape[0]
 
-    # interact(update,
-    #          start=widgets.IntSlider(min=0, max=53, step=1, value=0,
-    #                                  description="# weeks before pattern starts",
-    #                                  layout=Layout(width='50%', height='80px'),
-    #                                  style={'description_width': 'initial', 'widget_width': '50%'}),
-    #          stop=widgets.IntSlider(min=0, max=53, step=1, value=53,
-    #                                 description="# weeks before pattern stops",
-    #                                 layout=Layout(width='50%', height='80px'),
-    #                                 style={'description_width': 'initial'}),
-    #          nb_weeks=widgets.IntSlider(min=0, max=53, step=1, value=0,
-    #                                     description="Duration of lockdown phase (weeks)",
-    #                                     layout=Layout(width='50%', height='80px'),
-    #                                     style={'description_width': 'initial'}),
-    #          every=widgets.IntSlider(min=1, max=53, step=1, value=0,
-    #                                  description="Duration of the cycle or period (weeks)",
-    #                                  layout=Layout(width='50%', height='80px'),
-    #                                  style={'description_width': 'initial'}),
-    #          set_button=widgets.ToggleButton(value=False,
-    #                                          description='Set to pattern',
-    #                                          disabled=False,
-    #                                          button_style='',  # 'success', 'info', 'warning', 'danger' or ''
-    #                                          layout=Layout(width='50%', height='80px'),
-    #                                          style={'description_width': 'initial'},
-    #                                          tooltip='Description',
-    #                                          icon='check'  # (FontAwesome names without the `fa-` prefix)
-    #                                          ),
-    #          **button_widgets);
+    size = 30
+    color = "#004ab3"
+    color_highlight = "#b30000"
+    old_colors = [color] * nb_points
+    sc.set_color(old_colors)
+    sizes = np.ones(nb_points) * size
+    sc.set_sizes(sizes)
+    text = ax.text(0, 0, "", va="bottom", ha="left")
 
-        # print(button_widgets)
+
 
     checkboxes = [widgets.Checkbox(value=False,
                                    description='Week {}'.format(i + 1),
@@ -194,18 +117,6 @@ def setup_diy(seed, run_eval, n_evals, deterministic_model):
                                 layout=Layout(width='50%', height='80px'),
                                 style={'description_width': 'initial', 'widget_width': '50%'})
 
-    # stop = widgets.IntSlider(min=0, max=53, step=1, value=53,
-    #                          description="# weeks before pattern stops",
-    #                          layout=Layout(width='50%', height='80px'),
-    #                          style={'description_width': 'initial'})
-    # nb_weeks = widgets.IntSlider(min=0, max=53, step=1, value=0,
-    #                              description="Duration of lockdown phase (weeks)",
-    #                              layout=Layout(width='50%', height='80px'),
-    #                              style={'description_width': 'initial'})
-    # every = widgets.IntSlider(min=1, max=53, step=1, value=0,
-    #                           description="Duration of the cycle or period (weeks)",
-    #                           layout=Layout(width='50%', height='80px'),
-    #                           style={'description_width': 'initial'})
     set_button = widgets.ToggleButton(value=True,
                                       description='Set to pattern',
                                       disabled=False,
@@ -247,15 +158,27 @@ def setup_diy(seed, run_eval, n_evals, deterministic_model):
             all_costs = np.array(all_costs)
             print(all_costs)
             means = all_costs.mean(axis=0)
+            x, y = means
             stds = all_costs.std(axis=0)
             msg = '\nEvaluation (over {} seeds):'.format(n_evals)
             msg += '\n\t Death toll: {} +/- {}'.format(int(means[0]), int(stds[0]))
             msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B.'.format(int(means[1]), int(stds[1]))
             print(msg)
+        else:
+            x, y = costs
         print('\nDeath toll: {}, Economic cost: {:.2f} B.'.format(int(costs[0]), costs[1]))
         replot_stats(lines, stats, plots_i, cost_function, high)
 
+        # update PAreto:
+        new_offsets = np.concatenate([off_sets, np.array([[x, y]])], axis=0)
+        sc.set_offsets(new_offsets)
+        new_colors = [color] * nb_points + [color_highlight]
+        sc.set_color(new_colors)
+        new_sizes = [size] * nb_points + [size * 2]
+        sc.set_sizes(new_sizes)
+
         fig.canvas.draw_idle()
+
     return actions
 
 
