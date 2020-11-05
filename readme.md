@@ -9,9 +9,7 @@
 
 
 
-
-The EpidemicOptimization suite is a library that allows to interface optimization algorithms with models of epidemic propagation. Epidemiological models are wrapped in OpenAI Gym 
-interfaces, making them readily compatible with state-of-the-art optimization algorithms.
+The EpidemicOptimization suite is a library that allows to interface optimization algorithms with models of epidemic propagation. Epidemiological models are wrapped in OpenAI Gym interfaces, making them readily compatible with state-of-the-art optimization algorithms. The [EpidemiOptim paper](https://arxiv.org/pdf/2010.04452.pdf) motivates the need for the EpidemiOptim library, describes it and presents a case study: the optimization of an on/off lockdown policy in the context of the COVID-19 pandemic.
 
 This library is designed to be easily customized. The underlying propagation model, reward function, state and action spaces can be modified easily.
 
@@ -63,8 +61,16 @@ The EpidemiOptim library can be seen as a collaborative toolbox to facilitate co
 context of epidemic propagation. Everyone is welcome to contribute. We are especially interested in new epidemiological models, new costs functions, new learning environments, 
 new optimization algorithms and new ways to visualize the results. Feel free to contact us!
 
-Please report any bug to us !
+Please report any bug to us!
 
-
+To cite the library:
+```
+@article{colas2020epidemioptim,
+         title={EpidemiOptim: A Toolbox for the Optimization of Control Policies in Epidemiological Models},
+         author={Colas, C{\'e}dric and Hejblum, Boris and Rouillon, S{\'e}bastien and Thi{\'e}baut, Rodolphe and Oudeyer, Pierre-Yves and Moulin-Frier,               Cl{\'e}ment and Prague, M{\'e}lanie},
+         journal={arXiv preprint arXiv:2010.04452},
+         year={2020}
+}
+```
 
 
