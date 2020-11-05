@@ -326,7 +326,7 @@ def setup_for_replay(folder, seed=np.random.randint(1e6), deterministic_model=Fa
     from epidemioptim.environments.gym_envs import get_env
     from epidemioptim.optimization import get_algorithm
 
-    print('Replaying: ', folder)
+    # print('Replaying: ', folder)
     with open(folder + 'params.json', 'r') as f:
         params = json.load(f)
 

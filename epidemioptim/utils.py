@@ -9,9 +9,9 @@ import pandas as pd
 
 import torch
 plt.rcParams['figure.constrained_layout.use'] = True
-font = {'weight':'bold', 'size'   : 22}
-import matplotlib
-matplotlib.rc('font', **font)
+# font = {'weight':'bold', 'size'   : 22}
+# import matplotlib
+# matplotlib.rc('font', **font)
 
 
 # # # # # # # # # # # # # # # # # # # # # # # #
