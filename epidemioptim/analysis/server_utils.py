@@ -54,6 +54,29 @@ def introduction():
                            +'</p>'
                            +'</font>'))
     return intro_html
+
+def footer():
+    footer = HTML(layout=Layout(width='800px',
+                                    height='100%',
+                                    margin='auto',
+                                    ),
+                      value=(
+                                  '<link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> ' +
+                                  "<font color='black'><font face = 'Comic sans MS'>"
+                                  + '<h3 ' + h3_style + 'Reference</h3>'
+                                  + '<p align="left" ' + p_style + '>'
+                                  + 'The bibtex reference to the EpidemiOptim paper can be found here:'
+                                  + '<code> @article{colas2020epidemioptim, <br>'
+                                  + '&nbsp;&nbsp;&nbsp;&nbsp;title={EpidemiOptim: A Toolbox for the Optimization of Control Policies in Epidemiological<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Models}, <br>'
+                                  + '&nbsp;&nbsp;&nbsp;&nbsp;author={Colas, C{\'e}dric and Hejblum, Boris and Rouillon, S{\'e}bastien and Thi{\'e}baut, '
+                                    'Rodolphe<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oudeyer, '
+                                    'and Pierre-Yves and Moulin-Frier, Cl{\'e}ment and Prague, M{\'e}lanie} <br>'
+                                  + '&nbsp;&nbsp;&nbsp;&nbsp;journal={arXiv preprint arXiv:2010.04452}, <br>'
+                                  + '&nbsp;&nbsp;&nbsp;&nbsp;year={2020}} </code>'
+                                  + '</p>'
+                                  + '</font>'))
+    return footer
+
 def algorithm_description(algorithm):
     if algorithm=='DQN':
         str_html=HTML(layout=Layout(width='800px',
