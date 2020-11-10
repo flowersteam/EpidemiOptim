@@ -9,9 +9,9 @@ import pandas as pd
 
 import torch
 plt.rcParams['figure.constrained_layout.use'] = True
-# font = {'weight':'bold', 'size'   : 22}
-# import matplotlib
-# matplotlib.rc('font', **font)
+font = {'size'   : 13}
+import matplotlib
+matplotlib.rc('font', **font)
 
 
 # # # # # # # # # # # # # # # # # # # # # # # #
@@ -32,12 +32,12 @@ def plot_stats(t, states, labels, legends=None, title=None, lockdown=None, icu_c
 
     for i in range(n_plots):
         if isinstance(states[i], list):
-            axs[i].plot(t, np.array(states[i]).transpose(), linewidth=2)
+            axs[i].plot(t, np.array(states[i]).transpose(), linewidth=2, color='#004c8f')
             # if legends is not None:
             #     if legends[i] is not None:
             #         axs[i].legend(legends[i], frameon=False, fontsize=15, prop={'weight': 'normal'})
         else:
-            axs[i].plot(t, states[i], linewidth=5)
+            axs[i].plot(t, states[i], linewidth=5, color='#004c8f')
 
         axs[i].set_ylabel(labels[i], fontweight='bold')
         if i == 4:

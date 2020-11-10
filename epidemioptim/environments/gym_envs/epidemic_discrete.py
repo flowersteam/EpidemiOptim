@@ -357,7 +357,7 @@ class EpidemicDiscrete(BaseEnv):
                    np.array(cumulative_eco_cost),
                    np.array(self.history['b'])
                    ]
-        labels = ['New Deaths', 'Total Deaths', r'Aggregated Cost', 'New GDP Loss (B)', 'Total GDP Loss (B)', 'Transmission rate']
+        labels = ['New Deaths', 'Total Deaths', r'Aggregated Cost', 'New GDP Loss (B€)', 'Total GDP Loss (B€)', 'Transmission rate']
         legends = [None, None, [r'$\beta = $' + str(beta) for beta in betas], None, None, None]
         stats_run = dict(to_plot=to_plot,
                          labels=labels,

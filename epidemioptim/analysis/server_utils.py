@@ -14,115 +14,153 @@ from epidemioptim.utils import *
 from epidemioptim.analysis.notebook_utils import setup_for_replay,replot_stats,setup_fig_notebook,run_env
 from ipywidgets import HTML,Layout,VBox,FloatSlider,HBox,Label
 # About
+
+
+# -apple-system,.SFNSText-Regular,San Francisco,Segoe UI,Helvetica Neue,Lucida Grande,
+p_style = 'style="line-height:150%;font-weight:300;font-size:22px;font-family:Hind,sans-serif;"'
+h3_style = 'style="color:#004c8f;line-height:150%;font-weight:700;font-size:24px;font-family:Montserrat,sans-serif;">'
+h2_style = 'style="color:#004c8f;line-height:150%;font-weight:700;font-size:40px;font-family:Montserrat,sans-serif;">'
+h2_style_2 = 'style="color:#004c8f;line-height:150%;font-weight:700;font-size:35px;font-family:Montserrat,sans-serif;">'
 def introduction():
-    intro_html=HTML(layout=Layout(width='50%',height='100%',
-                        margin='0px 25% 0px 25%'),
-                    value=("<font color='black'><font size = 5><font face = 'Verdana'>" +
-                           '<center><h2> EpidemiOptim: A Toolbox for the Optimization of Control Policies in Epidemiological Models</h2></center>'
-                           +'<br><h3>Context</h3>' 
-                           +'<p align="justify">'
-                           +'Epidemiologists  model  the  dynamics  of  epidemics  in  order  to  propose  control strategies based on pharmaceutical and non-pharmaceutical interventions (contact limitation,  lock down,  vaccination,  etc.).'
-                           +'Hand-designing such strategies is not trivial because of the number of possible interventions and the difficulty to predict long-term effects.  This task can be cast as an optimization problem where state-of-the-art  machine  learning  algorithms  might  bring  significant  value.' 
+
+    intro_html=HTML(layout=Layout(width='800px',
+                                  height='100%',
+                                  margin='auto',
+                                  ),
+                    value=(' <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> ' +
+                            "<font color='black'><font face = 'Comic sans MS'>" +
+                           '<center><h2 ' + h2_style + 'EpidemiOptim: A Toolbox for the Optimization of Control Policies in Epidemiological '
+                           'Models</h2></center>'
+                           +'<h3 ' + h3_style + 'Context</h3>'
+                           +'<p align="justify" ' + p_style + '>'
+                           +'Epidemiologists  model  the  dynamics  of  epidemics  in  order  to  propose  control strategies based on pharmaceutical and non-pharmaceutical '
+                            'interventions (contact limitation,  lock down,  vaccination,  etc.). '
+                           +'Hand-designing such strategies is not trivial because of the number of possible interventions and the difficulty to predict long-term effects.  This task can be cast as an optimization problem where state-of-the-art  machine  learning  algorithms  might  bring  significant  value. '
                            + '</p>'
-                           + '<br><h3>Whate we propose</h3>'
-                           +'<p align="justify">'
-                           + 'The  specificity  of  each  domain  -- epidemic modelling or solving optimization problem -- requires strong collaborations  between  researchers  from  different  fields  of  expertise.'
+                           + '<h3 ' + h3_style + 'What we propose</h3>'
+                           +'<p align="justify" ' + p_style + '>'
+                           + 'The  specificity  of  each  domain — epidemic modelling or solving optimization problem — requires strong collaborations  between  researchers  from  different  fields  of  expertise.'
                            + 'This  is  why  we introduce <var>EpidemiOptim</var>, a Python toolbox that facilitates collaborations between researchers in epidemiology and optimization. '
-                           +'EpidemiOptim turns epidemiological models and cost functions into optimization problems via a standard interface commonly used by optimization practitioners. This library is presented in details in the <a href="https://arxiv.org/pdf/2010.04452.pdf" target="_blank">EpidemiOptim paper</a> .'
+                           +'EpidemiOptim turns epidemiological models and cost functions into optimization problems via a standard interface commonly used by optimization '
+                            'practitioners. This library is presented in details in the <a href="https://arxiv.org/pdf/2010.04452.pdf" style="color:#004c8f;" '
+                            'target="_blank">EpidemiOptim paper</a>. '
                            +'</p>'
-                           +'<br><h3>Interact with trained models, design your own intervention strategy!</h3>'
-                           +'<p align="justify">'
+                           +'<h3 ' + h3_style + 'Interact with trained models, design your own intervention strategy!</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'To demonstrate the use of EpidemiOptim, we run experiments to optimize the design of an on/off lock-down policy in the context of the COVID-19 epidemic in the French region of Ile-de-France. '
-                           +'We have two objectives here: minimizing the death toll and minimizing the economic recess.'
-                           +'In the tabs below, you will be able to <strong><em>explore strategies optimized by various state-of-the-art optimization algorithms</em></strong>.'
+                           +'We have two objectives here: minimizing the death toll and minimizing the economic recess. '
+                           +'In the tabs below, you will be able to <span style="font-weight:500;">explore strategies optimized by various state-of-the-art optimization algorithms</span>. '
                            +'In the last tab, you will be able to design your own strategy, apply it over a year of epidemic and observe its health and economic consequences.'
-                           +'<br><br></font>'))
+                           +'</p>'
+                           +'</font>'))
     return intro_html
 def algorithm_description(algorithm):
     if algorithm=='DQN':
-        str_html=HTML(layout=Layout(width='100%',height='100%'),
-                    value=("<font color='black'><font size = 5><font face = 'Verdana'>" +
-                           '<center><h2> Algo 1: Deep Q-Networks (DQN)</h2></center>'
-                           +'<br><h3>Objective</h3>' 
-                           +'<p align="justify">'
+        str_html=HTML(layout=Layout(width='800px',
+                                  height='100%',
+                                  margin='auto',
+                                  ),
+                    value=("<font color='black'><font face = 'Verdana'>" +
+                           '<center><h2 ' + h2_style_2 + 'Algo 1: Deep Q-Networks (DQN)</h2></center>'
+                           +'<h3 ' + h3_style + 'Objective</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'We want to minimize two metrics: the death toll <var>C<sub>health</sub></var> and the economic recess <var>C<sub>economic</sub></var>, computed over a one-year period.'
                            + '</p>'
-                           + '<br><h3>The algorithm</h3>'
-                           +'<p align="justify">'
-                           + 'The first algorithm belongs to the family of <em>reinforcement learning</em> algorithms: <strong><em>Deep Q-Networks (DQN)</strong></em>. DQN is traditionally used to minimize a unique cost function. To circumvent this problem, we train several control policies, where each policy minimizes a certain combination of the two costs parameterized by &#946:'
-                           +'<br><br><center><var> C = (1- &#946)&#215C<SUB>h</SUB> +  &#946&#215C<SUB>e</SUB></var>,</center>'
-                           +'<br>where <var>C</var> is the aggregated cost.</p>'
-                           +'<br><h3>What is plotted</h3>'
-                           +'<p align="justify">'
+                           + '<h3 ' + h3_style + 'The algorithm</h3>'
+                           +'<p align="justify" ' + p_style + '>'
+                           + 'The first algorithm belongs to the family of <span style="font-weight:500;">reinforcement learning</span> algorithms: <span style="font-weight:500;">Deep Q-Networks ('
+                           + 'DQN)</span>. DQN is traditionally used to minimize a unique cost function. To circumvent this problem, we train several control policies, '
+                           + 'where each policy minimizes a certain combination of the two costs:</p>'
+                           +'<center><var> C = (1- &#946)&#215C<SUB>h</SUB> +  &#946&#215C<SUB>e</SUB></var>,</center>'
+                           + '<p align="justify" ' + p_style + '>'
+                           +'where <var>C</var> is the aggregated cost and <var>&#946</var> is the mixing parameter.</p>'
+                           +'<h3 ' + h3_style + 'What is plotted</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. '
-                           +'<br><h3>Try it yourself!</h3>'
-                           +'<p align="justify">'
-                           +'The slider &#946 allows to control the mixing of the two costs. &#946<var>=1</var> results in the pure minimization of the economic cost. &#946<var>=0</var> results in the pure minimization of the death toll.  '
+                           +'<h3 ' + h3_style + 'Try it yourself!</h3>'
+                           +'<p align="justify" ' + p_style + '>'
+                           +'The slider<var> &#946 </var>allows to control the mixing of the two costs. <var>&#946=1</var> results in the pure minimization of the economic cost. &#946<var>=0</var> results in the pure minimization of the death toll.  '
+                           + '</p>'
                            +'</font>'))
     elif algorithm=='GOAL_DQN':
-        str_html=HTML(layout=Layout(width='100%',height='100%'),
+        str_html=HTML(layout=Layout(width='800px',
+                                  height='100%',
+                                  margin='auto',
+                                  ),
                     value=("<font color='black'><font size = 5><font face = 'Verdana'>" +
-                           '<center><h2> Algo 2: Goal-Conditioned Deep Q-Networks (Goal-DQN)</h2></center>'
-                           +'<br><h3>Objective</h3>' 
-                           +'<p align="justify">'
+                           '<center><h2 ' + h2_style_2 + 'Algo 2: Goal-Conditioned Deep Q-Networks (Goal-DQN)</h2></center>'
+                           +'<h3 ' + h3_style + 'Objective</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'We want to minimize two metrics: the death toll <var>C<sub>health</sub></var> and the economic recess <var>C<sub>economic</sub></var>, computed over a one-year period.'
                            + '</p>'
-                           + '<br><h3>The algorithm</h3>'
-                           +'<p align="justify">'
-                           +'This algorithm is a variant of the traditional <em>Deep Q-Network</em>. In the <strong><em>Goal-Conditioned Q-Networks (Goal-DQN)</strong></em>, we train one policy to minmize all the combinations of the health and economic costs:'
-                           +'<br><br><center><var> C = (1- &#946)&#215C<SUB>h</SUB> +  &#946&#215C<SUB>e</SUB></var>,</center>'
-                           +'<br>for all values of &#946 in <var>[0, 1]</var>..</p>'
-                           +'<br>To do so, the policy receives the value of &#946 corresponding to the mixture of costs it needs to minimize. This dramatically reduces training time compared to a simple DQN, as only one policy is trained (see Algo 1 tab).'
-                           +'<br><h3>What is plotted</h3>'
-                           +'<p align="justify">'
+                           + '<h3 ' + h3_style + 'The algorithm</h3>'
+                           +'<p align="justify" ' + p_style + '>'
+                           +'This algorithm is a variant of the traditional <span style="font-weight:500;">Deep Q-Network</span>. In the <span style="font-weight:500;">Goal-Conditioned Q-Networks (Goal-DQN)</span>, we train one policy to minmize all the combinations of the health and economic costs:'
+                           +'<center><var> C = (1- &#946)&#215C<SUB>h</SUB> +  &#946&#215C<SUB>e</SUB></var>,</center>'
+                           + '<p align="justify" ' + p_style + '>'
+                           +'for all values of <var>&#946</var> in <var>[0, 1]</var>.</p>'
+                           + '<p align="justify" ' + p_style + '>'
+                           +'To do so, the policy receives the value of<var> &#946 </var>corresponding to the mixture of costs it needs to minimize. This dramatically reduces training time compared to a simple DQN, as only one policy is trained (see Algo 1 tab).'
+                           + '</p>'
+                           +'<h3 ' + h3_style + 'What is plotted</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. '
-                           +'<br><h3>Try it yourself!</h3>'
-                           +'<p align="justify">'
-                           +'The slider &#946 allows to control the mixing of the two costs. &#946<var>=1</var> results in the pure minimization of the economic cost. &#946<var>=0</var> results in the pure minimization of the death toll.  '
+                           +'<h3 ' + h3_style + 'Try it yourself!</h3>'
+                           +'<p align="justify" ' + p_style + '>'
+                           +'The slider<var> &#946 </var>allows to control the mixing of the two costs. &#946<var>=1</var> results in the pure minimization of the economic cost. &#946<var>=0</var> results in the pure minimization of the death toll.  '
+                           + '</p>'
                            +'</font>'))
     elif algorithm=='GOAL_DQN_CONST':
-        str_html=HTML(layout=Layout(width='100%',height='100%'),
+        str_html=HTML(layout=Layout(width='800px',
+                                  height='100%',
+                                  margin='auto',
+                                  ),
                     value=("<font color='black'><font size = 5><font face = 'Verdana'>" +
-                           '<center><h2> Algo 3: Goal-Conditioned Deep Q-Networks with Constraints (Goal-DQN-C)</h2></center>'
-                           +'<br><h3>Objective</h3>' 
-                           +'<p align="justify">'
+                           '<center><h2 ' + h2_style_2 + 'Algo 3: Goal-Conditioned Deep Q-Networks with Constraints (Goal-DQN-C)</h2></center>'
+                           +'<h3 ' + h3_style + 'Objective</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'We want to minimize two metrics: the death toll <var>C<sub>health</sub></var> and the economic recess <var>C<sub>economic</sub></var>, computed over a one-year period.'
                            + '</p>'
-                           + '<br><h3>The algorithm</h3>'
-                           +'<p align="justify">'
-                           +'This algorithm is a variant of the traditional <em>Deep Q-Network</em>. In the <strong><em>Goal-Conditioned Q-Networks with Constraints (Goal-DQN-C)</strong></em>, we train one policy to minmize all the combinations of the health and economic costs:'
-                           +'<br><br><center><var> C = (1- &#946)&#215C<SUB>h</SUB> +  &#946&#215C<SUB>e</SUB></var>,</center>'
-                           +'<br>for all values of &#946 in <var>[0, 1]</var>..</p>'
-                           +'<br> In addition, we can set constraints on maximum values for each of the cumulated cost over the one-year period. To do so, the policy receives the value of &#946 corresponding to the mixture of costs it needs to minimize, as well as the value of the maximum cumulative cost that forms its constraints .'
-                           +'<br><h3>What is plotted</h3>'
-                           +'<p align="justify">'
+                           + '<h3 ' + h3_style + 'The algorithm</h3>'
+                           +'<p align="justify" ' + p_style + '>'
+                           +'This algorithm is a variant of the traditional <span style="font-weight:500;">Deep Q-Network</span>. In the <span style="font-weight:500;">Goal-Conditioned Q-Networks with Constraints (Goal-DQN-C)</span>, we train one policy to minmize all the combinations of the health and economic costs:'
+                           +'<center><var> C = (1- &#946)&#215C<SUB>h</SUB> +  &#946&#215C<SUB>e</SUB></var>,</center>'
+                           + '<p align="justify" ' + p_style + '>'
+                           +'for all values of <var>&#946</var> in <var>[0, 1]</var>.</p>'
+                           + '<p align="justify" ' + p_style + '>'
+                           +' In addition, we can set constraints on maximum values for each of the cumulated cost over the one-year period. To do so, the policy receives the value of<var> &#946 </var>corresponding to the mixture of costs it needs to minimize, as well as the value of the maximum cumulative cost that forms its constraints .'
+                           + '</p>'
+                           +'<h3 ' + h3_style + 'What is plotted</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. The black dashed-line represents the constraints on the maximum value of the cost. '
-                           +'<br><h3>Try it yourself!</h3>'
-                           +'<p align="justify">'
-                           +'The slider &#946 allows to control the mixing of the two costs. &#946<var>=1</var> results in the pure minimization of the economic cost. &#946<var>=0</var> results in the pure minimization of the death toll.'
+                           +'<h3 ' + h3_style + 'Try it yourself!</h3>'
+                           +'<p align="justify" ' + p_style + '>'
+                           +'The slider<var> &#946 </var>allows to control the mixing of the two costs. &#946<var>=1</var> results in the pure minimization of the economic cost. &#946<var>=0</var> results in the pure minimization of the death toll.'
                            +' The other two sliders control the maximum values the cumulative costs can take. Explore the effect of these parameters. Note how the policy adapts to the constraints. If you push further, and set strong constraints on the two costs, a good policy might not exist (e.g. 0 death and 0 euros of economic recess.)'
+                           + '</p>'
                            +'</font>'))
     elif algorithm=='NSGA':
-        str_html=HTML(layout=Layout(width='100%',height='100%'),
+        str_html=HTML(layout=Layout(width='800px',
+                                  height='100%',
+                                  margin='auto',
+                                  ),
                     value=("<font color='black'><font size = 5><font face = 'Verdana'>" +
-                           '<center><h2> Algo 4: Non-dominated Sorting Genetic Algorithm II (NSGA-II)</h2></center>'
-                           +'<br><h3>Objective</h3>' 
-                           +'<p align="justify">'
+                           '<center><h2 ' + h2_style_2 + 'Algo 4: Non-dominated Sorting Genetic Algorithm II (NSGA-II)</h2></center>'
+                           +'<h3 ' + h3_style + 'Objective</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'We want to minimize two metrics: the death toll <var>C<sub>health</sub></var> and the economic recess <var>C<sub>economic</sub></var>, computed over a one-year period.'
                            + '</p>'
-                           + '<br><h3>The algorithm</h3>'
-                           +'<p align="justify">'
-                           +'<strong><em>Non-dominated Sorting Genetic Algorithm II (NSGA-II)</strong></em> is a state-of-the-art multi-objective optimization algorithm from the family of evolutionary algorithms. In contrast to previous algorithms, this one is explicitely built to optimize several costs at a time instead of linear combinations of them. In practice, this algorithm aims to find a '
-                           +'<em>Pareto Front</em>, the set of <em>non-dominated solutions</em>: solutions for which one cannot find any other solution that performs better on both dimensions (better health cost <strong>and</strong> better economic cost). The result of this algorithm is thus a set of control policies, each having their particular trade-off with respect to the two costs.'
-                           +'<br><br><center><var> C = (1- &#946)&#215C<SUB>h</SUB> +  &#946&#215C<SUB>e</SUB></var>,</center>'
-                           +'<br>for all values of &#946 in <var>[0, 1]</var>..</p>'
-                           +'<br> In addition, we can set constraints on maximum values for each of the cumulated cost over the one-year period. To do so, the policy receives the value of &#946 corresponding to the mixture of costs it needs to minimize, as well as the value of the maximum cumulative cost that forms its constraints .'
-                           +'<br><h3>What is plotted</h3>'
-                           +'<p align="justify">'
+                           + '<h3 ' + h3_style + 'The algorithm</h3>'
+                           +'<p align="justify" ' + p_style + '>'
+                           +'<span style="font-weight:500;">Non-dominated Sorting Genetic Algorithm II (NSGA-II)</span> is a state-of-the-art multi-objective optimization algorithm from the family of evolutionary algorithms. In contrast to previous algorithms, this one is explicitely built to optimize several costs at a time instead of linear combinations of them. In practice, this algorithm aims to find a '
+                           +'<span style="font-weight:500;">Pareto Front</span>, the set of <span style="font-weight:500;">non-dominated solutions</span>: solutions for which one cannot find any other solution that performs better on both dimensions (better health cost <span style="font-weight:500;">and</span> better economic cost). The result of this algorithm is thus a set of control policies, each having their particular trade-off with respect to the two costs.'
+                           +'<h3 ' + h3_style + 'What is plotted</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'The first plot represents the Pareto front found by one run of the NSGA-II algorithm. Note that no solution performs better than any other on both dimensions, or worse on both dimensions. Each point represent the average performance of a given policy on the two costs, after it is run on 30 different simulations of the epidemic. The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. '
-                           +'<br><h3>Try it yourself!</h3>'
-                           +'<p align="justify">'
+                           +'<h3 ' + h3_style + 'Try it yourself!</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'You can click on points in the first plot to select the corresponding policy and see its consequences in terms of the two costs in the graphs below. Note that the model is stochastic. Each time you click on the policy, a new simulation is run, and the way the policy reacts to the epidemic might vary.'
+                           + '</p>'
                            +'</font>'))
     else:
         NotImplementedError
@@ -245,12 +283,22 @@ def test_layout(algorithm_str,seed,deterministic_model):
             closest_ind = np.argmin(dists)
 
             # highlight it
+            order = np.concatenate([np.arange(closest_ind), np.arange(closest_ind + 1, nb_points), np.array([closest_ind])])
+            sc.set_offsets(data[order])
             sizes = np.ones(nb_points) * size
-            sizes[closest_ind] = size * 3
+            sizes[-1] = size * 5
             colors = [color] * nb_points
-            colors[closest_ind] = color_highlight
+            colors[-1] = color_highlight
             sc.set_sizes(sizes)  # you can set you markers to different sizes
             sc.set_color(colors)
+
+            #
+            # sizes = np.ones(nb_points) * size
+            # sizes[closest_ind] = size * 3
+            # colors = [color] * nb_points
+            # colors[closest_ind] = color_highlight
+            # sc.set_sizes(sizes)  # you can set you markers to different sizes
+            # sc.set_color(colors)
 
             # rerun env
             weights = algorithm.res_eval['X'][closest_ind]
