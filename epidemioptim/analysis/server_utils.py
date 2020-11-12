@@ -322,7 +322,6 @@ def test_layout(algorithm_str,seed,deterministic_model):
     else:
         to_add = ''
         folder = get_repo_path() + "/data/data_for_visualization/"+ algorithm_str+ "/1/"
-    print(folder)
     algorithm, cost_function, env, params = setup_for_replay(folder+to_add , seed, deterministic_model)
 
     if algorithm_str == 'DQN':
