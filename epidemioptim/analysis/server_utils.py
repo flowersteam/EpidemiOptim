@@ -11,8 +11,8 @@ import sys
 sys.path.append('../../')
 
 from epidemioptim.utils import *
-from epidemioptim.analysis.notebook_utils import setup_for_replay,replot_stats,setup_fig_notebook,run_env
-from ipywidgets import HTML,Layout,VBox,FloatSlider,HBox,Label
+from epidemioptim.analysis.notebook_utils import setup_for_replay,replot_stats,setup_fig_notebook,run_env,get_action_base
+from ipywidgets import HTML,Layout,VBox,FloatSlider,HBox,Label,ToggleButton,Dropdown,Checkbox,interactive_output,Box
 # About
 
 
@@ -185,6 +185,32 @@ def algorithm_description(algorithm):
                            +'You can click on points in the first plot to select the corresponding policy and see its consequences in terms of the two costs in the graphs below. Note that the model is stochastic. Each time you click on the policy, a new simulation is run, and the way the policy reacts to the epidemic might vary.'
                            + '</p>'
                            +'</font>'))
+    elif algorithm=='yourself':
+        str_html=HTML(layout=Layout(width='800px',
+                                  height='100%',
+                                  margin='auto',
+                                  ),
+                          value=("<font color='black'><font face = 'Verdana'>" +
+                                 '<center><h2 ' + h2_style_2 + 'Try It Yourself!</h2></center>'
+                                 +'<h3 ' + h3_style + 'Objective</h3>'
+                                 +'<p align="justify" ' + p_style + '>'
+                                 +'We want to minimize two metrics: the death toll <var>C<sub>health</sub></var> and the economic recess <var>C<sub>economic</sub></var>, computed over a one-year period.'
+                                 + '</p>'
+                                 + '<h3 ' + h3_style + 'The algorithm</h3>'
+                                 +'<p align="justify" ' + p_style + '>'
+                                 + 'Here, you are the algorithm!'
+                                 +'<h3 ' + h3_style + 'What is plotted</h3>'
+                                 +'<p align="justify" ' + p_style + '>'
+                                 +'The first plot represents the Pareto front found by one run of the NSGA-II algorithm. The red dot is the average performance of the strategy you design (computed over 30 simulations). The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. '
+                                 +'<h3 ' + h3_style + 'Try it yourself!</h3>'
+                                 +'<p align="justify" ' + p_style + '>'
+                                 +'To perform better than NSGA-II, you need to get closer to the origin of the plot <var> (0,0) </var>. Note that algorithms train policy that are reactive to the epidemic and can adapt to its state as it progresses. You are designing, on the other hand, a <span style="font-weight:500;">fixed-strategy</span> that is evaluated on 30 different simulated epidemics.'
+                                 + '<br>You can design your strategy with two tools:'
+                                 + '<ol ' + p_style +'><li>The four first sliders enable you to define a pattern of the form <span style="font-weight:500;"> </span> implement lock-down N1 weeks every N2 weeks. The first two sliders control the start and end of the pattern (in weeks), the two following sliders control the duration of the lock-down and the period of the pattern respectively.</li>'
+                                 +'<li>The checkbox control the enforcement of the lockdown on a weekly basis. Pressing the <span style="font-weight:500;">reset</span> button synchronizes the checkboxes with the pattern defined by the sliders. Checkboxes can then be checked/unchecked to finetune the control strategy.</li></ol>'
+                                 + '</p>'
+                                 +'</font>'))
+            
     else:
         NotImplementedError
     
@@ -242,15 +268,61 @@ def center_vbox(children):
     centered_layout = VBox(children=children, layout = box_layout)
     return centered_layout
 
+def run_env_with_actions(actions,env, reset_same_model):
+
+    additional_keys = ('costs', 'constraints')
+    # Setup saved values
+    episode = dict(zip(additional_keys, [[] for _ in range(len(additional_keys))] ))
+    env_states = []
+    aggregated_costs = []
+    dones = []
+    if reset_same_model:
+        env.reset_same_model()
+    state = env.reset()
+    env_states.append(state)
+
+    done = False
+    t = 0
+    counter = 0
+    while not done:
+        # Interact
+        next_state, agg_cost, done, info = env.step(actions[counter])
+        # Save stuff
+        state = next_state
+        t = env.unwrapped.t
+        counter += 1
+        aggregated_costs.append(agg_cost)
+        env_states.append(state)
+        dones.append(done)
+
+        for k in additional_keys:
+            episode[k].append(info[k])
+
+    # Form episode dict
+    episode.update(env_states=np.array(env_states),
+                   aggregated_costs=np.array(aggregated_costs),
+                   actions=np.array(actions),
+                   dones=np.array(dones))
+
+    aggregated_costs = np.sum(episode['aggregated_costs'])
+    costs = np.sum(episode['costs'], axis=0)
+    stats = env.unwrapped.get_data()
+
+    return stats, costs
+
 def test_layout(algorithm_str,seed,deterministic_model):
     if seed is None:
         seed = np.random.randint(1e6)
     if algorithm_str == 'DQN':
         to_add = '0.5/'
         folder = get_repo_path() + "/data/data_for_visualization/DQN/"
+    elif algorithm_str=='yourself':
+        folder = get_repo_path() + "/data/data_for_visualization/NSGA/1/"
+        to_add = ''
     else:
         to_add = ''
         folder = get_repo_path() + "/data/data_for_visualization/"+ algorithm_str+ "/1/"
+    print(folder)
     algorithm, cost_function, env, params = setup_for_replay(folder+to_add , seed, deterministic_model)
 
     if algorithm_str == 'DQN':
@@ -274,8 +346,6 @@ def test_layout(algorithm_str,seed,deterministic_model):
         slider.observe(update_lines, names='value')
 
         final_layout = center_vbox([str_html,fig.canvas, slider])
-        #final_layout = center_vbox([fig.canvas, slider])
-        #final_layout = VBox([fig.canvas, slider])
         return final_layout
     elif algorithm_str == 'NSGA':
         str_html=algorithm_description(algorithm_str)
@@ -314,15 +384,6 @@ def test_layout(algorithm_str,seed,deterministic_model):
             colors[-1] = color_highlight
             sc.set_sizes(sizes)  # you can set you markers to different sizes
             sc.set_color(colors)
-
-            #
-            # sizes = np.ones(nb_points) * size
-            # sizes[closest_ind] = size * 3
-            # colors = [color] * nb_points
-            # colors[closest_ind] = color_highlight
-            # sc.set_sizes(sizes)  # you can set you markers to different sizes
-            # sc.set_color(colors)
-
             # rerun env
             weights = algorithm.res_eval['X'][closest_ind]
             algorithm.policy.set_params(weights)
@@ -336,8 +397,6 @@ def test_layout(algorithm_str,seed,deterministic_model):
         fig=canvas_setup(fig)
         fig1=canvas_setup(fig1)
         final_layout = center_vbox([str_html,fig.canvas, fig1.canvas])
-        #final_layout = center_vbox([fig.canvas, fig1.canvas])
-        #final_layout = VBox([fig.canvas, fig1.canvas])
         return(final_layout)
     elif 'GOAL_DQN' in algorithm_str:
         if cost_function.use_constraints:
@@ -408,8 +467,6 @@ def test_layout(algorithm_str,seed,deterministic_model):
                                         center_vbox([slider_beta,
                                               HBox([slider_M_sanitary_desc,slider_M_economic_desc])])
                                         ])
-            #final_layout = center_vbox([fig.canvas, slider_beta,slider_M_sanitary,slider_M_economic])
-            #final_layout = VBox([fig.canvas, slider_beta,slider_M_sanitary,slider_M_economic])
             return final_layout
         else :
             slider_goal = FloatSlider(orientation='horizontal',
@@ -431,6 +488,122 @@ def test_layout(algorithm_str,seed,deterministic_model):
             #final_layout = center_vbox([fig.canvas, slider_goal])
             #final_layout = VBox([fig.canvas, slider_goal])
             return final_layout
-                
+    elif algorithm_str == 'yourself':
+        str_html=algorithm_description(algorithm_str)
+        global actions
+        actions = get_action_base('never')
+        stats, costs = run_env_with_actions(actions,env, reset_same_model=False)
+        fig1, lines, plots_i, high, axs = setup_fig_notebook(stats)
+        size = 15
+        color = "#004ab3"
+        color_highlight = "#b30000"
+        
+        fig,ax,sc=plot_pareto(algorithm,size,color)
+        data = sc.get_offsets().data
+        off_sets = sc.get_offsets()
+        data_max = np.max(data, axis=0)
+        data_min = np.min(data, axis=0)
+        nb_points = data.shape[0]
+        set_button = ToggleButton(value=True,
+                                      description='Set to pattern',
+                                      disabled=False,
+                                      button_style='',  # 'success', 'info', 'warning', 'danger' or ''
+                                      layout=Layout(width='50%', height='80px'),
+                                      style={'description_width': 'initial'},
+                                      tooltip='Description',
+                                      icon='check'  # (FontAwesome names without the `fa-` prefix)
+                                      )
+        start = Dropdown(options=[str(i) for i in range(1, 54)],
+                                 value='1',
+                                 description="# weeks before pattern starts",
+                                 layout=Layout(width='50%', height='80px'),
+                                 style={'description_width': 'initial', 'widget_width': '50%'})
+
+        stop = Dropdown(options=[str(i) for i in range(1, 55)],
+                                 value='54',
+                                 description="# weeks before pattern stops",
+                                 layout=Layout(width='50%', height='80px'),
+                                 style={'description_width': 'initial', 'widget_width': '50%'})
+
+        nb_weeks = Dropdown(options=[str(i) for i in range(0, 54)],
+                                    value='0',
+                                    description="Duration of lockdown phase (weeks)",
+                                    layout=Layout(width='50%', height='80px'),
+                                    style={'description_width': 'initial', 'widget_width': '50%'})
+
+        every = Dropdown(options=[str(i) for i in range(1, 54)],
+                                 value='1',
+                                 description="Duration of the cycle or period (weeks)",
+                                 layout=Layout(width='5%', height='80px'),
+                                 style={'description_width': 'initial', 'widget_width': '50%'})
+        names = ['start','stop','nb_weeks','every','set_button']
+        checkbox_objects = [start,stop,nb_weeks,every,set_button]
+        for i in range(52):
+            desc='Week {}'.format(i + 1)
+            checkbox_objects.append(Checkbox(value=False, description=desc))
+            names.append(desc)
+        arg_dict = {names[i]: checkbox for i, checkbox in enumerate(checkbox_objects)}
+
+        box_layout = Layout(overflow_y='auto',
+                    border='3px solid black',
+                    height='450px',
+                    display='block',width='800px')
+        ui = Box(children=checkbox_objects, layout=box_layout)
+        def update(**kwargs):
+            start=int(kwargs['start'])-1
+            stop=int(kwargs['stop'])-1
+            nb_weeks=int(kwargs['nb_weeks'])
+            every=int(kwargs['every'])
+            action_str = str(nb_weeks) + '_' + str(every)
+            print(action_str)
+            set_button=kwargs['set_button']
+            if set_button:
+                print('Set to pattern. Closing {} weeks every {} weeks.'.format(nb_weeks, every))
+            else:
+                print('Custom strategy.')
+
+                if every < nb_weeks:
+                    print('When "every" is superior or equal to "nb_weeks", lockdown is always on.')
+            actions = get_action_base(action_str, start, stop)
+            if set_button:
+                for i in range(52):
+                    checkbox_objects[5+i].value = bool(actions[i])
+        
+            else:
+                for i in range(52):
+                    actions[i] = int(kwargs['Week {}'.format(i+1)])
+            stats, costs = run_env_with_actions(actions,env, reset_same_model=deterministic_model)
+            if run_eval:
+                all_costs = [run_env_with_actions(actions, reset_same_model=False)[1] for _ in range(n_evals)]
+                all_costs = np.array(all_costs)
+                print(all_costs)
+                means = all_costs.mean(axis=0)
+                x, y = means
+                stds = all_costs.std(axis=0)
+                msg = '\nEvaluation (over {} seeds):'.format(n_evals)
+                msg += '\n\t Death toll: {} +/- {}'.format(int(means[0]), int(stds[0]))
+                msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B.'.format(int(means[1]), int(stds[1]))
+                print(msg)
+            else:
+                x, y = costs
+            print('\nDeath toll: {}, Economic cost: {:.2f} B.'.format(int(costs[0]), costs[1]))
+            replot_stats(lines, stats, plots_i, cost_function, high)
+
+            # update PAreto:
+            new_offsets = np.concatenate([off_sets, np.array([[x, y]])], axis=0)
+            sc.set_offsets(new_offsets)
+            new_colors = [color] * nb_points + [color_highlight]
+            sc.set_color(new_colors)
+            new_sizes = [size] * nb_points + [size * 2]
+            sc.set_sizes(new_sizes)
+
+            update_fig(fig)
+            update_fig(fig1)
+            return actions
+        out = interactive_output(update, arg_dict)
+        fig=canvas_setup(fig)
+        fig1=canvas_setup(fig1)
+        final_layout = center_vbox([str_html,fig.canvas, fig1.canvas,ui])
+        return final_layout
     else:
         raise NotImplementedError
