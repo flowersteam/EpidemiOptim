@@ -12,7 +12,7 @@ sys.path.append('../../')
 
 from epidemioptim.utils import *
 from epidemioptim.analysis.notebook_utils import setup_for_replay,replot_stats,setup_fig_notebook,run_env,get_action_base
-from ipywidgets import HTML,Layout,VBox,FloatSlider,HBox,Label,ToggleButton,Dropdown,Checkbox,interactive_output,Box
+from ipywidgets import HTML,Layout,VBox,FloatSlider,IntSlider,HBox,Label,ToggleButton,Dropdown,Checkbox,interactive_output,Box
 # About
 
 
@@ -331,7 +331,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
         slider = FloatSlider(orientation='horizontal',description='beta:',value=0.5,
                              min=0,
                              max=1,
-                             step=0.05
+                             step=0.05,layout={'width': '450px'}
                              )
 
         slider=slider_setup(slider)
@@ -344,7 +344,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
             update_fig(fig)
         slider.observe(update_lines, names='value')
 
-        final_layout = center_vbox([str_html,fig.canvas, slider])
+        final_layout = center_vbox([str_html,slider,fig.canvas])
         return final_layout
     elif algorithm_str == 'NSGA':
         str_html=algorithm_description(algorithm_str)
@@ -407,6 +407,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
         fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
         if cost_function.use_constraints:
             # Plot constraints as dotted line.
+            style={'description_width': '150px'}
             M_sanitary = cost_function.costs[0].compute_constraint(1)
             line, = axs[1].plot([0, params['simulation_horizon']],
                                 [M_sanitary, M_sanitary],
@@ -421,25 +422,31 @@ def test_layout(algorithm_str,seed,deterministic_model):
             lines.append(line)
             #Define slider
             slider_beta = FloatSlider(orientation='horizontal',
-                                            description='beta:',
+                                            description='beta',
+                                            style = style,
                                             value=0.5,
                                             min=0,
                                             max=1,
-                                            step=0.05
+                                            step=0.05,
+                                            layout={'width': '450px'}
                                             )   
-            slider_M_sanitary = FloatSlider(orientation='horizontal',
-                                            description='Sanitary constraint:',
+            slider_M_sanitary = IntSlider(orientation='horizontal',
+                                            description='Sanitary constraint',
+                                            style = style,
                                             value=62000,
                                             min=1000,
                                             max=62000,
-                                            step=5000
+                                            step=5000,
+                                            layout={'width': '450px'}
                                             )   
-            slider_M_economic = FloatSlider(orientation='horizontal',
-                                            description='Economic constraint:',
+            slider_M_economic = IntSlider(orientation='horizontal',
+                                            description='Economic constraint',
+                                            style = style,
                                             value=160,
                                             min=20,
                                             max=160,
-                                            step=20
+                                            step=20,
+                                            layout={'width': '450px'}
                                             )
             slider_beta=slider_setup(slider_beta)
             slider_M_sanitary=slider_setup(slider_M_sanitary)
@@ -458,14 +465,9 @@ def test_layout(algorithm_str,seed,deterministic_model):
             slider_beta.observe(update_const, 'value')
             slider_M_sanitary.observe(update_const, 'value')
             slider_M_economic.observe(update_const, 'value')
-            slider_M_economic_desc=modify_description(slider_M_economic)
-            slider_M_sanitary_desc=modify_description(slider_M_sanitary)
-
-            final_layout = center_vbox([str_html, 
-                                        fig.canvas,
-                                        center_vbox([slider_beta,
-                                              HBox([slider_M_sanitary_desc,slider_M_economic_desc])])
-                                        ])
+            final_layout = center_vbox([str_html,
+                                        center_vbox([slider_beta,slider_M_sanitary,slider_M_economic]),
+                                        fig.canvas])
             return final_layout
         else :
             slider_goal = FloatSlider(orientation='horizontal',
@@ -473,7 +475,8 @@ def test_layout(algorithm_str,seed,deterministic_model):
                                       value=0.5,
                                       min=0,
                                       max=1,
-                                      step=0.05
+                                      step=0.05,
+                                      layout={'width': '450px'}
                                       )
             slider_goal=slider_setup(slider_goal)
             fig=canvas_setup(fig)
@@ -483,7 +486,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
                 replot_stats(lines, stats, plots_i, cost_function, high)
                 update_fig(fig)
             slider_goal.observe(update_goal, names='value')
-            final_layout = center_vbox([str_html,fig.canvas, slider_goal])
+            final_layout = center_vbox([str_html,slider_goal,fig.canvas])
             #final_layout = center_vbox([fig.canvas, slider_goal])
             #final_layout = VBox([fig.canvas, slider_goal])
             return final_layout
@@ -602,7 +605,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
         out = interactive_output(update, arg_dict)
         fig=canvas_setup(fig)
         fig1=canvas_setup(fig1)
-        final_layout = center_vbox([str_html,fig.canvas, fig1.canvas,ui])
+        final_layout = center_vbox([str_html,ui,fig.canvas, fig1.canvas])
         return final_layout
     else:
         raise NotImplementedError
