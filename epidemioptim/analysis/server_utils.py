@@ -608,7 +608,6 @@ def test_layout(algorithm_str,seed,deterministic_model):
         fig=canvas_setup(fig)
         fig1=canvas_setup(fig1)
         final_layout = center_vbox([str_html,ui,fig.canvas, fig1.canvas])
-        final_layout = VBox([fig.canvas, fig1.canvas,ui])
         return final_layout
     else:
         raise NotImplementedError
