@@ -310,6 +310,25 @@ def run_env_with_actions(actions,env, reset_same_model):
 
     return stats, costs
 
+def try_it_ui(checkbox_objects,box_layout):
+    number_of_week=52
+    number_of_week_per_row=4
+    offset_button=5
+
+    weekBox=Box(children=[])
+    for i in range(int(number_of_week/number_of_week_per_row)):
+        weekBox=VBox([weekBox,Box(checkbox_objects[number_of_week_per_row*(i)+offset_button:
+                                                   number_of_week_per_row*(i+1)+offset_button])])
+    setBox=Box([checkbox_objects[4]],layout=Layout(display='flex',
+                                                   flex_flow='column',
+                                                   align_items='center',
+                                                   width='100%'))
+    ui=Box(children=[HBox(checkbox_objects[0:2]),
+                      HBox(checkbox_objects[2:4]),
+                      setBox,
+                      weekBox]
+            ,layout=box_layout)
+    return ui
 def test_layout(algorithm_str,seed,deterministic_model):
     if seed is None:
         seed = np.random.randint(1e6)
@@ -554,6 +573,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
                     height='450px',
                     display='block',width='800px')
         ui = Box(children=checkbox_objects, layout=box_layout)
+        ui=try_it_ui(checkbox_objects,box_layout)
         def update_try(**kwargs):
             start=int(kwargs['start'])-1
             stop=int(kwargs['stop'])-1
