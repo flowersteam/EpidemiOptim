@@ -491,6 +491,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
             #final_layout = VBox([fig.canvas, slider_goal])
             return final_layout
     elif algorithm_str == 'yourself':
+        style={'description_width': '250px', 'widget_width': '50%'}
         run_eval = False 
         n_evals = 10  # number of evaluation rolloutsseed = None  # None picks a random seed
         str_html=algorithm_description(algorithm_str)
@@ -513,7 +514,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
                                       disabled=False,
                                       button_style='',  # 'success', 'info', 'warning', 'danger' or ''
                                       layout=Layout(width='50%', height='80px'),
-                                      style={'description_width': 'initial'},
+                                      style=style,
                                       tooltip='Description',
                                       icon='check'  # (FontAwesome names without the `fa-` prefix)
                                       )
@@ -521,25 +522,25 @@ def test_layout(algorithm_str,seed,deterministic_model):
                                  value='1',
                                  description="# weeks before pattern starts",
                                  layout=Layout(width='50%', height='80px'),
-                                 style={'description_width': 'initial', 'widget_width': '50%'})
+                                 style=style)
 
         stop = Dropdown(options=[str(i) for i in range(1, 55)],
                                  value='54',
                                  description="# weeks before pattern stops",
                                  layout=Layout(width='50%', height='80px'),
-                                 style={'description_width': 'initial', 'widget_width': '50%'})
+                                 style=style)
 
         nb_weeks = Dropdown(options=[str(i) for i in range(0, 54)],
                                     value='0',
                                     description="Duration of lockdown phase (weeks)",
                                     layout=Layout(width='50%', height='80px'),
-                                    style={'description_width': 'initial', 'widget_width': '50%'})
+                                    style=style)
 
         every = Dropdown(options=[str(i) for i in range(1, 54)],
                                  value='1',
                                  description="Duration of the cycle or period (weeks)",
-                                 layout=Layout(width='5%', height='80px'),
-                                 style={'description_width': 'initial', 'widget_width': '50%'})
+                                 layout=Layout(width='50%', height='80px'),
+                                 style=style)
         names = ['start','stop','nb_weeks','every','set_button']
         checkbox_objects = [start,stop,nb_weeks,every,set_button]
         for i in range(52):
