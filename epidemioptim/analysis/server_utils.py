@@ -491,6 +491,8 @@ def test_layout(algorithm_str,seed,deterministic_model):
             #final_layout = VBox([fig.canvas, slider_goal])
             return final_layout
     elif algorithm_str == 'yourself':
+        run_eval = False 
+        n_evals = 10  # number of evaluation rolloutsseed = None  # None picks a random seed
         str_html=algorithm_description(algorithm_str)
         global actions
         actions = get_action_base('never')
@@ -551,7 +553,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
                     height='450px',
                     display='block',width='800px')
         ui = Box(children=checkbox_objects, layout=box_layout)
-        def update(**kwargs):
+        def update_try(**kwargs):
             start=int(kwargs['start'])-1
             stop=int(kwargs['stop'])-1
             nb_weeks=int(kwargs['nb_weeks'])
@@ -602,10 +604,11 @@ def test_layout(algorithm_str,seed,deterministic_model):
             update_fig(fig)
             update_fig(fig1)
             return actions
-        out = interactive_output(update, arg_dict)
+        out = interactive_output(update_try, arg_dict)
         fig=canvas_setup(fig)
         fig1=canvas_setup(fig1)
         final_layout = center_vbox([str_html,ui,fig.canvas, fig1.canvas])
+        final_layout = VBox([fig.canvas, fig1.canvas,ui])
         return final_layout
     else:
         raise NotImplementedError
