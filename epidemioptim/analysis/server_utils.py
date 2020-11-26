@@ -238,6 +238,15 @@ def canvas_setup(fig):
     fig.canvas.layout.min_height = '400px'
     return fig
 
+def deter_checkbox():
+    is_deter=Checkbox(
+        value=False,
+        description='Deterministic model',
+        disabled=False,
+        indent=False,
+        layout={'max_width': '100%'})
+    return is_deter
+
 def plot_pareto(algorithm,size,color):
     # Plot pareto front
     fig = plt.figure()
@@ -267,6 +276,8 @@ def center_vbox(children):
                 width='100%')
     centered_layout = VBox(children=children, layout = box_layout)
     return centered_layout
+
+
 
 def run_env_with_actions(actions,env, reset_same_model):
 
@@ -330,6 +341,10 @@ def try_it_ui(checkbox_objects,box_layout):
             ,layout=box_layout)
     return ui
 def test_layout(algorithm_str,seed,deterministic_model):
+    def update_algo_deter(change):
+        deterministic_model=change.new
+        algorithm, cost_function, env, params = setup_for_replay(folder+to_add , seed, deterministic_model)
+        return algorithm, cost_function, env, params
     if seed is None:
         seed = np.random.randint(1e6)
     if algorithm_str == 'DQN':
@@ -344,6 +359,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
     algorithm, cost_function, env, params = setup_for_replay(folder+to_add , seed, deterministic_model)
 
     if algorithm_str == 'DQN':
+        is_deter=deter_checkbox()
         str_html=algorithm_description(algorithm_str)
         stats, msg = run_env(algorithm, env, first=True)
         fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
@@ -356,16 +372,18 @@ def test_layout(algorithm_str,seed,deterministic_model):
         slider=slider_setup(slider)
         fig=canvas_setup(fig)
         def update_lines(change):
-            beta=change.new
+            beta=slider.value
+            deterministic_model=is_deter.value
             algorithm, cost_function, env, params = setup_for_replay(folder + str(beta) + '/', seed, deterministic_model)
             stats, msg = run_env(algorithm, env, goal=np.array([beta]))
             replot_stats(lines, stats, plots_i, cost_function, high)
             update_fig(fig)
         slider.observe(update_lines, names='value')
-
-        final_layout = center_vbox([str_html,slider,fig.canvas])
+        is_deter.observe(update_lines,names='value')
+        final_layout = center_vbox([str_html,is_deter,slider,fig.canvas])
         return final_layout
     elif algorithm_str == 'NSGA':
+        is_deter=deter_checkbox()
         str_html=algorithm_description(algorithm_str)
         stats, msg = run_env(algorithm, env)
         fig1, lines, plots_i, high, axs = setup_fig_notebook(stats)
@@ -407,14 +425,19 @@ def test_layout(algorithm_str,seed,deterministic_model):
             algorithm.policy.set_params(weights)
             stats, msg = run_env(algorithm, env)
             replot_stats(lines, stats, plots_i, cost_function, high)
-
+            print(env.model.stochastic)
             # refresh figure
             update_fig(fig1)
             update_fig(fig)
+        def update_deter(change):
+            deterministic_model=change.new
+            env.model.stochastic = not deterministic_model
+            env.model.define_params_and_initial_state_distributions()
+        is_deter.observe(update_deter,names='value')
         cid = fig.canvas.mpl_connect('button_press_event', onclick2)
         fig=canvas_setup(fig)
         fig1=canvas_setup(fig1)
-        final_layout = center_vbox([str_html,fig.canvas, fig1.canvas])
+        final_layout = center_vbox([str_html,is_deter,fig.canvas, fig1.canvas])
         return(final_layout)
     elif 'GOAL_DQN' in algorithm_str:
         if cost_function.use_constraints:
@@ -422,6 +445,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
         else:
             goal = np.array([0.5])
         str_html=algorithm_description(algorithm_str)
+        
         stats, msg = run_env(algorithm, env, goal, first=True)
         fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
         if cost_function.use_constraints:
@@ -471,11 +495,16 @@ def test_layout(algorithm_str,seed,deterministic_model):
             slider_M_sanitary=slider_setup(slider_M_sanitary)
             slider_M_economic=slider_setup(slider_M_economic)
             fig=canvas_setup(fig)
+            is_deter=deter_checkbox()
+            is_deter.style=style
+            is_deter.layout.width='200px'
             def update_const(change):
                 # normalize constraints
                 M_sanitary=slider_M_sanitary.value
                 M_economic=slider_M_economic.value
                 beta=slider_beta.value
+                deterministic_model=is_deter.value
+                algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model)
                 c_sanitary = cost_function.costs[0].compute_normalized_constraint(M_sanitary)
                 c_economic = cost_function.costs[1].compute_normalized_constraint(M_economic)
                 stats, msg = run_env(algorithm, env, goal=np.array([beta, c_sanitary, c_economic]))
@@ -484,11 +513,13 @@ def test_layout(algorithm_str,seed,deterministic_model):
             slider_beta.observe(update_const, 'value')
             slider_M_sanitary.observe(update_const, 'value')
             slider_M_economic.observe(update_const, 'value')
+            is_deter.observe(update_const,names='value')
             final_layout = center_vbox([str_html,
-                                        center_vbox([slider_beta,slider_M_sanitary,slider_M_economic]),
+                                        center_vbox([is_deter,slider_beta,slider_M_sanitary,slider_M_economic]),
                                         fig.canvas])
             return final_layout
         else :
+            is_deter=deter_checkbox()
             slider_goal = FloatSlider(orientation='horizontal',
                                       description='beta:',
                                       value=0.5,
@@ -500,14 +531,15 @@ def test_layout(algorithm_str,seed,deterministic_model):
             slider_goal=slider_setup(slider_goal)
             fig=canvas_setup(fig)
             def update_goal(change):
-                beta=change.new
+                beta=slider_goal.value
+                deterministic_model=is_deter.value
+                algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model)
                 stats, msg = run_env(algorithm, env, goal=np.array([beta]))
                 replot_stats(lines, stats, plots_i, cost_function, high)
                 update_fig(fig)
             slider_goal.observe(update_goal, names='value')
-            final_layout = center_vbox([str_html,slider_goal,fig.canvas])
-            #final_layout = center_vbox([fig.canvas, slider_goal])
-            #final_layout = VBox([fig.canvas, slider_goal])
+            is_deter.observe(update_goal,names='value')
+            final_layout = center_vbox([str_html,is_deter,slider_goal,fig.canvas])
             return final_layout
     elif algorithm_str == 'yourself':
         style={'description_width': '250px', 'widget_width': '50%'}

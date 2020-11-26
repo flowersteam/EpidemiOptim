@@ -378,7 +378,7 @@ def replot_stats(lines, stats, plots_i, cost_function, high, constraints=None):
         lines[-2].set_ydata([c_death, c_death])
         c_eco = cost_function.costs[1].compute_constraint(constraints[1])
         lines[-1].set_ydata([c_eco, c_eco])
-        print(c_death, c_eco)
+        #print(c_death, c_eco)
 
 def run_env(algorithm, env, goal=None, first=False):
     res, costs = algorithm.evaluate(n=1, goal=goal, reset_same_model= not first)
