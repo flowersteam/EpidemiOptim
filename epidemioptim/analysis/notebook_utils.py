@@ -340,7 +340,7 @@ def setup_for_replay(folder, seed=np.random.randint(1e6), deterministic_model=Fa
     params['cost_params']['N_region'] = int(model.pop_sizes[params['model_params']['region']])
     params['cost_params']['N_country'] = int(np.sum(list(model.pop_sizes.values())))
 
-    set_seeds(seed)
+    # set_seeds(seed)
 
     cost_function = get_cost_function(cost_function_id=params['cost_id'],
                                       params=params['cost_params'])
