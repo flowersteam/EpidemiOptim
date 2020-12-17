@@ -31,6 +31,10 @@ def introduction():
                             "<font color='black'><font face = 'Comic sans MS'>" +
                            '<center><h2 ' + h2_style + 'Using AI to Design Intervention Strategies Against Epidemics</h2></center>'
                            +'<p>&nbsp;</p>'
+
+                           + '<center><figure> <img src="visu.gif" alt="COVID-19 epidemic in France" /> <figcaption ' + p_style +'>'
+                           'Evolution of French COVID-19 cases in intensive care<br>from March to November 2020.</figcaption></figure></center>'
+                           + '<p>&nbsp;</p>'
                            +'<h3 ' + h3_style + 'Context</h3>'
                            +'<p align="justify" ' + p_style + '>'
                            +'Epidemiologists  model  the  dynamics  of  epidemics  in  order  to  propose  mitigation strategies based on pharmaceutical and non-pharmaceutical '
