@@ -1,0 +1,1695 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.1" />
+<title>epidemioptim.utils API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>epidemioptim.utils</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from abc import ABC, abstractmethod
+import os
+import random
+import json
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+import torch
+plt.rcParams[&#39;figure.constrained_layout.use&#39;] = True
+# font = {&#39;weight&#39;:&#39;bold&#39;, &#39;size&#39;   : 22}
+# import matplotlib
+# matplotlib.rc(&#39;font&#39;, **font)
+
+
+# # # # # # # # # # # # # # # # # # # # # # # #
+# Plots
+# # # # # # # # # # # # # # # # # # # # # # # #
+
+
+def plot_stats(t, states, labels, legends=None, title=None, lockdown=None, icu_capacity=None, axs=None, fig=None, time_jump=1, show=False):
+    n_plots = len(states)
+    if axs is None:
+        print_a = True
+        x = int(np.sqrt(n_plots))
+        y = int(n_plots / x - 1e-4) + 1
+        fig, axs = plt.subplots(x, y, figsize=(12, 7))
+        axs = axs.ravel()
+    else:
+        print_a = False
+
+    for i in range(n_plots):
+        if isinstance(states[i], list):
+            axs[i].plot(t, np.array(states[i]).transpose(), linewidth=2)
+            # if legends is not None:
+            #     if legends[i] is not None:
+            #         axs[i].legend(legends[i], frameon=False, fontsize=15, prop={&#39;weight&#39;: &#39;normal&#39;})
+        else:
+            axs[i].plot(t, states[i], linewidth=5)
+
+        axs[i].set_ylabel(labels[i], fontweight=&#39;bold&#39;)
+        if i == 4:
+            axs[i].set_xlabel(&#39;days&#39;, fontweight=&#39;bold&#39;)
+        axs[i].set_xticks([0, 100, 200, 300])
+        axs[i].spines[&#39;top&#39;].set_linewidth(2)
+        axs[i].spines[&#39;right&#39;].set_linewidth(2)
+        axs[i].spines[&#39;bottom&#39;].set_linewidth(2)
+        axs[i].spines[&#39;left&#39;].set_linewidth(2)
+        axs[i].tick_params(width=int(3), direction=&#39;in&#39;, length=5, labelsize=&#39;small&#39;)
+        # axs[i].set_xticklabels([str(x) if isinstance(x, np.int64) else &#39;{:.2f}&#39;.format(x) for x in axs[i].get_xticks()], {&#39;weight&#39;: &#39;bold&#39;})
+        # axs[i].set_yticklabels(axs[i].get_yticks(), {&#39;weight&#39;: &#39;bold&#39;})
+
+        # if labels[i] == &#39;H&#39; and icu_capacity is not None:
+        #     axs[i].plot(t, states[i] * 0.25, linestyle=&#34;--&#34;, color=&#39;tab:blue&#39;)
+        #     axs[i].axhline(xmin=t[0], xmax=t[-1], y=icu_capacity, linewidth=1, color=&#39;r&#39;, linestyle=&#39;--&#39;)
+        #     axs[i].legend([&#39;H&#39;, &#39;ICU&#39;, &#39;ICU capacity&#39;], frameon=False)
+
+    # plot lockdown days (for RL simulations)
+    if lockdown is not None and print_a:
+        inds_lockdown = np.argwhere(lockdown == 1).flatten() * time_jump
+        for i in range(len(labels)):
+            max_i = np.max(states[i])
+            range_i = max_i - np.min(states[i])
+            y_lockdown = np.ones([inds_lockdown.size]) * max_i + 0.05 * range_i
+            axs[i].scatter(inds_lockdown, y_lockdown, s=10, c=&#39;red&#39;)
+
+    if title:
+        fig.suptitle(title)
+    if show:
+        plt.show()
+    return axs, fig
+
+
+def get_stat_func(line=&#39;mean&#39;, err=&#39;std&#39;):
+    &#34;&#34;&#34;
+    Wrapper around statistics measures: central tendencies (mean, median), and errors (std, sem, percentiles, etc)
+
+    Parameters
+    ----------
+    line: str
+        Central tendencies (mean or median).
+    err: str
+        Error (std, sem, range or interquartile)
+
+    Returns
+    -------
+    line_f, err_min, err_max: functions
+        Functions ready to apply to data (including data containing nans) for the central tendency, low error and high error.
+
+    &#34;&#34;&#34;
+    if line == &#39;mean&#39;:
+        def line_f(a):
+            return np.nanmean(a, axis=0)
+    elif line == &#39;median&#39;:
+        def line_f(a):
+            return np.nanmedian(a, axis=0)
+    else:
+        raise NotImplementedError
+
+    if err == &#39;std&#39;:
+
+        def err_plus(a):
+            return line_f(a) + np.nanstd(a, axis=0)
+
+        def err_minus(a):
+            return line_f(a) - np.nanstd(a, axis=0)
+    elif err == &#39;sem&#39;:
+
+        def err_plus(a):
+            return line_f(a) + np.nanstd(a, axis=0) / np.sqrt(a.shape[0])
+
+        def err_minus(a):
+            return line_f(a) - np.nanstd(a, axis=0) / np.sqrt(a.shape[0])
+    elif err == &#39;range&#39;:
+
+        def err_plus(a):
+            return np.nanmax(a, axis=0)
+
+        def err_minus(a):
+            return np.nanmin(a, axis=0)
+    elif err == &#39;interquartile&#39;:
+
+        def err_plus(a):
+            return np.nanpercentile(a, q=75, axis=0)
+
+        def err_minus(a):
+            return np.nanpercentile(a, q=25, axis=0)
+    else:
+        raise NotImplementedError
+
+    return line_f, err_minus, err_plus
+
+# # # # # # # # # # # # # # # # # # # # # # # #
+# Distributions
+# # # # # # # # # # # # # # # # # # # # # # # #
+
+
+class BaseDist(ABC):
+    def __init__(self, params, stochastic):
+        &#34;&#34;&#34;
+        Base distribution class.
+
+        Parameters
+        ----------
+        params:
+            Parameters of the distribution.
+        stochastic: bool
+            Whether the sampling is stochastic.
+        &#34;&#34;&#34;
+        self.params = params
+        self.stochastic = stochastic
+
+    @abstractmethod
+    def sample(self, n=1):
+        &#34;&#34;&#34;
+        Sample from the distribution.
+
+        Parameters
+        ----------
+        n: int
+            Number of samples.
+
+        Returns
+        -------
+        a:
+           Sampled values (nd.array if n&gt;1).
+        &#34;&#34;&#34;
+        pass
+
+
+class NormalDist(BaseDist):
+    &#34;&#34;&#34;
+    Normal distribution.
+
+    Parameters
+    ----------
+    params: list of size 2
+        These are the mean and stdev of the normal distribution.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(NormalDist, self).__init__(params, stochastic)
+        assert len(self.params) == 2, &#39;params should be a list of length 2: [mean, std]&#39;
+        if self.params[1] == 0:
+            self.params[1] += 1e-6
+        assert self.params[1] &gt; 0, &#39;params should be a list of length 2: [mean, std]&#39;
+        self.mean, self.std = self.params
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.normal(self.mean, self.std, size=n)
+        else:
+            samples = np.array([self.mean] * n)
+        return float(samples) if n == 1 else samples
+
+
+class LogNormalDist(BaseDist):
+    &#34;&#34;&#34;
+    Log-normal distribution.
+
+    Parameters
+    ----------
+    params: list of size 2
+        These are the mean and stdev of the underlying normal distribution.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(LogNormalDist, self).__init__(params, stochastic)
+        assert len(self.params) == 2, &#39;params should be a list of length 2: [mean, std]&#39;
+        if self.params[1] == 0:
+            self.params[1] += 1e-6
+        assert self.params[1] &gt; 0, &#39;params should be a list of length 2: [mean, std]&#39;
+        self.mean, self.std = self.params
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.normal(self.mean, self.std, size=n)
+        else:
+            samples = np.array([self.mean] * n)
+        return np.exp(float(samples)) if n == 1 else np.exp(samples)
+
+
+class ContUniformDist(BaseDist):
+    &#34;&#34;&#34;
+    Continuous uniform distribution
+
+    Parameters
+    ----------
+    params: list of size 2
+        The first value is the minimum, the second is the maximum. Deterministic value is the rounded average.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(ContUniformDist, self).__init__(params, stochastic)
+        assert len(self.params) == 2, &#39;params should be a list of length 2: [min, max]&#39;
+        self.min, self.max = self.params
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.uniform(self.min, self.max, size=n)
+        else:
+            samples = np.array([(self.max - self.min) / 2] * n)
+        return float(samples) if n == 1 else samples
+
+
+class DiscreteUniformDist(BaseDist):
+    &#34;&#34;&#34;
+    Uniform distribution of ints
+
+    Parameters
+    ----------
+    params: list of size 2
+        The first value is the minimum, the second is the maximum. Deterministic value is the rounded average.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(DiscreteUniformDist, self).__init__(params, stochastic)
+        assert len(self.params) == 2, &#39;params should be a list of length 2: [min, max]&#39;
+        self.min, self.max = self.params
+        assert isinstance(self.min, int), &#39;params should be int&#39;
+        assert isinstance(self.max, int), &#39;params should be int&#39;
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.randint(self.min, self.max, size=n)
+        else:
+            samples = np.array([int((self.max - self.min) / 2)] * n)
+        return int(samples) if n == 1 else samples
+
+
+class DiracDist(BaseDist):
+    &#34;&#34;&#34;
+    Dirac distribution.
+
+    Parameters
+    ----------
+    params: float
+        Value of the Dirac.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(DiracDist, self).__init__(params, stochastic)
+        assert isinstance(float(params), float), &#39;params should be a single value&#39;
+
+    def sample(self, n=1):
+        samples = np.array([self.params] * n)
+        return float(samples) if n == 1 else samples
+
+
+class DiscreteDist(BaseDist):
+    def __init__(self, params, stochastic):
+        &#34;&#34;&#34;
+        Discrete distribution.
+
+        Parameters
+        ----------
+        params: list of size 3
+            First element is the list of values, second the list of probabilities, third the value in the deterministic case.
+        stochastic: bool
+            Whether the sampling is stochastic.
+        &#34;&#34;&#34;
+        super(DiscreteDist, self).__init__(params, stochastic)
+        assert isinstance(params, list), &#34;params should be a list of two lists: first the values, second the probabilities&#34;
+        assert len(params) == 3, &#34;the third parameter must be the value in the deterministic case&#34;
+        assert len(params[0]) == len(params[1]), &#34;two lists in params should be the same lengths (values and probas)&#34;
+        self.values = np.array(params[0])
+        self.probabilities = np.array(params[1])
+        self.deterministic_value = np.array([params[2]])
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.choice(self.values, p=self.probabilities, size=n)
+        else:
+            samples = np.array([self.deterministic_value] * n)
+        return float(samples) if n == 1 else samples
+
+# # # # # # # # # # # # # # # # # # # # # # # #
+# Others
+# # # # # # # # # # # # # # # # # # # # # # # #
+
+
+def get_repo_path():
+    dir_path = os.path.dirname(os.path.realpath(__file__)).split(&#39;/&#39;)
+    if dir_path.count(&#39;epidemioptim&#39;) == 1:
+        start_ind = dir_path.index(&#39;epidemioptim&#39;)
+    else:
+        start_ind = - (list(reversed(dir_path)).index(&#39;epidemioptim&#39;) + 1)
+
+    repo_path = &#39;/&#39;.join(dir_path[:start_ind]) + &#39;/&#39;
+    return repo_path
+
+
+def get_logdir(params):
+    &#34;&#34;&#34;
+    Create logging directory.
+
+    Parameters
+    ----------
+    params: dict
+        Params of the experiment required to create the logging directory.
+
+    Returns
+    -------
+
+    &#34;&#34;&#34;
+    repo_path = get_repo_path()
+    logdir = repo_path + &#39;data/results/&#39; + params[&#39;env_id&#39;] + &#39;/&#39; + params[&#39;algo_id&#39;] + &#39;/&#39; + params[&#39;expe_name&#39;]
+    if os.path.exists(logdir):
+        directory = logdir + &#39;_&#39;
+        trial_id = params[&#39;trial_id&#39;]
+        i = 0
+        while True:
+            logdir = directory + str(trial_id + i * 100) + &#39;/&#39;
+            if not os.path.exists(logdir):
+                break
+            i += 1
+    else:
+        logdir += &#39;/&#39;
+    os.makedirs(logdir)
+    print(&#39;Logging to: &#39;, logdir)
+    params[&#39;logdir&#39;] = logdir
+    with open(logdir + &#39;params.json&#39;, &#39;w&#39;) as f:
+        json.dump(params, f)
+    return params
+
+
+def set_seeds(seed):
+    &#34;&#34;&#34;
+    Set all seeds.
+
+    Parameters
+    ----------
+    seed: int
+        Random seed.
+    env: Gym Env
+        Gym environment that should be seeded.
+    &#34;&#34;&#34;
+    if seed is None:
+        seed = np.random.randint(1e6)
+    random.seed(seed)
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+
+
+def mv2musig(m, v):
+    &#34;&#34;&#34;
+    Convert mean and variance of log-normal distribution into mean and stdev of underlying normal distribution
+    Parameters
+    ----------
+    m: float
+       Mean of log-normal distribution.
+    v: float
+       Variance of log-normal distribution.
+
+    Returns
+    -------
+    mu: float
+        Mean of underlying normal distribution.
+    sig: float
+         Stdev of underlying normal distribution.
+    &#34;&#34;&#34;
+    sig = np.sqrt(np.log(v / np.exp(2 * np.log(m)) + 1))
+    mu = np.log(m) - sig ** 2 / 2
+    return mu, sig
+
+
+def musig2mv(mu, sig):
+    &#34;&#34;&#34;
+    Converts mean and stdev of normal distribution into mean and variance of log-normal distribution.
+
+    Parameters
+    ----------
+    mu: float
+        Mean of normal distribution.
+    sig: float
+         Stdev of normal distribution.
+
+    Returns
+    -------
+    m: float
+       Mean of log-normal distribution.
+    v: float
+       Variance of log-normal distribution.
+    &#34;&#34;&#34;
+    m = np.exp(mu + sig ** 2 / 2)
+    v = (np.exp(sig ** 2) - 1) * np.exp(2 * mu + sig ** 2)
+    return m, v
+
+
+def compute_pareto_front(costs: list):
+    &#34;&#34;&#34;
+    Find rows of entries in the Pareto front.
+    Parameters
+    ----------
+    costs: list of arrays
+        List of arrays of costs.
+
+    Returns
+    -------
+    front_ids: list of ints
+        List of row indices of elements from the pareto front.
+    &#34;&#34;&#34;
+    front_ids = []
+    n_points = len(costs)
+    for ind1 in range(n_points):
+        pareto = True
+        for ind2 in range(n_points):
+            r11, r12 = costs[ind1]
+            r21, r22 = costs[ind2]
+
+            if ind1 != ind2:
+                if (r21 &gt; r11 and r22 &gt;= r12) or (r21 &gt;= r11 and r22 &gt; r12):
+                    pareto = False
+                    break
+        if pareto:
+            front_ids.append(ind1)
+    return front_ids
+
+class Logger:
+    def __init__(self, keys, logdir):
+        &#34;&#34;&#34;
+        Logging class
+
+        Parameters
+        ----------
+        keys: list of str
+            Keys that should be logged after every evaluation (in order of appearance in prints).
+        logdir: str
+            Path where the logs should be saved
+
+        Attributes:
+        ----------
+        data: dict of list
+            Tracks all metrics in keys in lists.
+        &#34;&#34;&#34;
+        self.keys = keys
+        self.data = dict(zip(keys, [[] for _ in range(len(keys))]))
+        self.logdir = logdir
+
+    def add(self, new_data):
+        &#34;&#34;&#34;
+        Adds new entries to the logs.
+
+        Parameters
+        ----------
+        new_data: dict
+            New data should contain one metric for each key
+
+        &#34;&#34;&#34;
+        assert sorted(list(new_data.keys())) == sorted(self.keys)
+        for k in new_data.keys():
+            self.data[k].append(new_data[k])
+
+    def save(self):
+        data = pd.DataFrame(self.data)
+        data.to_csv(self.logdir + &#39;progress.csv&#39;)
+
+    def print_last(self):
+        msg = &#39;---------------\n&#39;
+        goal_keys = []
+        for k in self.keys:
+            if &#39;g:&#39; in k:
+                goal_keys.append(k)
+        if len(goal_keys) &gt; 0:
+            for k in self.keys:
+                if &#39;g:&#39; not in k:
+                    msg += k + &#39;: {:.2f}\n\t&#39;.format(self.data[k][-1])
+            goals = set([k.split(&#39;g:&#39;)[1][1:].split(&#39;:&#39;)[0] for k in goal_keys])
+            for g in sorted(list(goals)):
+                nb_costs = (sum([g in k for k in goal_keys]) - 2) // 2
+                key_mean = &#39;Eval, g: {}: mean_agg&#39;.format(g)
+                key_std = &#39;Eval, g: {}: std_agg&#39;.format(g)
+                keys_costs_mean = [&#39;Eval, g: {}: mean_C{}&#39;.format(g, i) for i in range(nb_costs)]
+                keys_costs_std = [&#39;Eval, g: {}: std_C{}&#39;.format(g, i) for i in range(nb_costs)]
+                for i in range(nb_costs):
+                    if i == 0:
+                        msg += &#39;Eval, g: {}, &#39;.format(g)
+                    msg += &#39;C{}: {:.2f} +/- {:.2f}, &#39;.format(i+1, self.data[keys_costs_mean[i]][-1], self.data[keys_costs_std[i]][-1])
+                msg += &#39;Agg: {:.2f} +/- {:.2f}\n\t&#39;.format(self.data[key_mean][-1], self.data[key_std][-1])
+
+        else:
+            for k in self.keys:
+                msg += k + &#39;: {:.2f}\n\t&#39;.format(self.data[k][-1])
+
+        print(msg)
+        with open(self.logdir + &#39;log.txt&#39;, &#34;a&#34;) as f:
+            f.write(msg)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="epidemioptim.utils.compute_pareto_front"><code class="name flex">
+<span>def <span class="ident">compute_pareto_front</span></span>(<span>costs: list)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Find rows of entries in the Pareto front.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>costs</code></strong> :&ensp;<code>list</code> of <code>arrays</code></dt>
+<dd>List of arrays of costs.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>front_ids</code></strong> :&ensp;<code>list</code> of <code>ints</code></dt>
+<dd>List of row indices of elements from the pareto front.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_pareto_front(costs: list):
+    &#34;&#34;&#34;
+    Find rows of entries in the Pareto front.
+    Parameters
+    ----------
+    costs: list of arrays
+        List of arrays of costs.
+
+    Returns
+    -------
+    front_ids: list of ints
+        List of row indices of elements from the pareto front.
+    &#34;&#34;&#34;
+    front_ids = []
+    n_points = len(costs)
+    for ind1 in range(n_points):
+        pareto = True
+        for ind2 in range(n_points):
+            r11, r12 = costs[ind1]
+            r21, r22 = costs[ind2]
+
+            if ind1 != ind2:
+                if (r21 &gt; r11 and r22 &gt;= r12) or (r21 &gt;= r11 and r22 &gt; r12):
+                    pareto = False
+                    break
+        if pareto:
+            front_ids.append(ind1)
+    return front_ids</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.utils.get_logdir"><code class="name flex">
+<span>def <span class="ident">get_logdir</span></span>(<span>params)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create logging directory.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Params of the experiment required to create the logging directory.</dd>
+</dl>
+<h2 id="returns">Returns</h2></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_logdir(params):
+    &#34;&#34;&#34;
+    Create logging directory.
+
+    Parameters
+    ----------
+    params: dict
+        Params of the experiment required to create the logging directory.
+
+    Returns
+    -------
+
+    &#34;&#34;&#34;
+    repo_path = get_repo_path()
+    logdir = repo_path + &#39;data/results/&#39; + params[&#39;env_id&#39;] + &#39;/&#39; + params[&#39;algo_id&#39;] + &#39;/&#39; + params[&#39;expe_name&#39;]
+    if os.path.exists(logdir):
+        directory = logdir + &#39;_&#39;
+        trial_id = params[&#39;trial_id&#39;]
+        i = 0
+        while True:
+            logdir = directory + str(trial_id + i * 100) + &#39;/&#39;
+            if not os.path.exists(logdir):
+                break
+            i += 1
+    else:
+        logdir += &#39;/&#39;
+    os.makedirs(logdir)
+    print(&#39;Logging to: &#39;, logdir)
+    params[&#39;logdir&#39;] = logdir
+    with open(logdir + &#39;params.json&#39;, &#39;w&#39;) as f:
+        json.dump(params, f)
+    return params</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.utils.get_repo_path"><code class="name flex">
+<span>def <span class="ident">get_repo_path</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_repo_path():
+    dir_path = os.path.dirname(os.path.realpath(__file__)).split(&#39;/&#39;)
+    if dir_path.count(&#39;epidemioptim&#39;) == 1:
+        start_ind = dir_path.index(&#39;epidemioptim&#39;)
+    else:
+        start_ind = - (list(reversed(dir_path)).index(&#39;epidemioptim&#39;) + 1)
+
+    repo_path = &#39;/&#39;.join(dir_path[:start_ind]) + &#39;/&#39;
+    return repo_path</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.utils.get_stat_func"><code class="name flex">
+<span>def <span class="ident">get_stat_func</span></span>(<span>line='mean', err='std')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Wrapper around statistics measures: central tendencies (mean, median), and errors (std, sem, percentiles, etc)</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>line</code></strong> :&ensp;<code>str</code></dt>
+<dd>Central tendencies (mean or median).</dd>
+<dt><strong><code>err</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error (std, sem, range or interquartile)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>line_f</code></strong>, <strong><code>err_min</code></strong>, <strong><code>err_max</code></strong> :&ensp;<code>functions</code></dt>
+<dd>Functions ready to apply to data (including data containing nans) for the central tendency, low error and high error.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_stat_func(line=&#39;mean&#39;, err=&#39;std&#39;):
+    &#34;&#34;&#34;
+    Wrapper around statistics measures: central tendencies (mean, median), and errors (std, sem, percentiles, etc)
+
+    Parameters
+    ----------
+    line: str
+        Central tendencies (mean or median).
+    err: str
+        Error (std, sem, range or interquartile)
+
+    Returns
+    -------
+    line_f, err_min, err_max: functions
+        Functions ready to apply to data (including data containing nans) for the central tendency, low error and high error.
+
+    &#34;&#34;&#34;
+    if line == &#39;mean&#39;:
+        def line_f(a):
+            return np.nanmean(a, axis=0)
+    elif line == &#39;median&#39;:
+        def line_f(a):
+            return np.nanmedian(a, axis=0)
+    else:
+        raise NotImplementedError
+
+    if err == &#39;std&#39;:
+
+        def err_plus(a):
+            return line_f(a) + np.nanstd(a, axis=0)
+
+        def err_minus(a):
+            return line_f(a) - np.nanstd(a, axis=0)
+    elif err == &#39;sem&#39;:
+
+        def err_plus(a):
+            return line_f(a) + np.nanstd(a, axis=0) / np.sqrt(a.shape[0])
+
+        def err_minus(a):
+            return line_f(a) - np.nanstd(a, axis=0) / np.sqrt(a.shape[0])
+    elif err == &#39;range&#39;:
+
+        def err_plus(a):
+            return np.nanmax(a, axis=0)
+
+        def err_minus(a):
+            return np.nanmin(a, axis=0)
+    elif err == &#39;interquartile&#39;:
+
+        def err_plus(a):
+            return np.nanpercentile(a, q=75, axis=0)
+
+        def err_minus(a):
+            return np.nanpercentile(a, q=25, axis=0)
+    else:
+        raise NotImplementedError
+
+    return line_f, err_minus, err_plus</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.utils.musig2mv"><code class="name flex">
+<span>def <span class="ident">musig2mv</span></span>(<span>mu, sig)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Converts mean and stdev of normal distribution into mean and variance of log-normal distribution.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>mu</code></strong> :&ensp;<code>float</code></dt>
+<dd>Mean of normal distribution.</dd>
+<dt><strong><code>sig</code></strong> :&ensp;<code>float</code></dt>
+<dd>Stdev of normal distribution.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>m</code></strong> :&ensp;<code>float</code></dt>
+<dd>&nbsp;</dd>
+<dt>Mean of log-normal distribution.</dt>
+<dt><strong><code>v</code></strong> :&ensp;<code>float</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<p>Variance of log-normal distribution.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def musig2mv(mu, sig):
+    &#34;&#34;&#34;
+    Converts mean and stdev of normal distribution into mean and variance of log-normal distribution.
+
+    Parameters
+    ----------
+    mu: float
+        Mean of normal distribution.
+    sig: float
+         Stdev of normal distribution.
+
+    Returns
+    -------
+    m: float
+       Mean of log-normal distribution.
+    v: float
+       Variance of log-normal distribution.
+    &#34;&#34;&#34;
+    m = np.exp(mu + sig ** 2 / 2)
+    v = (np.exp(sig ** 2) - 1) * np.exp(2 * mu + sig ** 2)
+    return m, v</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.utils.mv2musig"><code class="name flex">
+<span>def <span class="ident">mv2musig</span></span>(<span>m, v)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert mean and variance of log-normal distribution into mean and stdev of underlying normal distribution
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>m</code></strong> :&ensp;<code>float</code></dt>
+<dd>&nbsp;</dd>
+<dt>Mean of log-normal distribution.</dt>
+<dt><strong><code>v</code></strong> :&ensp;<code>float</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<p>Variance of log-normal distribution.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>mu</code></strong> :&ensp;<code>float</code></dt>
+<dd>Mean of underlying normal distribution.</dd>
+<dt><strong><code>sig</code></strong> :&ensp;<code>float</code></dt>
+<dd>Stdev of underlying normal distribution.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def mv2musig(m, v):
+    &#34;&#34;&#34;
+    Convert mean and variance of log-normal distribution into mean and stdev of underlying normal distribution
+    Parameters
+    ----------
+    m: float
+       Mean of log-normal distribution.
+    v: float
+       Variance of log-normal distribution.
+
+    Returns
+    -------
+    mu: float
+        Mean of underlying normal distribution.
+    sig: float
+         Stdev of underlying normal distribution.
+    &#34;&#34;&#34;
+    sig = np.sqrt(np.log(v / np.exp(2 * np.log(m)) + 1))
+    mu = np.log(m) - sig ** 2 / 2
+    return mu, sig</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.utils.plot_stats"><code class="name flex">
+<span>def <span class="ident">plot_stats</span></span>(<span>t, states, labels, legends=None, title=None, lockdown=None, icu_capacity=None, axs=None, fig=None, time_jump=1, show=False)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_stats(t, states, labels, legends=None, title=None, lockdown=None, icu_capacity=None, axs=None, fig=None, time_jump=1, show=False):
+    n_plots = len(states)
+    if axs is None:
+        print_a = True
+        x = int(np.sqrt(n_plots))
+        y = int(n_plots / x - 1e-4) + 1
+        fig, axs = plt.subplots(x, y, figsize=(12, 7))
+        axs = axs.ravel()
+    else:
+        print_a = False
+
+    for i in range(n_plots):
+        if isinstance(states[i], list):
+            axs[i].plot(t, np.array(states[i]).transpose(), linewidth=2)
+            # if legends is not None:
+            #     if legends[i] is not None:
+            #         axs[i].legend(legends[i], frameon=False, fontsize=15, prop={&#39;weight&#39;: &#39;normal&#39;})
+        else:
+            axs[i].plot(t, states[i], linewidth=5)
+
+        axs[i].set_ylabel(labels[i], fontweight=&#39;bold&#39;)
+        if i == 4:
+            axs[i].set_xlabel(&#39;days&#39;, fontweight=&#39;bold&#39;)
+        axs[i].set_xticks([0, 100, 200, 300])
+        axs[i].spines[&#39;top&#39;].set_linewidth(2)
+        axs[i].spines[&#39;right&#39;].set_linewidth(2)
+        axs[i].spines[&#39;bottom&#39;].set_linewidth(2)
+        axs[i].spines[&#39;left&#39;].set_linewidth(2)
+        axs[i].tick_params(width=int(3), direction=&#39;in&#39;, length=5, labelsize=&#39;small&#39;)
+        # axs[i].set_xticklabels([str(x) if isinstance(x, np.int64) else &#39;{:.2f}&#39;.format(x) for x in axs[i].get_xticks()], {&#39;weight&#39;: &#39;bold&#39;})
+        # axs[i].set_yticklabels(axs[i].get_yticks(), {&#39;weight&#39;: &#39;bold&#39;})
+
+        # if labels[i] == &#39;H&#39; and icu_capacity is not None:
+        #     axs[i].plot(t, states[i] * 0.25, linestyle=&#34;--&#34;, color=&#39;tab:blue&#39;)
+        #     axs[i].axhline(xmin=t[0], xmax=t[-1], y=icu_capacity, linewidth=1, color=&#39;r&#39;, linestyle=&#39;--&#39;)
+        #     axs[i].legend([&#39;H&#39;, &#39;ICU&#39;, &#39;ICU capacity&#39;], frameon=False)
+
+    # plot lockdown days (for RL simulations)
+    if lockdown is not None and print_a:
+        inds_lockdown = np.argwhere(lockdown == 1).flatten() * time_jump
+        for i in range(len(labels)):
+            max_i = np.max(states[i])
+            range_i = max_i - np.min(states[i])
+            y_lockdown = np.ones([inds_lockdown.size]) * max_i + 0.05 * range_i
+            axs[i].scatter(inds_lockdown, y_lockdown, s=10, c=&#39;red&#39;)
+
+    if title:
+        fig.suptitle(title)
+    if show:
+        plt.show()
+    return axs, fig</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.utils.set_seeds"><code class="name flex">
+<span>def <span class="ident">set_seeds</span></span>(<span>seed)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set all seeds.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>seed</code></strong> :&ensp;<code>int</code></dt>
+<dd>Random seed.</dd>
+<dt><strong><code>env</code></strong> :&ensp;<code>Gym Env</code></dt>
+<dd>Gym environment that should be seeded.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_seeds(seed):
+    &#34;&#34;&#34;
+    Set all seeds.
+
+    Parameters
+    ----------
+    seed: int
+        Random seed.
+    env: Gym Env
+        Gym environment that should be seeded.
+    &#34;&#34;&#34;
+    if seed is None:
+        seed = np.random.randint(1e6)
+    random.seed(seed)
+    torch.manual_seed(seed)
+    np.random.seed(seed)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="epidemioptim.utils.BaseDist"><code class="flex name class">
+<span>class <span class="ident">BaseDist</span></span>
+<span>(</span><span>params, stochastic)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<p>Base distribution class.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt>params:</dt>
+<dt>Parameters of the distribution.</dt>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BaseDist(ABC):
+    def __init__(self, params, stochastic):
+        &#34;&#34;&#34;
+        Base distribution class.
+
+        Parameters
+        ----------
+        params:
+            Parameters of the distribution.
+        stochastic: bool
+            Whether the sampling is stochastic.
+        &#34;&#34;&#34;
+        self.params = params
+        self.stochastic = stochastic
+
+    @abstractmethod
+    def sample(self, n=1):
+        &#34;&#34;&#34;
+        Sample from the distribution.
+
+        Parameters
+        ----------
+        n: int
+            Number of samples.
+
+        Returns
+        -------
+        a:
+           Sampled values (nd.array if n&gt;1).
+        &#34;&#34;&#34;
+        pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="epidemioptim.utils.ContUniformDist" href="#epidemioptim.utils.ContUniformDist">ContUniformDist</a></li>
+<li><a title="epidemioptim.utils.DiracDist" href="#epidemioptim.utils.DiracDist">DiracDist</a></li>
+<li><a title="epidemioptim.utils.DiscreteDist" href="#epidemioptim.utils.DiscreteDist">DiscreteDist</a></li>
+<li><a title="epidemioptim.utils.DiscreteUniformDist" href="#epidemioptim.utils.DiscreteUniformDist">DiscreteUniformDist</a></li>
+<li><a title="epidemioptim.utils.LogNormalDist" href="#epidemioptim.utils.LogNormalDist">LogNormalDist</a></li>
+<li><a title="epidemioptim.utils.NormalDist" href="#epidemioptim.utils.NormalDist">NormalDist</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="epidemioptim.utils.BaseDist.sample"><code class="name flex">
+<span>def <span class="ident">sample</span></span>(<span>self, n=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sample from the distribution.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>n</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of samples.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>a:</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<p>Sampled values (nd.array if n&gt;1).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def sample(self, n=1):
+    &#34;&#34;&#34;
+    Sample from the distribution.
+
+    Parameters
+    ----------
+    n: int
+        Number of samples.
+
+    Returns
+    -------
+    a:
+       Sampled values (nd.array if n&gt;1).
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="epidemioptim.utils.ContUniformDist"><code class="flex name class">
+<span>class <span class="ident">ContUniformDist</span></span>
+<span>(</span><span>params, stochastic)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Continuous uniform distribution</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>list</code> of <code>size 2</code></dt>
+<dd>The first value is the minimum, the second is the maximum. Deterministic value is the rounded average.</dd>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl>
+<p>Base distribution class.</p>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt>params:</dt>
+<dt>Parameters of the distribution.</dt>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ContUniformDist(BaseDist):
+    &#34;&#34;&#34;
+    Continuous uniform distribution
+
+    Parameters
+    ----------
+    params: list of size 2
+        The first value is the minimum, the second is the maximum. Deterministic value is the rounded average.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(ContUniformDist, self).__init__(params, stochastic)
+        assert len(self.params) == 2, &#39;params should be a list of length 2: [min, max]&#39;
+        self.min, self.max = self.params
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.uniform(self.min, self.max, size=n)
+        else:
+            samples = np.array([(self.max - self.min) / 2] * n)
+        return float(samples) if n == 1 else samples</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></b></code>:
+<ul class="hlist">
+<li><code><a title="epidemioptim.utils.BaseDist.sample" href="#epidemioptim.utils.BaseDist.sample">sample</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="epidemioptim.utils.DiracDist"><code class="flex name class">
+<span>class <span class="ident">DiracDist</span></span>
+<span>(</span><span>params, stochastic)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Dirac distribution.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>float</code></dt>
+<dd>Value of the Dirac.</dd>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl>
+<p>Base distribution class.</p>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt>params:</dt>
+<dt>Parameters of the distribution.</dt>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DiracDist(BaseDist):
+    &#34;&#34;&#34;
+    Dirac distribution.
+
+    Parameters
+    ----------
+    params: float
+        Value of the Dirac.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(DiracDist, self).__init__(params, stochastic)
+        assert isinstance(float(params), float), &#39;params should be a single value&#39;
+
+    def sample(self, n=1):
+        samples = np.array([self.params] * n)
+        return float(samples) if n == 1 else samples</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></b></code>:
+<ul class="hlist">
+<li><code><a title="epidemioptim.utils.BaseDist.sample" href="#epidemioptim.utils.BaseDist.sample">sample</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="epidemioptim.utils.DiscreteDist"><code class="flex name class">
+<span>class <span class="ident">DiscreteDist</span></span>
+<span>(</span><span>params, stochastic)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<p>Discrete distribution.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>list</code> of <code>size 3</code></dt>
+<dd>First element is the list of values, second the list of probabilities, third the value in the deterministic case.</dd>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DiscreteDist(BaseDist):
+    def __init__(self, params, stochastic):
+        &#34;&#34;&#34;
+        Discrete distribution.
+
+        Parameters
+        ----------
+        params: list of size 3
+            First element is the list of values, second the list of probabilities, third the value in the deterministic case.
+        stochastic: bool
+            Whether the sampling is stochastic.
+        &#34;&#34;&#34;
+        super(DiscreteDist, self).__init__(params, stochastic)
+        assert isinstance(params, list), &#34;params should be a list of two lists: first the values, second the probabilities&#34;
+        assert len(params) == 3, &#34;the third parameter must be the value in the deterministic case&#34;
+        assert len(params[0]) == len(params[1]), &#34;two lists in params should be the same lengths (values and probas)&#34;
+        self.values = np.array(params[0])
+        self.probabilities = np.array(params[1])
+        self.deterministic_value = np.array([params[2]])
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.choice(self.values, p=self.probabilities, size=n)
+        else:
+            samples = np.array([self.deterministic_value] * n)
+        return float(samples) if n == 1 else samples</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></b></code>:
+<ul class="hlist">
+<li><code><a title="epidemioptim.utils.BaseDist.sample" href="#epidemioptim.utils.BaseDist.sample">sample</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="epidemioptim.utils.DiscreteUniformDist"><code class="flex name class">
+<span>class <span class="ident">DiscreteUniformDist</span></span>
+<span>(</span><span>params, stochastic)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Uniform distribution of ints</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>list</code> of <code>size 2</code></dt>
+<dd>The first value is the minimum, the second is the maximum. Deterministic value is the rounded average.</dd>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl>
+<p>Base distribution class.</p>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt>params:</dt>
+<dt>Parameters of the distribution.</dt>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DiscreteUniformDist(BaseDist):
+    &#34;&#34;&#34;
+    Uniform distribution of ints
+
+    Parameters
+    ----------
+    params: list of size 2
+        The first value is the minimum, the second is the maximum. Deterministic value is the rounded average.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(DiscreteUniformDist, self).__init__(params, stochastic)
+        assert len(self.params) == 2, &#39;params should be a list of length 2: [min, max]&#39;
+        self.min, self.max = self.params
+        assert isinstance(self.min, int), &#39;params should be int&#39;
+        assert isinstance(self.max, int), &#39;params should be int&#39;
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.randint(self.min, self.max, size=n)
+        else:
+            samples = np.array([int((self.max - self.min) / 2)] * n)
+        return int(samples) if n == 1 else samples</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></b></code>:
+<ul class="hlist">
+<li><code><a title="epidemioptim.utils.BaseDist.sample" href="#epidemioptim.utils.BaseDist.sample">sample</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="epidemioptim.utils.LogNormalDist"><code class="flex name class">
+<span>class <span class="ident">LogNormalDist</span></span>
+<span>(</span><span>params, stochastic)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Log-normal distribution.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>list</code> of <code>size 2</code></dt>
+<dd>These are the mean and stdev of the underlying normal distribution.</dd>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl>
+<p>Base distribution class.</p>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt>params:</dt>
+<dt>Parameters of the distribution.</dt>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LogNormalDist(BaseDist):
+    &#34;&#34;&#34;
+    Log-normal distribution.
+
+    Parameters
+    ----------
+    params: list of size 2
+        These are the mean and stdev of the underlying normal distribution.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(LogNormalDist, self).__init__(params, stochastic)
+        assert len(self.params) == 2, &#39;params should be a list of length 2: [mean, std]&#39;
+        if self.params[1] == 0:
+            self.params[1] += 1e-6
+        assert self.params[1] &gt; 0, &#39;params should be a list of length 2: [mean, std]&#39;
+        self.mean, self.std = self.params
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.normal(self.mean, self.std, size=n)
+        else:
+            samples = np.array([self.mean] * n)
+        return np.exp(float(samples)) if n == 1 else np.exp(samples)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></b></code>:
+<ul class="hlist">
+<li><code><a title="epidemioptim.utils.BaseDist.sample" href="#epidemioptim.utils.BaseDist.sample">sample</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="epidemioptim.utils.Logger"><code class="flex name class">
+<span>class <span class="ident">Logger</span></span>
+<span>(</span><span>keys, logdir)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Logging class</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>keys</code></strong> :&ensp;<code>list</code> of <code>str</code></dt>
+<dd>Keys that should be logged after every evaluation (in order of appearance in prints).</dd>
+<dt><strong><code>logdir</code></strong> :&ensp;<code>str</code></dt>
+<dd>Path where the logs should be saved</dd>
+</dl>
+<h2 id="attributes">Attributes:</h2>
+<p>data: dict of list
+Tracks all metrics in keys in lists.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Logger:
+    def __init__(self, keys, logdir):
+        &#34;&#34;&#34;
+        Logging class
+
+        Parameters
+        ----------
+        keys: list of str
+            Keys that should be logged after every evaluation (in order of appearance in prints).
+        logdir: str
+            Path where the logs should be saved
+
+        Attributes:
+        ----------
+        data: dict of list
+            Tracks all metrics in keys in lists.
+        &#34;&#34;&#34;
+        self.keys = keys
+        self.data = dict(zip(keys, [[] for _ in range(len(keys))]))
+        self.logdir = logdir
+
+    def add(self, new_data):
+        &#34;&#34;&#34;
+        Adds new entries to the logs.
+
+        Parameters
+        ----------
+        new_data: dict
+            New data should contain one metric for each key
+
+        &#34;&#34;&#34;
+        assert sorted(list(new_data.keys())) == sorted(self.keys)
+        for k in new_data.keys():
+            self.data[k].append(new_data[k])
+
+    def save(self):
+        data = pd.DataFrame(self.data)
+        data.to_csv(self.logdir + &#39;progress.csv&#39;)
+
+    def print_last(self):
+        msg = &#39;---------------\n&#39;
+        goal_keys = []
+        for k in self.keys:
+            if &#39;g:&#39; in k:
+                goal_keys.append(k)
+        if len(goal_keys) &gt; 0:
+            for k in self.keys:
+                if &#39;g:&#39; not in k:
+                    msg += k + &#39;: {:.2f}\n\t&#39;.format(self.data[k][-1])
+            goals = set([k.split(&#39;g:&#39;)[1][1:].split(&#39;:&#39;)[0] for k in goal_keys])
+            for g in sorted(list(goals)):
+                nb_costs = (sum([g in k for k in goal_keys]) - 2) // 2
+                key_mean = &#39;Eval, g: {}: mean_agg&#39;.format(g)
+                key_std = &#39;Eval, g: {}: std_agg&#39;.format(g)
+                keys_costs_mean = [&#39;Eval, g: {}: mean_C{}&#39;.format(g, i) for i in range(nb_costs)]
+                keys_costs_std = [&#39;Eval, g: {}: std_C{}&#39;.format(g, i) for i in range(nb_costs)]
+                for i in range(nb_costs):
+                    if i == 0:
+                        msg += &#39;Eval, g: {}, &#39;.format(g)
+                    msg += &#39;C{}: {:.2f} +/- {:.2f}, &#39;.format(i+1, self.data[keys_costs_mean[i]][-1], self.data[keys_costs_std[i]][-1])
+                msg += &#39;Agg: {:.2f} +/- {:.2f}\n\t&#39;.format(self.data[key_mean][-1], self.data[key_std][-1])
+
+        else:
+            for k in self.keys:
+                msg += k + &#39;: {:.2f}\n\t&#39;.format(self.data[k][-1])
+
+        print(msg)
+        with open(self.logdir + &#39;log.txt&#39;, &#34;a&#34;) as f:
+            f.write(msg)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="epidemioptim.utils.Logger.add"><code class="name flex">
+<span>def <span class="ident">add</span></span>(<span>self, new_data)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds new entries to the logs.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>new_data</code></strong> :&ensp;<code>dict</code></dt>
+<dd>New data should contain one metric for each key</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add(self, new_data):
+    &#34;&#34;&#34;
+    Adds new entries to the logs.
+
+    Parameters
+    ----------
+    new_data: dict
+        New data should contain one metric for each key
+
+    &#34;&#34;&#34;
+    assert sorted(list(new_data.keys())) == sorted(self.keys)
+    for k in new_data.keys():
+        self.data[k].append(new_data[k])</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.utils.Logger.print_last"><code class="name flex">
+<span>def <span class="ident">print_last</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_last(self):
+    msg = &#39;---------------\n&#39;
+    goal_keys = []
+    for k in self.keys:
+        if &#39;g:&#39; in k:
+            goal_keys.append(k)
+    if len(goal_keys) &gt; 0:
+        for k in self.keys:
+            if &#39;g:&#39; not in k:
+                msg += k + &#39;: {:.2f}\n\t&#39;.format(self.data[k][-1])
+        goals = set([k.split(&#39;g:&#39;)[1][1:].split(&#39;:&#39;)[0] for k in goal_keys])
+        for g in sorted(list(goals)):
+            nb_costs = (sum([g in k for k in goal_keys]) - 2) // 2
+            key_mean = &#39;Eval, g: {}: mean_agg&#39;.format(g)
+            key_std = &#39;Eval, g: {}: std_agg&#39;.format(g)
+            keys_costs_mean = [&#39;Eval, g: {}: mean_C{}&#39;.format(g, i) for i in range(nb_costs)]
+            keys_costs_std = [&#39;Eval, g: {}: std_C{}&#39;.format(g, i) for i in range(nb_costs)]
+            for i in range(nb_costs):
+                if i == 0:
+                    msg += &#39;Eval, g: {}, &#39;.format(g)
+                msg += &#39;C{}: {:.2f} +/- {:.2f}, &#39;.format(i+1, self.data[keys_costs_mean[i]][-1], self.data[keys_costs_std[i]][-1])
+            msg += &#39;Agg: {:.2f} +/- {:.2f}\n\t&#39;.format(self.data[key_mean][-1], self.data[key_std][-1])
+
+    else:
+        for k in self.keys:
+            msg += k + &#39;: {:.2f}\n\t&#39;.format(self.data[k][-1])
+
+    print(msg)
+    with open(self.logdir + &#39;log.txt&#39;, &#34;a&#34;) as f:
+        f.write(msg)</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.utils.Logger.save"><code class="name flex">
+<span>def <span class="ident">save</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save(self):
+    data = pd.DataFrame(self.data)
+    data.to_csv(self.logdir + &#39;progress.csv&#39;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="epidemioptim.utils.NormalDist"><code class="flex name class">
+<span>class <span class="ident">NormalDist</span></span>
+<span>(</span><span>params, stochastic)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Normal distribution.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>list</code> of <code>size 2</code></dt>
+<dd>These are the mean and stdev of the normal distribution.</dd>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl>
+<p>Base distribution class.</p>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt>params:</dt>
+<dt>Parameters of the distribution.</dt>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the sampling is stochastic.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NormalDist(BaseDist):
+    &#34;&#34;&#34;
+    Normal distribution.
+
+    Parameters
+    ----------
+    params: list of size 2
+        These are the mean and stdev of the normal distribution.
+    stochastic: bool
+        Whether the sampling is stochastic.
+    &#34;&#34;&#34;
+    def __init__(self, params, stochastic):
+        super(NormalDist, self).__init__(params, stochastic)
+        assert len(self.params) == 2, &#39;params should be a list of length 2: [mean, std]&#39;
+        if self.params[1] == 0:
+            self.params[1] += 1e-6
+        assert self.params[1] &gt; 0, &#39;params should be a list of length 2: [mean, std]&#39;
+        self.mean, self.std = self.params
+
+    def sample(self, n=1):
+        if self.stochastic:
+            samples = np.random.normal(self.mean, self.std, size=n)
+        else:
+            samples = np.array([self.mean] * n)
+        return float(samples) if n == 1 else samples</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></b></code>:
+<ul class="hlist">
+<li><code><a title="epidemioptim.utils.BaseDist.sample" href="#epidemioptim.utils.BaseDist.sample">sample</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="epidemioptim" href="index.html">epidemioptim</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="epidemioptim.utils.compute_pareto_front" href="#epidemioptim.utils.compute_pareto_front">compute_pareto_front</a></code></li>
+<li><code><a title="epidemioptim.utils.get_logdir" href="#epidemioptim.utils.get_logdir">get_logdir</a></code></li>
+<li><code><a title="epidemioptim.utils.get_repo_path" href="#epidemioptim.utils.get_repo_path">get_repo_path</a></code></li>
+<li><code><a title="epidemioptim.utils.get_stat_func" href="#epidemioptim.utils.get_stat_func">get_stat_func</a></code></li>
+<li><code><a title="epidemioptim.utils.musig2mv" href="#epidemioptim.utils.musig2mv">musig2mv</a></code></li>
+<li><code><a title="epidemioptim.utils.mv2musig" href="#epidemioptim.utils.mv2musig">mv2musig</a></code></li>
+<li><code><a title="epidemioptim.utils.plot_stats" href="#epidemioptim.utils.plot_stats">plot_stats</a></code></li>
+<li><code><a title="epidemioptim.utils.set_seeds" href="#epidemioptim.utils.set_seeds">set_seeds</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="epidemioptim.utils.BaseDist" href="#epidemioptim.utils.BaseDist">BaseDist</a></code></h4>
+<ul class="">
+<li><code><a title="epidemioptim.utils.BaseDist.sample" href="#epidemioptim.utils.BaseDist.sample">sample</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="epidemioptim.utils.ContUniformDist" href="#epidemioptim.utils.ContUniformDist">ContUniformDist</a></code></h4>
+</li>
+<li>
+<h4><code><a title="epidemioptim.utils.DiracDist" href="#epidemioptim.utils.DiracDist">DiracDist</a></code></h4>
+</li>
+<li>
+<h4><code><a title="epidemioptim.utils.DiscreteDist" href="#epidemioptim.utils.DiscreteDist">DiscreteDist</a></code></h4>
+</li>
+<li>
+<h4><code><a title="epidemioptim.utils.DiscreteUniformDist" href="#epidemioptim.utils.DiscreteUniformDist">DiscreteUniformDist</a></code></h4>
+</li>
+<li>
+<h4><code><a title="epidemioptim.utils.LogNormalDist" href="#epidemioptim.utils.LogNormalDist">LogNormalDist</a></code></h4>
+</li>
+<li>
+<h4><code><a title="epidemioptim.utils.Logger" href="#epidemioptim.utils.Logger">Logger</a></code></h4>
+<ul class="">
+<li><code><a title="epidemioptim.utils.Logger.add" href="#epidemioptim.utils.Logger.add">add</a></code></li>
+<li><code><a title="epidemioptim.utils.Logger.print_last" href="#epidemioptim.utils.Logger.print_last">print_last</a></code></li>
+<li><code><a title="epidemioptim.utils.Logger.save" href="#epidemioptim.utils.Logger.save">save</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="epidemioptim.utils.NormalDist" href="#epidemioptim.utils.NormalDist">NormalDist</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+</footer>
+</body>
+</html>

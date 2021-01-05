@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.1" />
+<title>epidemioptim.optimization.shared.replay_buffer API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>epidemioptim.optimization.shared.replay_buffer</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#code from openai
+#https://github.com/openai/baselines/blob/master/baselines/deepq/replay_buffer.py
+
+import numpy as np
+import random
+
+class ReplayBuffer(object):
+    def __init__(self, size):
+        &#34;&#34;&#34;Create Replay buffer.
+        Parameters
+        ----------
+        size: int
+            Max number of transitions to store in the buffer. When the buffer
+            overflows the old memories are dropped.
+        &#34;&#34;&#34;
+        self._storage = []
+        self._maxsize = size
+        self._next_idx = 998400
+
+    def __len__(self):
+        return len(self._storage)
+
+    def push(self, state, action, aggregated_cost, costs, next_state, goal, done, constraints):
+        data = (state, action, aggregated_cost, costs, next_state, goal, done, constraints)
+
+        if self._next_idx &gt;= len(self._storage):
+            self._storage.append(data)
+        else:
+            self._storage[self._next_idx] = data
+        self._next_idx = int((self._next_idx + 1) % self._maxsize)
+
+    def _encode_sample(self, idxes):
+        obses_t, actions, costs_aggregated, costs_list, obses_tp1, goals, dones, constraints = [], [], [], [], [], [], [], []
+        for i in idxes:
+            data = self._storage[i]
+            obs_t, action, aggregated_cost, costs, obs_tp1, goal, done, constraint = data
+            obses_t.append(np.array(obs_t, copy=False))
+            actions.append(np.array(action, copy=False))
+            costs_aggregated.append(aggregated_cost)
+            costs_list.append(np.array(costs, copy=False))
+            obses_tp1.append(np.array(obs_tp1, copy=False))
+            dones.append(done)
+            goals.append(np.array(goal, copy=False))
+            constraints.append(np.array(constraint, copy=False))
+        return np.array(obses_t), np.array(actions), np.array(costs_aggregated), np.array(costs_list), np.array(obses_tp1), np.array(goals), np.array(dones), np.array(constraints)
+
+    def sample(self, batch_size):
+        &#34;&#34;&#34;Sample a batch of experiences.
+        Parameters
+        ----------
+        batch_size: int
+            How many transitions to sample.
+        Returns
+        -------
+        obs_batch: np.array
+            batch of observations
+        act_batch: np.array
+            batch of actions executed given obs_batch
+        agg_cost_batch: np.array
+            aggregated costs received as results of executing act_batch
+        costs_batch: np.array
+            costs received as results of executing act_batch
+        next_obs_batch: np.array
+            next set of observations seen after executing act_batch
+        goals_batch: np.array
+            targeted goals
+        done_mask: np.array
+            done_mask[i] = 1 if executing act_batch[i] resulted in
+            the end of an episode and 0 otherwise.
+        constraint_batch: np.array
+            whether constraints expressed in goals are violated for states in obs_batch.
+        &#34;&#34;&#34;
+        idxes = [random.randint(0, len(self._storage) - 1) for _ in range(batch_size)]
+        return self._encode_sample(idxes)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="epidemioptim.optimization.shared.replay_buffer.ReplayBuffer"><code class="flex name class">
+<span>class <span class="ident">ReplayBuffer</span></span>
+<span>(</span><span>size)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create Replay buffer.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Max number of transitions to store in the buffer. When the buffer
+overflows the old memories are dropped.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ReplayBuffer(object):
+    def __init__(self, size):
+        &#34;&#34;&#34;Create Replay buffer.
+        Parameters
+        ----------
+        size: int
+            Max number of transitions to store in the buffer. When the buffer
+            overflows the old memories are dropped.
+        &#34;&#34;&#34;
+        self._storage = []
+        self._maxsize = size
+        self._next_idx = 998400
+
+    def __len__(self):
+        return len(self._storage)
+
+    def push(self, state, action, aggregated_cost, costs, next_state, goal, done, constraints):
+        data = (state, action, aggregated_cost, costs, next_state, goal, done, constraints)
+
+        if self._next_idx &gt;= len(self._storage):
+            self._storage.append(data)
+        else:
+            self._storage[self._next_idx] = data
+        self._next_idx = int((self._next_idx + 1) % self._maxsize)
+
+    def _encode_sample(self, idxes):
+        obses_t, actions, costs_aggregated, costs_list, obses_tp1, goals, dones, constraints = [], [], [], [], [], [], [], []
+        for i in idxes:
+            data = self._storage[i]
+            obs_t, action, aggregated_cost, costs, obs_tp1, goal, done, constraint = data
+            obses_t.append(np.array(obs_t, copy=False))
+            actions.append(np.array(action, copy=False))
+            costs_aggregated.append(aggregated_cost)
+            costs_list.append(np.array(costs, copy=False))
+            obses_tp1.append(np.array(obs_tp1, copy=False))
+            dones.append(done)
+            goals.append(np.array(goal, copy=False))
+            constraints.append(np.array(constraint, copy=False))
+        return np.array(obses_t), np.array(actions), np.array(costs_aggregated), np.array(costs_list), np.array(obses_tp1), np.array(goals), np.array(dones), np.array(constraints)
+
+    def sample(self, batch_size):
+        &#34;&#34;&#34;Sample a batch of experiences.
+        Parameters
+        ----------
+        batch_size: int
+            How many transitions to sample.
+        Returns
+        -------
+        obs_batch: np.array
+            batch of observations
+        act_batch: np.array
+            batch of actions executed given obs_batch
+        agg_cost_batch: np.array
+            aggregated costs received as results of executing act_batch
+        costs_batch: np.array
+            costs received as results of executing act_batch
+        next_obs_batch: np.array
+            next set of observations seen after executing act_batch
+        goals_batch: np.array
+            targeted goals
+        done_mask: np.array
+            done_mask[i] = 1 if executing act_batch[i] resulted in
+            the end of an episode and 0 otherwise.
+        constraint_batch: np.array
+            whether constraints expressed in goals are violated for states in obs_batch.
+        &#34;&#34;&#34;
+        idxes = [random.randint(0, len(self._storage) - 1) for _ in range(batch_size)]
+        return self._encode_sample(idxes)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="epidemioptim.optimization.shared.replay_buffer.ReplayBuffer.push"><code class="name flex">
+<span>def <span class="ident">push</span></span>(<span>self, state, action, aggregated_cost, costs, next_state, goal, done, constraints)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def push(self, state, action, aggregated_cost, costs, next_state, goal, done, constraints):
+    data = (state, action, aggregated_cost, costs, next_state, goal, done, constraints)
+
+    if self._next_idx &gt;= len(self._storage):
+        self._storage.append(data)
+    else:
+        self._storage[self._next_idx] = data
+    self._next_idx = int((self._next_idx + 1) % self._maxsize)</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.optimization.shared.replay_buffer.ReplayBuffer.sample"><code class="name flex">
+<span>def <span class="ident">sample</span></span>(<span>self, batch_size)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sample a batch of experiences.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>How many transitions to sample.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>obs_batch</code></strong> :&ensp;<code>np.array</code></dt>
+<dd>batch of observations</dd>
+<dt><strong><code>act_batch</code></strong> :&ensp;<code>np.array</code></dt>
+<dd>batch of actions executed given obs_batch</dd>
+<dt><strong><code>agg_cost_batch</code></strong> :&ensp;<code>np.array</code></dt>
+<dd>aggregated costs received as results of executing act_batch</dd>
+<dt><strong><code>costs_batch</code></strong> :&ensp;<code>np.array</code></dt>
+<dd>costs received as results of executing act_batch</dd>
+<dt><strong><code>next_obs_batch</code></strong> :&ensp;<code>np.array</code></dt>
+<dd>next set of observations seen after executing act_batch</dd>
+<dt><strong><code>goals_batch</code></strong> :&ensp;<code>np.array</code></dt>
+<dd>targeted goals</dd>
+<dt><strong><code>done_mask</code></strong> :&ensp;<code>np.array</code></dt>
+<dd>done_mask[i] = 1 if executing act_batch[i] resulted in
+the end of an episode and 0 otherwise.</dd>
+<dt><strong><code>constraint_batch</code></strong> :&ensp;<code>np.array</code></dt>
+<dd>whether constraints expressed in goals are violated for states in obs_batch.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sample(self, batch_size):
+    &#34;&#34;&#34;Sample a batch of experiences.
+    Parameters
+    ----------
+    batch_size: int
+        How many transitions to sample.
+    Returns
+    -------
+    obs_batch: np.array
+        batch of observations
+    act_batch: np.array
+        batch of actions executed given obs_batch
+    agg_cost_batch: np.array
+        aggregated costs received as results of executing act_batch
+    costs_batch: np.array
+        costs received as results of executing act_batch
+    next_obs_batch: np.array
+        next set of observations seen after executing act_batch
+    goals_batch: np.array
+        targeted goals
+    done_mask: np.array
+        done_mask[i] = 1 if executing act_batch[i] resulted in
+        the end of an episode and 0 otherwise.
+    constraint_batch: np.array
+        whether constraints expressed in goals are violated for states in obs_batch.
+    &#34;&#34;&#34;
+    idxes = [random.randint(0, len(self._storage) - 1) for _ in range(batch_size)]
+    return self._encode_sample(idxes)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="epidemioptim.optimization.shared" href="index.html">epidemioptim.optimization.shared</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="epidemioptim.optimization.shared.replay_buffer.ReplayBuffer" href="#epidemioptim.optimization.shared.replay_buffer.ReplayBuffer">ReplayBuffer</a></code></h4>
+<ul class="">
+<li><code><a title="epidemioptim.optimization.shared.replay_buffer.ReplayBuffer.push" href="#epidemioptim.optimization.shared.replay_buffer.ReplayBuffer.push">push</a></code></li>
+<li><code><a title="epidemioptim.optimization.shared.replay_buffer.ReplayBuffer.sample" href="#epidemioptim.optimization.shared.replay_buffer.ReplayBuffer.sample">sample</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+</footer>
+</body>
+</html>

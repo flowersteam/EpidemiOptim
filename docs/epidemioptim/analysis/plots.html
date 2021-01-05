@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.1" />
+<title>epidemioptim.analysis.plots API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>epidemioptim.analysis.plots</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import os
+
+import numpy as np
+import pickle
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.patches import Ellipse
+from scipy.stats import ttest_ind
+from epidemioptim.utils import get_stat_func, get_repo_path
+font = {&#39;weight&#39;:&#39;bold&#39;, &#39;size&#39;   : 16}
+matplotlib.rc(&#39;font&#39;, **font)
+
+LINE = &#39;mean&#39;
+ERR = &#39;sem&#39;
+COSTS_LABELS = [&#39;# deaths&#39;, &#39;GDP cost (B)&#39;]
+COST_LABELS2 = [&#39;Health cost&#39;, &#39;Economic cost&#39;]
+XLIM = (0, 60000)
+YLIM = (0, 180)
+X_STEP = 50
+SCATTER_WIDTH = 150
+LINEWIDTH = 4
+ALPHA = 0.3
+DPI = 100
+RES_FOLDER = get_repo_path() + &#34;/data/results/experiments/&#34;
+LINE, ERR_MIN, ERR_MAX = get_stat_func(line=LINE, err=ERR)
+PLOT_STD = True
+SWITCH = True
+if SWITCH:
+    XLIM, YLIM = YLIM, XLIM
+    X_STEP = 1
+    COST_LABELS2[0], COST_LABELS2[1] = COST_LABELS2[1], COST_LABELS2[0]
+    COSTS_LABELS[0], COSTS_LABELS[1] = COSTS_LABELS[1], COSTS_LABELS[0]
+
+def setup_figure(xlabel=COSTS_LABELS[0], ylabel=COSTS_LABELS[1], xlim=XLIM, ylim=YLIM, figsize=(18, 18)):
+    fig = plt.figure(figsize=figsize, frameon=False)
+    ax = fig.add_subplot(111)
+    ax.spines[&#39;top&#39;].set_linewidth(LINEWIDTH)
+    ax.spines[&#39;right&#39;].set_linewidth(LINEWIDTH)
+    ax.spines[&#39;bottom&#39;].set_linewidth(LINEWIDTH)
+    ax.spines[&#39;left&#39;].set_linewidth(LINEWIDTH)
+    ax.tick_params(width=int(LINEWIDTH * 1.5), direction=&#39;in&#39;, length=LINEWIDTH * 3, labelsize=&#39;small&#39;)
+    artists = ()
+    if xlabel:
+        xlab = plt.xlabel(xlabel, fontweight=&#39;bold&#39;)
+        artists += (xlab,)
+    if ylabel:
+        ylab = plt.ylabel(ylabel, fontweight=&#39;bold&#39;)
+        artists += (ylab,)
+    if ylim:
+        plt.ylim(ylim)
+    if xlim:
+        plt.xlim(xlim)
+    return artists, ax
+
+def save_fig(path, artists):
+    plt.savefig(os.path.join(path), bbox_extra_artists=artists, bbox_inches=&#39;tight&#39;, dpi=DPI)
+    plt.close(&#39;all&#39;)
+
+def compute_area_under_curve(points, max_costs, min_costs):
+    points = (points - min_costs) / (max_costs - min_costs)
+    min_y = points[:, 1].min()
+    ind_sort_c1 = np.argsort(points[:, 0])
+    points = points[ind_sort_c1, :]
+    area = 0
+    n_points = points.shape[0]
+    for i in range(n_points - 1):
+        delta_x = points[i + 1, 0] - points[i, 0]
+        delta_y = points[i, 1] - min_y
+        area += delta_x * delta_y
+    return area
+
+def pareto_plot(central, error):
+    &#34;&#34;&#34;
+    Plots a Pareto front for a given algorithm. (Ellipses show errors in two dimensions).
+    Parameters
+    ----------
+    central: 2D nd.array
+        Coordinates of solutions from the Pareto front.
+    error: 2D nd.array
+        Error measures of solutions from the Pareto front.
+
+    &#34;&#34;&#34;
+    n_points = central.shape[0]
+    artists, ax = setup_figure()
+    if PLOT_STD:
+        ellipses = []
+        for i in range(n_points):
+            ellipses.append(Ellipse(xy=central[i],
+                                    width=error[i][0],
+                                    height=error[i][1],
+                                    alpha=0.1))
+        for e in ellipses:
+            ax.add_artist(e)
+            e.set_clip_box(ax.bbox)
+            e.set_facecolor(&#39;r&#39;)
+
+    plt.scatter(central[:, 0], central[:, 1], s=SCATTER_WIDTH, color=&#39;r&#39;)
+    return artists
+
+def compute_max_costs(folder):
+    list_algs = sorted(os.listdir(folder))
+    os.makedirs(folder + &#39;/res&#39;, exist_ok=True)
+    max_costs = np.zeros([2])
+    min_costs = np.array([np.inf, np.inf])
+    for alg in list_algs:
+        if &#39;res&#39; not in alg:
+            alg_folder = folder + alg + &#39;/&#39;
+            list_folds = sorted(os.listdir(alg_folder))
+            for fold in list_folds:
+                trial_folder = alg_folder + fold + &#39;/&#39;
+                if &#39;res&#39; not in fold:
+                    try:
+                        with open(trial_folder + &#39;res_eval2.pk&#39;, &#39;rb&#39;) as f:
+                            res = pickle.load(f)
+                    except:
+                        with open(trial_folder + &#39;res_eval.pk&#39;, &#39;rb&#39;) as f:
+                            res = pickle.load(f)
+                    mean = res[&#39;F&#39;].max(axis=0)  # mean of the points in Pareto front
+                    if SWITCH:
+                        mean[0], mean[1] = mean[1].copy(), mean[0].copy()
+                    for i_c in range(2):
+                        if mean[i_c] &gt; max_costs[i_c]:
+                            max_costs[i_c] = mean[i_c]
+                        if mean[i_c] &lt; min_costs[i_c]:
+                            min_costs[i_c] = mean[i_c]
+    return max_costs, min_costs
+
+def extract_res(folder, algo, max_costs, min_costs):
+    &#34;&#34;&#34;
+    This function go through all runs from an algorithm folder, gathers data about their Pareto front and compute the stair-case functions.
+    Saves information into text file at the algorithm level.
+
+    Parameters
+    ----------
+    folder: str
+        Directory of the algorithm (full of directories, one for each run).
+    algo: str
+        Algorithm identifier
+
+    &#34;&#34;&#34;
+    print(&#39;\n\tExtracting: &#39;, folder.split(&#39;/&#39;)[-2])
+    os.makedirs(folder + &#39;/res&#39;, exist_ok=True)
+
+    # First, we go through all runs and collect mean and std of the solutions in the Pareto front.
+    centrals = []
+    errors = []
+    goals = []
+    list_folds = sorted(os.listdir(folder))
+
+    for fold in list_folds:
+        if &#39;res&#39; not in fold:
+            try:
+                with open(folder + fold + &#39;/res_eval2.pk&#39;, &#39;rb&#39;) as f:
+                    res = pickle.load(f)
+            except:
+                with open(folder + fold + &#39;/res_eval.pk&#39;, &#39;rb&#39;) as f:
+                    res = pickle.load(f)
+            os.makedirs(folder + fold + &#39;/plots&#39;, exist_ok=True)
+            mean = res[&#39;F&#39;]  # mean of the points in Pareto front
+            std = res[&#39;F_std&#39;]  # std of the points in Pareto front (over n evaluation episodes)
+
+            # Swap costs depending on the desired x-axis.
+            if SWITCH:
+                mean[:, 0], mean[:, 1] = mean[:, 1].copy(), mean[:, 0].copy()
+                std[:, 0], std[:, 1] = std[:, 1].copy(), std[:, 0].copy()
+
+            artists = pareto_plot(mean, std)
+            save_fig(folder + fold + &#39;/plots/pareto_{}.pdf&#39;.format(SWITCH), artists)
+
+            if algo == &#39;DQN&#39;:
+                goals.append(res[&#39;G_all&#39;].flatten())  # collect the goal for DQN policies, so as to pull them into populations of policies
+                mean = mean.flatten()
+                std = std.flatten()
+
+            centrals.append(mean)
+            errors.append(std)
+
+    # if DQN algorithm, we need to pull several policies to form a population (one for each value of the goal).
+    if algo == &#39;DQN&#39;:
+        unique_goals = np.unique(goals)
+        nb_runs = np.argwhere(np.array(goals).flatten() == unique_goals[0]).size
+        all_centrals = []
+        all_errors = []
+        centrals = np.array(centrals)
+        errors = np.array(errors)
+        for i_run in range(nb_runs):
+            inds = np.array([np.argwhere(np.array(goals).flatten() == unique_goals[i])[i_run] for i in range(unique_goals.size)]).flatten()
+            all_centrals.append(centrals[inds])
+            all_errors.append(errors[inds])
+        centrals = all_centrals.copy()
+        errors = all_errors.copy()
+
+    # compute areas under the curve
+    areas = [compute_area_under_curve(mean, max_costs, min_costs) for mean in centrals]
+    print(areas)
+
+    # Here we form the staircase function from points in the Pareto front.
+    n_lines = len(centrals)
+    all_data = []
+    all_data_std = []
+    for i in range(n_lines):
+        data = centrals[i]
+        data_std = errors[i]
+        sorted_inds = np.argsort(data[:, 0])
+        data = data[sorted_inds]
+        data_std = data_std[sorted_inds]
+
+        # align data to compute mean
+        inds = np.arange(0, XLIM[1], X_STEP)
+        aligned_data = np.zeros([inds.size])
+        aligned_std = np.zeros([inds.size])
+        aligned_data.fill(np.nan)
+        aligned_std.fill(np.nan)
+        for i, cost in enumerate(inds):
+            inds_inf = np.argwhere(data[:, 0] &lt; cost).flatten()
+            if inds_inf.size &gt; 0:
+                last_inf = inds_inf[-1]
+                aligned_data[i] = data[last_inf, 1]
+                aligned_std[i] = data_std[last_inf, 1]
+        all_data.append(aligned_data)
+        all_data_std.append(aligned_std)
+    np.savetxt(folder + &#39;res/all_data_pareto_{}.txt&#39;.format(SWITCH), np.array(all_data))
+    np.savetxt(folder + &#39;res/all_data_pareto_std_{}.txt&#39;.format(SWITCH), np.array(all_data_std))
+    np.savetxt(folder + &#39;res/areas_under_curve.txt&#39;.format(SWITCH), np.array(areas))
+
+
+def plot_algo_fronts(folder):
+    &#34;&#34;&#34;
+    Plot Pareto fronts of all runs for a given algorithm.
+
+    Parameters
+    ----------
+    folder: str
+        Directory of the algorithm (full of directories, one for each run).
+
+    &#34;&#34;&#34;
+    print(&#39;\n\tPlotting: &#39;, folder.split(&#39;/&#39;)[-2])
+    all_data = np.loadtxt(folder + &#39;res/all_data_pareto_{}.txt&#39;.format(SWITCH))
+    all_data_std = np.loadtxt(folder + &#39;res/all_data_pareto_std_{}.txt&#39;.format(SWITCH))
+
+    n_lines = all_data.shape[0]
+    artists, ax = setup_figure()
+    inds = np.arange(0, XLIM[1], X_STEP)
+    for i in range(n_lines):
+        data = all_data[i]
+        data_std = all_data_std[i]
+        # plot all lines (one per run)
+        color = matplotlib_colors[i]
+        plt.plot(inds, data, c=color, linewidth=LINEWIDTH)
+    central = LINE(all_data)
+    errs = ERR_MIN(all_data), ERR_MAX(all_data)
+    plt.plot(inds, central, linestyle=&#39;--&#39;, c=&#39;k&#39;, linewidth=3*LINEWIDTH)
+    plt.fill_between(inds, errs[0], errs[1], color=&#39;k&#39;, alpha=ALPHA)
+    plt.savefig(folder + &#39;res/all_pareto_{}.pdf&#39;.format(SWITCH))
+    plt.close(&#39;all&#39;)
+
+
+
+def beta_plot(folder):
+    &#34;&#34;&#34;
+    Custom plotting function to plot the evolution of the two costs as a function of the mixing parameter beta.
+
+    Parameters
+    ----------
+    folder:  str
+        Directory of the algorithm (full of directories, one for each run).
+
+    &#34;&#34;&#34;
+    all_data = dict()
+    goals = []
+    list_folds = sorted(os.listdir(folder))
+    for f in list_folds:
+        if &#39;res&#39; not in f:
+            with open(folder + f + &#39;/res_eval.pk&#39;, &#39;rb&#39;) as f:
+                data = pickle.load(f)
+            if &#39;G_all&#39; in data.keys():
+                for g, f, f_std in zip(data[&#39;G_all&#39;], data[&#39;F_all&#39;], data[&#39;F_std_all&#39;]):
+                    g = np.atleast_1d(g)
+                    if str(g) not in all_data.keys():
+                        all_data[str(g)] = dict(F_all=[],
+                                                F_std_all=[])
+                        goals.append(g)
+                    all_data[str(g)][&#39;F_all&#39;].append(f)
+                    all_data[str(g)][&#39;F_std_all&#39;].append(f_std)
+
+    if len(goals) &gt; 0:
+        ind = np.argsort(np.array(goals)[:, 0])
+        goals = np.array(goals)[ind]
+        beta_y = goals[:, 0]
+        keys = [str(g) for g in goals]
+        data = np.swapaxes(np.array([all_data[k][&#39;F_all&#39;] / np.array([XLIM[1], 110]) for k in keys]), axis1=0, axis2=1)
+        central = LINE(data)
+        errors = ERR_MIN(data), ERR_MAX(data)
+        artists, ax = setup_figure(r&#34;$\beta$&#34;, &#39;costs (% max)&#39;, xlim=[0, 1], ylim=[0, 1], figsize=(15, 10))
+        nb_costs = central.shape[1]
+        for i_c in range(nb_costs):
+            c = colors[i_c]
+            plt.plot(beta_y, central[:, i_c], c=c, linewidth=8)
+            plt.fill_between(beta_y, errors[0][:, i_c], errors[1][:, i_c], color=c, alpha=ALPHA)
+        leg = plt.legend(COST_LABELS2,
+                         loc=&#39;upper center&#39;,
+                         bbox_to_anchor=(0.5, 1.08),
+                         ncol=2,
+                         fancybox=True,
+                         shadow=True,
+                         prop={&#39;size&#39;: 32, &#39;weight&#39;: &#39;bold&#39;},
+                         markerscale=1)
+        artists += (leg,)
+        save_fig(folder + &#39;res/beta_study.pdf&#39;, artists)
+
+def plot_multi_algo(folder):
+    &#34;&#34;&#34;
+    Plot comparison of Pareto fronts.
+
+    Parameters
+    ----------
+    folder: str
+        Directory that contains folders for each algorithm.
+
+    &#34;&#34;&#34;
+    list_conds = os.listdir(folder)
+    data = []
+    data_std = []
+    labels = []
+    areas = []
+    for cond in list_conds:
+        if &#39;res&#39; not in cond:
+            labels.append(cond)
+            data.append(np.loadtxt(RES_FOLDER + cond + &#39;/res/all_data_pareto_{}.txt&#39;.format(SWITCH)))
+            data_std.append(np.loadtxt(RES_FOLDER + cond + &#39;/res/all_data_pareto_std_{}.txt&#39;.format(SWITCH)))
+            areas.append(np.loadtxt(RES_FOLDER + cond + &#39;/res/areas_under_curve.txt&#39;))
+    data = np.swapaxes(np.array(data), 0, 1)
+    data_std = np.swapaxes(np.array(data_std), 0, 1)
+    n_conds = data.shape[1]
+
+    # Compute tests on areas under the curve
+    areas = np.array(areas)
+    print(&#39;\n\n\tAreas under Pareto front:\n&#39;)
+    p_vals = np.ones([n_conds, n_conds])
+    for i in range(n_conds):
+        for j in range(n_conds):
+            p_vals[i, j] = ttest_ind(areas[i, :], areas[j, :], equal_var=False)[1]
+        plus_or_minus = np.array([areas[i].mean() &gt; areas[j].mean() for j in range(n_conds)])
+        sig = np.array([p_vals[i, j] &lt; 0.05 for j in range(n_conds)])
+        msg = &#39;{}: {:.2f} +/- {:.2f}.&#39;.format(labels[i], areas[i].mean(), areas[i].std())
+        ind_pos = np.argwhere(np.logical_and(sig, plus_or_minus)).flatten()
+        ind_neg = np.argwhere(np.logical_and(sig, ~plus_or_minus)).flatten()
+        if ind_neg.size &gt; 0:
+            msg += &#39;\n\tBetter than: &#39;
+            for ind in ind_neg:
+                msg += &#39;{} (p={:.2f}), &#39;.format(labels[ind], p_vals[i, ind])
+        if ind_pos.size &gt; 0:
+            msg += &#39;\n\tWorse than: &#39;
+            for ind in ind_pos:
+                msg += &#39;{} (p={:.2f}), &#39;.format(labels[ind], p_vals[i, ind])
+        print(msg)
+
+
+    if SWITCH:
+        Y_SCALE = 1 / 1000
+        X_SCALE = 1
+        delta_sig = 3
+        artists, ax = setup_figure(figsize=(15, 10), ylabel=r&#39;# Deaths $(\times 10^3)$&#39;, ylim=(0, YLIM[1] * Y_SCALE * 1.4))
+    else:
+        X_SCALE = 1 / 1000
+        Y_SCALE = 1
+        delta_sig = 7
+        artists, ax = setup_figure(figsize=(15, 10), xlabel=r&#39;# Deaths $(\times 10^3)$&#39;, xlim=(0, XLIM[1] * X_SCALE), ylim=(0, YLIM[1] * 1.35))
+    data *= Y_SCALE
+    central = LINE(data)
+    central_std = LINE(data_std)
+    errs = ERR_MIN(data), ERR_MAX(data)
+    inds = np.arange(0, XLIM[1], X_STEP) * X_SCALE
+    if SWITCH:
+        inds_freq = np.arange(0, inds.size, 5)
+    else:
+        inds_freq = np.arange(0, inds.size, 30)
+    data = data[:, :, inds_freq]
+    i_ref = 3
+    p_vals = dict()
+    for i in range(n_conds):
+        if i != i_ref:
+            p_val = ttest_ind(data[:, i], data[:, i_ref], equal_var=False)[1]
+            p_val[np.argwhere(np.isnan(p_val))] = 1
+            p_vals[i] = p_val
+
+    counter = 0
+    for i_c in range(central.shape[0]):
+        plt.plot(inds, central[i_c, :], c=colors[i_c], linewidth=8)
+        plt.fill_between(inds, errs[0][i_c, :], errs[1][i_c, :], color=colors[i_c], alpha=ALPHA)
+        if i_c in p_vals.keys():
+            counter += 1
+            inds_inf = np.argwhere(np.logical_and(p_vals[i_c] &lt; 0.05, central[i_c, inds_freq] &lt; central[i_ref, inds_freq])).flatten()
+            inds_sup = np.argwhere(np.logical_and(p_vals[i_c] &lt; 0.05, central[i_c, inds_freq] &gt; central[i_ref, inds_freq])).flatten()
+            if inds_inf.size &gt; 0:
+                plt.scatter(inds[inds_freq][inds_inf], np.ones([inds_inf.size]) * YLIM[1] * 0.92 * Y_SCALE + delta_sig * counter, color=colors[i_c], s=180, marker=&#39;o&#39;)
+            if inds_sup.size &gt; 0:
+                plt.scatter(inds[inds_freq][inds_sup], np.ones([inds_sup.size]) * YLIM[1] * 0.92 * Y_SCALE + delta_sig * counter, color=colors[i_c], s=250, marker=&#39;*&#39;)
+
+    leg = plt.legend(labels,
+                     loc=&#39;upper center&#39;,
+                     bbox_to_anchor=(0.5, 1.08),
+                     ncol=2,
+                     fancybox=True,
+                     shadow=True,
+                     prop={&#39;size&#39;: 28, &#39;weight&#39;: &#39;bold&#39;},
+                     markerscale=1)
+    artists += (leg, )
+    save_fig(RES_FOLDER + &#39;res/pareto_{}.pdf&#39;.format(SWITCH), artists)
+
+
+if __name__ == &#39;__main__&#39;:
+    font = {&#39;size&#39;   : 45}
+    matplotlib.rc(&#39;font&#39;, **font)
+    matplotlib.rcParams[&#39;pdf.fonttype&#39;] = 42
+    matplotlib.rcParams[&#39;ps.fonttype&#39;] = 42
+
+    colors = [[0, 0.447, 0.7410], [0.85, 0.325, 0.098], [0.466, 0.674, 0.188], [0.929, 0.694, 0.125],
+                      [0.494, 0.1844, 0.556], [0, 0.447, 0.7410], [0.3010, 0.745, 0.933], [0.85, 0.325, 0.098],
+                      [0.466, 0.674, 0.188], [0.929, 0.694, 0.125],
+                      [0.3010, 0.745, 0.933], [0.635, 0.078, 0.184]]
+
+    matplotlib_colors = [&#39;tab:blue&#39;, &#39;tab:orange&#39;, &#39;tab:green&#39;, &#39;tab:red&#39;, &#39;tab:purple&#39;, &#39;tab:brown&#39;, &#39;tab:pink&#39;, &#39;tab:grey&#39;, &#39;tab:olive&#39;, &#39;tab:cyan&#39;]
+
+    os.makedirs(RES_FOLDER + &#39;res/&#39;, exist_ok=True)
+    max_costs, min_costs = compute_max_costs(RES_FOLDER)
+    for algo in os.listdir(RES_FOLDER):
+        if &#39;res&#39; not in algo:
+            algo_folder = RES_FOLDER + algo + &#39;/&#39;
+            # extract_res(algo_folder, algo, max_costs, min_costs)
+            # plot_algo_fronts(algo_folder)
+            # beta_plot(algo_folder)
+
+    print(&#39;\n\tComparison plots&#39;)
+    plot_multi_algo(RES_FOLDER)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="epidemioptim.analysis.plots.beta_plot"><code class="name flex">
+<span>def <span class="ident">beta_plot</span></span>(<span>folder)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Custom plotting function to plot the evolution of the two costs as a function of the mixing parameter beta.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>folder</code></strong> :&ensp;<code> str</code></dt>
+<dd>Directory of the algorithm (full of directories, one for each run).</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def beta_plot(folder):
+    &#34;&#34;&#34;
+    Custom plotting function to plot the evolution of the two costs as a function of the mixing parameter beta.
+
+    Parameters
+    ----------
+    folder:  str
+        Directory of the algorithm (full of directories, one for each run).
+
+    &#34;&#34;&#34;
+    all_data = dict()
+    goals = []
+    list_folds = sorted(os.listdir(folder))
+    for f in list_folds:
+        if &#39;res&#39; not in f:
+            with open(folder + f + &#39;/res_eval.pk&#39;, &#39;rb&#39;) as f:
+                data = pickle.load(f)
+            if &#39;G_all&#39; in data.keys():
+                for g, f, f_std in zip(data[&#39;G_all&#39;], data[&#39;F_all&#39;], data[&#39;F_std_all&#39;]):
+                    g = np.atleast_1d(g)
+                    if str(g) not in all_data.keys():
+                        all_data[str(g)] = dict(F_all=[],
+                                                F_std_all=[])
+                        goals.append(g)
+                    all_data[str(g)][&#39;F_all&#39;].append(f)
+                    all_data[str(g)][&#39;F_std_all&#39;].append(f_std)
+
+    if len(goals) &gt; 0:
+        ind = np.argsort(np.array(goals)[:, 0])
+        goals = np.array(goals)[ind]
+        beta_y = goals[:, 0]
+        keys = [str(g) for g in goals]
+        data = np.swapaxes(np.array([all_data[k][&#39;F_all&#39;] / np.array([XLIM[1], 110]) for k in keys]), axis1=0, axis2=1)
+        central = LINE(data)
+        errors = ERR_MIN(data), ERR_MAX(data)
+        artists, ax = setup_figure(r&#34;$\beta$&#34;, &#39;costs (% max)&#39;, xlim=[0, 1], ylim=[0, 1], figsize=(15, 10))
+        nb_costs = central.shape[1]
+        for i_c in range(nb_costs):
+            c = colors[i_c]
+            plt.plot(beta_y, central[:, i_c], c=c, linewidth=8)
+            plt.fill_between(beta_y, errors[0][:, i_c], errors[1][:, i_c], color=c, alpha=ALPHA)
+        leg = plt.legend(COST_LABELS2,
+                         loc=&#39;upper center&#39;,
+                         bbox_to_anchor=(0.5, 1.08),
+                         ncol=2,
+                         fancybox=True,
+                         shadow=True,
+                         prop={&#39;size&#39;: 32, &#39;weight&#39;: &#39;bold&#39;},
+                         markerscale=1)
+        artists += (leg,)
+        save_fig(folder + &#39;res/beta_study.pdf&#39;, artists)</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.plots.compute_area_under_curve"><code class="name flex">
+<span>def <span class="ident">compute_area_under_curve</span></span>(<span>points, max_costs, min_costs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_area_under_curve(points, max_costs, min_costs):
+    points = (points - min_costs) / (max_costs - min_costs)
+    min_y = points[:, 1].min()
+    ind_sort_c1 = np.argsort(points[:, 0])
+    points = points[ind_sort_c1, :]
+    area = 0
+    n_points = points.shape[0]
+    for i in range(n_points - 1):
+        delta_x = points[i + 1, 0] - points[i, 0]
+        delta_y = points[i, 1] - min_y
+        area += delta_x * delta_y
+    return area</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.plots.compute_max_costs"><code class="name flex">
+<span>def <span class="ident">compute_max_costs</span></span>(<span>folder)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_max_costs(folder):
+    list_algs = sorted(os.listdir(folder))
+    os.makedirs(folder + &#39;/res&#39;, exist_ok=True)
+    max_costs = np.zeros([2])
+    min_costs = np.array([np.inf, np.inf])
+    for alg in list_algs:
+        if &#39;res&#39; not in alg:
+            alg_folder = folder + alg + &#39;/&#39;
+            list_folds = sorted(os.listdir(alg_folder))
+            for fold in list_folds:
+                trial_folder = alg_folder + fold + &#39;/&#39;
+                if &#39;res&#39; not in fold:
+                    try:
+                        with open(trial_folder + &#39;res_eval2.pk&#39;, &#39;rb&#39;) as f:
+                            res = pickle.load(f)
+                    except:
+                        with open(trial_folder + &#39;res_eval.pk&#39;, &#39;rb&#39;) as f:
+                            res = pickle.load(f)
+                    mean = res[&#39;F&#39;].max(axis=0)  # mean of the points in Pareto front
+                    if SWITCH:
+                        mean[0], mean[1] = mean[1].copy(), mean[0].copy()
+                    for i_c in range(2):
+                        if mean[i_c] &gt; max_costs[i_c]:
+                            max_costs[i_c] = mean[i_c]
+                        if mean[i_c] &lt; min_costs[i_c]:
+                            min_costs[i_c] = mean[i_c]
+    return max_costs, min_costs</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.plots.extract_res"><code class="name flex">
+<span>def <span class="ident">extract_res</span></span>(<span>folder, algo, max_costs, min_costs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function go through all runs from an algorithm folder, gathers data about their Pareto front and compute the stair-case functions.
+Saves information into text file at the algorithm level.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>folder</code></strong> :&ensp;<code>str</code></dt>
+<dd>Directory of the algorithm (full of directories, one for each run).</dd>
+<dt><strong><code>algo</code></strong> :&ensp;<code>str</code></dt>
+<dd>Algorithm identifier</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def extract_res(folder, algo, max_costs, min_costs):
+    &#34;&#34;&#34;
+    This function go through all runs from an algorithm folder, gathers data about their Pareto front and compute the stair-case functions.
+    Saves information into text file at the algorithm level.
+
+    Parameters
+    ----------
+    folder: str
+        Directory of the algorithm (full of directories, one for each run).
+    algo: str
+        Algorithm identifier
+
+    &#34;&#34;&#34;
+    print(&#39;\n\tExtracting: &#39;, folder.split(&#39;/&#39;)[-2])
+    os.makedirs(folder + &#39;/res&#39;, exist_ok=True)
+
+    # First, we go through all runs and collect mean and std of the solutions in the Pareto front.
+    centrals = []
+    errors = []
+    goals = []
+    list_folds = sorted(os.listdir(folder))
+
+    for fold in list_folds:
+        if &#39;res&#39; not in fold:
+            try:
+                with open(folder + fold + &#39;/res_eval2.pk&#39;, &#39;rb&#39;) as f:
+                    res = pickle.load(f)
+            except:
+                with open(folder + fold + &#39;/res_eval.pk&#39;, &#39;rb&#39;) as f:
+                    res = pickle.load(f)
+            os.makedirs(folder + fold + &#39;/plots&#39;, exist_ok=True)
+            mean = res[&#39;F&#39;]  # mean of the points in Pareto front
+            std = res[&#39;F_std&#39;]  # std of the points in Pareto front (over n evaluation episodes)
+
+            # Swap costs depending on the desired x-axis.
+            if SWITCH:
+                mean[:, 0], mean[:, 1] = mean[:, 1].copy(), mean[:, 0].copy()
+                std[:, 0], std[:, 1] = std[:, 1].copy(), std[:, 0].copy()
+
+            artists = pareto_plot(mean, std)
+            save_fig(folder + fold + &#39;/plots/pareto_{}.pdf&#39;.format(SWITCH), artists)
+
+            if algo == &#39;DQN&#39;:
+                goals.append(res[&#39;G_all&#39;].flatten())  # collect the goal for DQN policies, so as to pull them into populations of policies
+                mean = mean.flatten()
+                std = std.flatten()
+
+            centrals.append(mean)
+            errors.append(std)
+
+    # if DQN algorithm, we need to pull several policies to form a population (one for each value of the goal).
+    if algo == &#39;DQN&#39;:
+        unique_goals = np.unique(goals)
+        nb_runs = np.argwhere(np.array(goals).flatten() == unique_goals[0]).size
+        all_centrals = []
+        all_errors = []
+        centrals = np.array(centrals)
+        errors = np.array(errors)
+        for i_run in range(nb_runs):
+            inds = np.array([np.argwhere(np.array(goals).flatten() == unique_goals[i])[i_run] for i in range(unique_goals.size)]).flatten()
+            all_centrals.append(centrals[inds])
+            all_errors.append(errors[inds])
+        centrals = all_centrals.copy()
+        errors = all_errors.copy()
+
+    # compute areas under the curve
+    areas = [compute_area_under_curve(mean, max_costs, min_costs) for mean in centrals]
+    print(areas)
+
+    # Here we form the staircase function from points in the Pareto front.
+    n_lines = len(centrals)
+    all_data = []
+    all_data_std = []
+    for i in range(n_lines):
+        data = centrals[i]
+        data_std = errors[i]
+        sorted_inds = np.argsort(data[:, 0])
+        data = data[sorted_inds]
+        data_std = data_std[sorted_inds]
+
+        # align data to compute mean
+        inds = np.arange(0, XLIM[1], X_STEP)
+        aligned_data = np.zeros([inds.size])
+        aligned_std = np.zeros([inds.size])
+        aligned_data.fill(np.nan)
+        aligned_std.fill(np.nan)
+        for i, cost in enumerate(inds):
+            inds_inf = np.argwhere(data[:, 0] &lt; cost).flatten()
+            if inds_inf.size &gt; 0:
+                last_inf = inds_inf[-1]
+                aligned_data[i] = data[last_inf, 1]
+                aligned_std[i] = data_std[last_inf, 1]
+        all_data.append(aligned_data)
+        all_data_std.append(aligned_std)
+    np.savetxt(folder + &#39;res/all_data_pareto_{}.txt&#39;.format(SWITCH), np.array(all_data))
+    np.savetxt(folder + &#39;res/all_data_pareto_std_{}.txt&#39;.format(SWITCH), np.array(all_data_std))
+    np.savetxt(folder + &#39;res/areas_under_curve.txt&#39;.format(SWITCH), np.array(areas))</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.plots.pareto_plot"><code class="name flex">
+<span>def <span class="ident">pareto_plot</span></span>(<span>central, error)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plots a Pareto front for a given algorithm. (Ellipses show errors in two dimensions).
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>central</code></strong> :&ensp;<code>2D nd.array</code></dt>
+<dd>Coordinates of solutions from the Pareto front.</dd>
+<dt><strong><code>error</code></strong> :&ensp;<code>2D nd.array</code></dt>
+<dd>Error measures of solutions from the Pareto front.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pareto_plot(central, error):
+    &#34;&#34;&#34;
+    Plots a Pareto front for a given algorithm. (Ellipses show errors in two dimensions).
+    Parameters
+    ----------
+    central: 2D nd.array
+        Coordinates of solutions from the Pareto front.
+    error: 2D nd.array
+        Error measures of solutions from the Pareto front.
+
+    &#34;&#34;&#34;
+    n_points = central.shape[0]
+    artists, ax = setup_figure()
+    if PLOT_STD:
+        ellipses = []
+        for i in range(n_points):
+            ellipses.append(Ellipse(xy=central[i],
+                                    width=error[i][0],
+                                    height=error[i][1],
+                                    alpha=0.1))
+        for e in ellipses:
+            ax.add_artist(e)
+            e.set_clip_box(ax.bbox)
+            e.set_facecolor(&#39;r&#39;)
+
+    plt.scatter(central[:, 0], central[:, 1], s=SCATTER_WIDTH, color=&#39;r&#39;)
+    return artists</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.plots.plot_algo_fronts"><code class="name flex">
+<span>def <span class="ident">plot_algo_fronts</span></span>(<span>folder)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plot Pareto fronts of all runs for a given algorithm.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>folder</code></strong> :&ensp;<code>str</code></dt>
+<dd>Directory of the algorithm (full of directories, one for each run).</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_algo_fronts(folder):
+    &#34;&#34;&#34;
+    Plot Pareto fronts of all runs for a given algorithm.
+
+    Parameters
+    ----------
+    folder: str
+        Directory of the algorithm (full of directories, one for each run).
+
+    &#34;&#34;&#34;
+    print(&#39;\n\tPlotting: &#39;, folder.split(&#39;/&#39;)[-2])
+    all_data = np.loadtxt(folder + &#39;res/all_data_pareto_{}.txt&#39;.format(SWITCH))
+    all_data_std = np.loadtxt(folder + &#39;res/all_data_pareto_std_{}.txt&#39;.format(SWITCH))
+
+    n_lines = all_data.shape[0]
+    artists, ax = setup_figure()
+    inds = np.arange(0, XLIM[1], X_STEP)
+    for i in range(n_lines):
+        data = all_data[i]
+        data_std = all_data_std[i]
+        # plot all lines (one per run)
+        color = matplotlib_colors[i]
+        plt.plot(inds, data, c=color, linewidth=LINEWIDTH)
+    central = LINE(all_data)
+    errs = ERR_MIN(all_data), ERR_MAX(all_data)
+    plt.plot(inds, central, linestyle=&#39;--&#39;, c=&#39;k&#39;, linewidth=3*LINEWIDTH)
+    plt.fill_between(inds, errs[0], errs[1], color=&#39;k&#39;, alpha=ALPHA)
+    plt.savefig(folder + &#39;res/all_pareto_{}.pdf&#39;.format(SWITCH))
+    plt.close(&#39;all&#39;)</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.plots.plot_multi_algo"><code class="name flex">
+<span>def <span class="ident">plot_multi_algo</span></span>(<span>folder)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Plot comparison of Pareto fronts.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>folder</code></strong> :&ensp;<code>str</code></dt>
+<dd>Directory that contains folders for each algorithm.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_multi_algo(folder):
+    &#34;&#34;&#34;
+    Plot comparison of Pareto fronts.
+
+    Parameters
+    ----------
+    folder: str
+        Directory that contains folders for each algorithm.
+
+    &#34;&#34;&#34;
+    list_conds = os.listdir(folder)
+    data = []
+    data_std = []
+    labels = []
+    areas = []
+    for cond in list_conds:
+        if &#39;res&#39; not in cond:
+            labels.append(cond)
+            data.append(np.loadtxt(RES_FOLDER + cond + &#39;/res/all_data_pareto_{}.txt&#39;.format(SWITCH)))
+            data_std.append(np.loadtxt(RES_FOLDER + cond + &#39;/res/all_data_pareto_std_{}.txt&#39;.format(SWITCH)))
+            areas.append(np.loadtxt(RES_FOLDER + cond + &#39;/res/areas_under_curve.txt&#39;))
+    data = np.swapaxes(np.array(data), 0, 1)
+    data_std = np.swapaxes(np.array(data_std), 0, 1)
+    n_conds = data.shape[1]
+
+    # Compute tests on areas under the curve
+    areas = np.array(areas)
+    print(&#39;\n\n\tAreas under Pareto front:\n&#39;)
+    p_vals = np.ones([n_conds, n_conds])
+    for i in range(n_conds):
+        for j in range(n_conds):
+            p_vals[i, j] = ttest_ind(areas[i, :], areas[j, :], equal_var=False)[1]
+        plus_or_minus = np.array([areas[i].mean() &gt; areas[j].mean() for j in range(n_conds)])
+        sig = np.array([p_vals[i, j] &lt; 0.05 for j in range(n_conds)])
+        msg = &#39;{}: {:.2f} +/- {:.2f}.&#39;.format(labels[i], areas[i].mean(), areas[i].std())
+        ind_pos = np.argwhere(np.logical_and(sig, plus_or_minus)).flatten()
+        ind_neg = np.argwhere(np.logical_and(sig, ~plus_or_minus)).flatten()
+        if ind_neg.size &gt; 0:
+            msg += &#39;\n\tBetter than: &#39;
+            for ind in ind_neg:
+                msg += &#39;{} (p={:.2f}), &#39;.format(labels[ind], p_vals[i, ind])
+        if ind_pos.size &gt; 0:
+            msg += &#39;\n\tWorse than: &#39;
+            for ind in ind_pos:
+                msg += &#39;{} (p={:.2f}), &#39;.format(labels[ind], p_vals[i, ind])
+        print(msg)
+
+
+    if SWITCH:
+        Y_SCALE = 1 / 1000
+        X_SCALE = 1
+        delta_sig = 3
+        artists, ax = setup_figure(figsize=(15, 10), ylabel=r&#39;# Deaths $(\times 10^3)$&#39;, ylim=(0, YLIM[1] * Y_SCALE * 1.4))
+    else:
+        X_SCALE = 1 / 1000
+        Y_SCALE = 1
+        delta_sig = 7
+        artists, ax = setup_figure(figsize=(15, 10), xlabel=r&#39;# Deaths $(\times 10^3)$&#39;, xlim=(0, XLIM[1] * X_SCALE), ylim=(0, YLIM[1] * 1.35))
+    data *= Y_SCALE
+    central = LINE(data)
+    central_std = LINE(data_std)
+    errs = ERR_MIN(data), ERR_MAX(data)
+    inds = np.arange(0, XLIM[1], X_STEP) * X_SCALE
+    if SWITCH:
+        inds_freq = np.arange(0, inds.size, 5)
+    else:
+        inds_freq = np.arange(0, inds.size, 30)
+    data = data[:, :, inds_freq]
+    i_ref = 3
+    p_vals = dict()
+    for i in range(n_conds):
+        if i != i_ref:
+            p_val = ttest_ind(data[:, i], data[:, i_ref], equal_var=False)[1]
+            p_val[np.argwhere(np.isnan(p_val))] = 1
+            p_vals[i] = p_val
+
+    counter = 0
+    for i_c in range(central.shape[0]):
+        plt.plot(inds, central[i_c, :], c=colors[i_c], linewidth=8)
+        plt.fill_between(inds, errs[0][i_c, :], errs[1][i_c, :], color=colors[i_c], alpha=ALPHA)
+        if i_c in p_vals.keys():
+            counter += 1
+            inds_inf = np.argwhere(np.logical_and(p_vals[i_c] &lt; 0.05, central[i_c, inds_freq] &lt; central[i_ref, inds_freq])).flatten()
+            inds_sup = np.argwhere(np.logical_and(p_vals[i_c] &lt; 0.05, central[i_c, inds_freq] &gt; central[i_ref, inds_freq])).flatten()
+            if inds_inf.size &gt; 0:
+                plt.scatter(inds[inds_freq][inds_inf], np.ones([inds_inf.size]) * YLIM[1] * 0.92 * Y_SCALE + delta_sig * counter, color=colors[i_c], s=180, marker=&#39;o&#39;)
+            if inds_sup.size &gt; 0:
+                plt.scatter(inds[inds_freq][inds_sup], np.ones([inds_sup.size]) * YLIM[1] * 0.92 * Y_SCALE + delta_sig * counter, color=colors[i_c], s=250, marker=&#39;*&#39;)
+
+    leg = plt.legend(labels,
+                     loc=&#39;upper center&#39;,
+                     bbox_to_anchor=(0.5, 1.08),
+                     ncol=2,
+                     fancybox=True,
+                     shadow=True,
+                     prop={&#39;size&#39;: 28, &#39;weight&#39;: &#39;bold&#39;},
+                     markerscale=1)
+    artists += (leg, )
+    save_fig(RES_FOLDER + &#39;res/pareto_{}.pdf&#39;.format(SWITCH), artists)</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.plots.save_fig"><code class="name flex">
+<span>def <span class="ident">save_fig</span></span>(<span>path, artists)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_fig(path, artists):
+    plt.savefig(os.path.join(path), bbox_extra_artists=artists, bbox_inches=&#39;tight&#39;, dpi=DPI)
+    plt.close(&#39;all&#39;)</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.plots.setup_figure"><code class="name flex">
+<span>def <span class="ident">setup_figure</span></span>(<span>xlabel='GDP cost (B)', ylabel='# deaths', xlim=(0, 180), ylim=(0, 60000), figsize=(18, 18))</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_figure(xlabel=COSTS_LABELS[0], ylabel=COSTS_LABELS[1], xlim=XLIM, ylim=YLIM, figsize=(18, 18)):
+    fig = plt.figure(figsize=figsize, frameon=False)
+    ax = fig.add_subplot(111)
+    ax.spines[&#39;top&#39;].set_linewidth(LINEWIDTH)
+    ax.spines[&#39;right&#39;].set_linewidth(LINEWIDTH)
+    ax.spines[&#39;bottom&#39;].set_linewidth(LINEWIDTH)
+    ax.spines[&#39;left&#39;].set_linewidth(LINEWIDTH)
+    ax.tick_params(width=int(LINEWIDTH * 1.5), direction=&#39;in&#39;, length=LINEWIDTH * 3, labelsize=&#39;small&#39;)
+    artists = ()
+    if xlabel:
+        xlab = plt.xlabel(xlabel, fontweight=&#39;bold&#39;)
+        artists += (xlab,)
+    if ylabel:
+        ylab = plt.ylabel(ylabel, fontweight=&#39;bold&#39;)
+        artists += (ylab,)
+    if ylim:
+        plt.ylim(ylim)
+    if xlim:
+        plt.xlim(xlim)
+    return artists, ax</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="epidemioptim.analysis" href="index.html">epidemioptim.analysis</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="epidemioptim.analysis.plots.beta_plot" href="#epidemioptim.analysis.plots.beta_plot">beta_plot</a></code></li>
+<li><code><a title="epidemioptim.analysis.plots.compute_area_under_curve" href="#epidemioptim.analysis.plots.compute_area_under_curve">compute_area_under_curve</a></code></li>
+<li><code><a title="epidemioptim.analysis.plots.compute_max_costs" href="#epidemioptim.analysis.plots.compute_max_costs">compute_max_costs</a></code></li>
+<li><code><a title="epidemioptim.analysis.plots.extract_res" href="#epidemioptim.analysis.plots.extract_res">extract_res</a></code></li>
+<li><code><a title="epidemioptim.analysis.plots.pareto_plot" href="#epidemioptim.analysis.plots.pareto_plot">pareto_plot</a></code></li>
+<li><code><a title="epidemioptim.analysis.plots.plot_algo_fronts" href="#epidemioptim.analysis.plots.plot_algo_fronts">plot_algo_fronts</a></code></li>
+<li><code><a title="epidemioptim.analysis.plots.plot_multi_algo" href="#epidemioptim.analysis.plots.plot_multi_algo">plot_multi_algo</a></code></li>
+<li><code><a title="epidemioptim.analysis.plots.save_fig" href="#epidemioptim.analysis.plots.save_fig">save_fig</a></code></li>
+<li><code><a title="epidemioptim.analysis.plots.setup_figure" href="#epidemioptim.analysis.plots.setup_figure">setup_figure</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+</footer>
+</body>
+</html>
