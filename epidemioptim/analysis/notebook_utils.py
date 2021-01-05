@@ -162,11 +162,11 @@ def setup_diy(seed, run_eval, n_evals, deterministic_model):
             stds = all_costs.std(axis=0)
             msg = '\nEvaluation (over {} seeds):'.format(n_evals)
             msg += '\n\t Death toll: {} +/- {}'.format(int(means[0]), int(stds[0]))
-            msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B.'.format(int(means[1]), int(stds[1]))
+            msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B€.'.format(int(means[1]), int(stds[1]))
             print(msg)
         else:
             x, y = costs
-        print('\nDeath toll: {}, Economic cost: {:.2f} B.'.format(int(costs[0]), costs[1]))
+        print('\nDeath toll: {}, Economic cost: {:.2f} B€.'.format(int(costs[0]), costs[1]))
         replot_stats(lines, stats, plots_i, cost_function, high)
 
         # update PAreto:

@@ -12,7 +12,8 @@ sys.path.append('../../')
 
 from epidemioptim.utils import *
 from epidemioptim.analysis.notebook_utils import setup_for_replay,replot_stats,setup_fig_notebook,run_env,get_action_base
-from ipywidgets import HTML,Layout,VBox,FloatSlider,IntSlider,HBox,Label,ToggleButton,Dropdown,Checkbox,interactive_output,Box
+from ipywidgets import HTML,Layout,VBox,FloatSlider,IntSlider,HBox,Label,ToggleButton,Dropdown,Checkbox,interactive_output,Box, Text, Output
+from IPython.display import display
 # About
 
 
@@ -31,7 +32,8 @@ def introduction():
                             "<font color='black'><font face = 'Comic sans MS'>" +
                            '<center><h2 ' + h2_style + 'Using AI to Design Intervention Strategies Against Epidemics</h2></center>'
                            +'<p>&nbsp;</p>'
-
+                           + '<center><figure> <img src="logo_inserm_inria.png" width="500px"></figure></center>'
+                           + '<p>&nbsp;</p>'
                            + '<center><figure> <img src="visu.gif" alt="COVID-19 epidemic in France" /> <figcaption ' + p_style +'>'
                            'Evolution of French COVID-19 cases in intensive care<br>from March to November 2020.</figcaption></figure></center>'
                            + '<p>&nbsp;</p>'
@@ -45,7 +47,8 @@ def introduction():
                            +'<p align="justify" ' + p_style + '>'
                            + 'This website presents an interactive demo of a set of machine learning methods we presented in our research paper: '
                            + '<a href="https://arxiv.org/pdf/2010.04452.pdf" style="color:#004c8f;" target="_blank">EpidemiOptim: A Toolbox for the Optimization of Control '
-                             'Policies in Epidemiological Models</a>.'
+                             'Policies in Epidemiological Models</a>. The full code of this toolbox is open-source and available on github '
+                           + '<a href="https://github.com/flowersteam/EpidemiOptim"> here </a>.'
                            + '</p>'
                            + '<p>&nbsp;</p>'
                            +'<h3 ' + h3_style + 'Interact with trained models, design your own intervention strategy!</h3>'
@@ -72,7 +75,9 @@ def footer():
                                   + '<p>&nbsp;</p><p>&nbsp;</p>'
                                   + '<h3 ' + h3_style + 'Acknowledgements</h3>'
                                   + '<p align="justify" ' + p_style + '>'
-                                  + 'This work is the product of a collaboration between the <a href="https://www.bordeaux-population-health.center/les-equipes/statistiques-pour-la-medecine-translationnelle-sistm/"'
+                                  + 'This work is supported inpart by Inria Mission COVID19, project GESTEPID. '
+                                  + 'It is the product of a collaboration between the <a '
+                                    'href="https://www.bordeaux-population-health.center/les-equipes/statistiques-pour-la-medecine-translationnelle-sistm/"'
                                     'style="color:#004c8f;" target="_blank">Inria SISTM team</a> (epidemiology) and the <a href="https://flowers.inria.fr/"'
                                     'style="color:#004c8f;" target="_blank">Inria Flowers team</a> (optimization). We would like to thank Sebastien Rouillon (Univ. de Bordeaux) '
                                     'for his contribution on the elaboration of the model of economic recess and Dan Dutartre (Inria) for the design of this web interface. '
@@ -399,6 +404,43 @@ def test_layout(algorithm_str,seed,deterministic_model):
         folder = get_repo_path() + "/data/data_for_visualization/"+ algorithm_str+ "/1/"
     algorithm, cost_function, env, params = setup_for_replay(folder+to_add , seed, deterministic_model)
 
+    def get_lockdown_stats(stats):
+        lockdown = stats['history']['lockdown']
+        n_lockdowns = sum(lockdown)
+        consecutive_locks = []
+        counter = 0
+        for a_prev, a in zip(lockdown[:-1], lockdown[1:]):
+            if a == 1:
+                counter += 1
+            else:
+                if a_prev == 1:
+                    consecutive_locks.append(counter)
+                    counter = 0
+        if len(consecutive_locks) == 0:
+            av_lockdown = 0
+        else:
+            av_lockdown = np.mean(consecutive_locks)
+        nb_lockdowns = len(consecutive_locks)
+        return int(n_lockdowns), av_lockdown, int(nb_lockdowns)
+
+    def get_costs(stats):
+        costs = np.array([stats['stats_run']['to_plot'][1], stats['stats_run']['to_plot'][4]])
+        return costs[:, -1]
+
+    def update_stats(stats, lockdown_stats, costs_stats):
+
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats.value = '<font size=3><p><span style="font-weight:500;">Lockdown statistics:</span><br>' + \
+                               '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of lockdown periods: {}<br>'.format(nb_lockdowns) + \
+                               '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average lockdown length: {:.2f} days<br>'.format(av_lockdown) + \
+                               '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total under lockdown: {} days<br>'.format(n_lockdowns) + \
+                               '</p></font>'
+        costs_stats.value = '<font size=3><p><span style="font-weight:500;">Cumulative costs:</span><br>' + \
+                            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sanitary cost: {} deaths<br>'.format(int(costs[0])) + \
+                            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Economic cost: {:.2f} B€.<br>'.format(costs[1]) + \
+                            '</p></font>'
+
     if algorithm_str == 'DQN':
         is_deter=deter_checkbox()
         str_html=algorithm_description(algorithm_str)
@@ -412,6 +454,20 @@ def test_layout(algorithm_str,seed,deterministic_model):
 
         slider=slider_setup(slider)
         fig=canvas_setup(fig)
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value='<font size=3><p><span style="font-weight:500;">Lockdown statistics:</span><br>'
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of lockdown periods: {}<br>'.format(nb_lockdowns) + \
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average lockdown length: {:.2f} days<br>'.format(av_lockdown) + \
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total under lockdown: {} days'.format(n_lockdowns) + \
+                                    '</p></font>')
+        fake_stats = HTML(value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+        costs_stats = HTML(value='<font size=3><p><span style="font-weight:500;">Cumulative costs:</span><br>'
+                                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sanitary cost: {} deaths<br>'.format(
+            int(costs[0])) + \
+                                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Economic cost: {:.2f} B€.<br>&nbsp;<br>'.format(costs[1]) + \
+                                 '</p></font>')
+
         def update_lines(change):
             beta=slider.value
             deterministic_model=is_deter.value
@@ -419,9 +475,11 @@ def test_layout(algorithm_str,seed,deterministic_model):
             stats, msg = run_env(algorithm, env, goal=np.array([beta]))
             replot_stats(lines, stats, plots_i, cost_function, high)
             update_fig(fig)
+            update_stats(stats, lockdown_stats, costs_stats)
+
         slider.observe(update_lines, names='value')
         is_deter.observe(update_lines,names='value')
-        final_layout = center_vbox([str_html,is_deter,slider,fig.canvas])
+        final_layout = center_vbox([str_html,is_deter,slider,fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
         return final_layout
     elif algorithm_str == 'NSGA':
         is_deter=deter_checkbox()
@@ -442,6 +500,20 @@ def test_layout(algorithm_str,seed,deterministic_model):
             return (x - data_min) / (data_max - data_min)
 
         normalized_data = normalize(data)
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value='<font size=3><p><span style="font-weight:500;">Lockdown statistics:</span><br>'
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of lockdown periods: {}<br>'.format(nb_lockdowns) + \
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average lockdown length: {:.2f} days<br>'.format(av_lockdown) + \
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total under lockdown: {} days<br>'.format(n_lockdowns) + \
+                                    '</p></font>')
+
+        fake_stats = HTML(value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+        costs_stats = HTML(value='<font size=3><p><span style="font-weight:500;">Cumulative costs:</span><br>'
+                                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sanitary cost: {} deaths<br>'.format(
+            int(costs[0])) + \
+                                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Economic cost: {:.2f} B€.<br>&nbsp;<br>'.format(costs[1]) + \
+                                 '</p></font>')
         def onclick2(event):
             x = event.xdata
             y = event.ydata
@@ -470,6 +542,8 @@ def test_layout(algorithm_str,seed,deterministic_model):
             # refresh figure
             update_fig(fig1)
             update_fig(fig)
+            update_stats(stats, lockdown_stats, costs_stats)
+
         def update_deter(change):
             deterministic_model=change.new
             env.model.stochastic = not deterministic_model
@@ -478,7 +552,7 @@ def test_layout(algorithm_str,seed,deterministic_model):
         cid = fig.canvas.mpl_connect('button_press_event', onclick2)
         fig=canvas_setup(fig)
         fig1=canvas_setup(fig1)
-        final_layout = center_vbox([str_html,is_deter,fig.canvas, fig1.canvas])
+        final_layout = center_vbox([str_html,is_deter,fig.canvas, fig1.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
         return(final_layout)
     elif 'GOAL_DQN' in algorithm_str:
         if cost_function.use_constraints:
@@ -489,6 +563,22 @@ def test_layout(algorithm_str,seed,deterministic_model):
         
         stats, msg = run_env(algorithm, env, goal, first=True)
         fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value='<font size=3><p><span style="font-weight:500;">Lockdown statistics:</span><br>'
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of lockdown periods: {}<br>'.format(nb_lockdowns) + \
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average lockdown length: {:.2f} days<br>'.format(av_lockdown) + \
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total under lockdown: {} days<br>'.format(n_lockdowns) + \
+                                    '</p></font>')
+
+        fake_stats = HTML(value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+        costs_stats = HTML(value='<font size=3><p><span style="font-weight:500;">Cumulative costs:</span><br>'
+                                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sanitary cost: {} deaths<br>'.format(
+            int(costs[0])) + \
+                                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Economic cost: {:.2f} B€.<br>&nbsp;<br>'.format(costs[1]) + \
+                                 '</p></font>')
+
         if cost_function.use_constraints:
             # Plot constraints as dotted line.
             style={'description_width': '150px'}
@@ -539,6 +629,8 @@ def test_layout(algorithm_str,seed,deterministic_model):
             is_deter=deter_checkbox()
             is_deter.style=style
             is_deter.layout.width='200px'
+
+
             def update_const(change):
                 # normalize constraints
                 M_sanitary=slider_M_sanitary.value
@@ -551,13 +643,16 @@ def test_layout(algorithm_str,seed,deterministic_model):
                 stats, msg = run_env(algorithm, env, goal=np.array([beta, c_sanitary, c_economic]))
                 replot_stats(lines, stats, plots_i, cost_function, high, constraints=[c_sanitary, c_economic])
                 update_fig(fig)
+                update_stats(stats, lockdown_stats, costs_stats)
+
             slider_beta.observe(update_const, 'value')
             slider_M_sanitary.observe(update_const, 'value')
             slider_M_economic.observe(update_const, 'value')
             is_deter.observe(update_const,names='value')
+
             final_layout = center_vbox([str_html,
                                         center_vbox([is_deter,slider_beta,slider_M_sanitary,slider_M_economic]),
-                                        fig.canvas])
+                                        fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
             return final_layout
         else :
             is_deter=deter_checkbox()
@@ -570,7 +665,10 @@ def test_layout(algorithm_str,seed,deterministic_model):
                                       layout={'width': '450px'}
                                       )
             slider_goal=slider_setup(slider_goal)
+
+
             fig=canvas_setup(fig)
+
             def update_goal(change):
                 beta=slider_goal.value
                 deterministic_model=is_deter.value
@@ -578,9 +676,11 @@ def test_layout(algorithm_str,seed,deterministic_model):
                 stats, msg = run_env(algorithm, env, goal=np.array([beta]))
                 replot_stats(lines, stats, plots_i, cost_function, high)
                 update_fig(fig)
+                update_stats(stats, lockdown_stats, costs_stats)
+
             slider_goal.observe(update_goal, names='value')
             is_deter.observe(update_goal,names='value')
-            final_layout = center_vbox([str_html,is_deter,slider_goal,fig.canvas])
+            final_layout = center_vbox([str_html, is_deter, slider_goal,fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
             return final_layout
     elif algorithm_str == 'yourself':
         style={'description_width': '250px', 'widget_width': '50%'}
@@ -594,7 +694,21 @@ def test_layout(algorithm_str,seed,deterministic_model):
         size = 15
         color = "#004ab3"
         color_highlight = "#b30000"
-        
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value='<font size=3><p><span style="font-weight:500;">Lockdown statistics:</span><br>'
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of lockdown periods: {}<br>'.format(nb_lockdowns) + \
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average lockdown length: {:.2f} days<br>'.format(av_lockdown) + \
+                                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total under lockdown: {} days<br>'.format(n_lockdowns) + \
+                                    '</p></font>')
+
+        fake_stats = HTML(value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+        costs_stats = HTML(value='<font size=3><p><span style="font-weight:500;">Cumulative costs:</span><br>'
+                                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sanitary cost: {} deaths<br>'.format(
+            int(costs[0])) + \
+                                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Economic cost: {:.2f} B€.<br>&nbsp;<br>'.format(costs[1]) + \
+                                 '</p></font>')
+
         fig,ax,sc=plot_pareto(algorithm,size,color)
         data = sc.get_offsets().data
         off_sets = sc.get_offsets()
@@ -680,11 +794,11 @@ def test_layout(algorithm_str,seed,deterministic_model):
                 stds = all_costs.std(axis=0)
                 msg = '\nEvaluation (over {} seeds):'.format(n_evals)
                 msg += '\n\t Death toll: {} +/- {}'.format(int(means[0]), int(stds[0]))
-                msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B.'.format(int(means[1]), int(stds[1]))
+                msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B€.'.format(int(means[1]), int(stds[1]))
                 print(msg)
             else:
                 x, y = costs
-            print('\nDeath toll: {}, Economic cost: {:.2f} B.'.format(int(costs[0]), costs[1]))
+            print('\nDeath toll: {}, Economic cost: {:.2f} B€.'.format(int(costs[0]), costs[1]))
             replot_stats(lines, stats, plots_i, cost_function, high)
 
             # update PAreto:
@@ -697,11 +811,12 @@ def test_layout(algorithm_str,seed,deterministic_model):
 
             update_fig(fig)
             update_fig(fig1)
+            update_stats(stats, lockdown_stats, costs_stats)
             return actions
         out = interactive_output(update_try, arg_dict)
         fig=canvas_setup(fig)
         fig1=canvas_setup(fig1)
-        final_layout = center_vbox([str_html,ui,fig.canvas, fig1.canvas])
+        final_layout = center_vbox([str_html,ui,fig.canvas, fig1.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
         return final_layout
     else:
         raise NotImplementedError
