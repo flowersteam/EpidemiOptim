@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.1" />
+<title>epidemioptim.environments.models.prague_ode_seirah_model API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>epidemioptim.environments.models.prague_ode_seirah_model</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># This model is an implementation of:
+# Population modeling of early COVID-19 epidemic dynamics in French regions and estimation of the lockdown impact on infection rate
+# Prague et al., 2020
+
+from scipy.integrate import odeint
+import pandas as pd
+
+from epidemioptim.environments.models.base_model import BaseModel
+from epidemioptim.utils import *
+
+PATH_TO_FITTED_PARAMS = get_repo_path() + &#39;/data/model_data/estimatedIndividualParameters.csv&#39;
+PATH_TO_FITTED_COV = get_repo_path() + &#39;/data/model_data/data_cov.csv&#39;
+
+# ODE model
+def seirah_model(y: tuple,
+                 t: int,
+                 De: float,
+                 Dh: float,
+                 Di: float,
+                 Dq: float,
+                 N: int,
+                 alpha: float,
+                 b: float,
+                 r: float):
+    &#34;&#34;&#34;
+    SEIRAH epidemiological model from Population modeling of early COVID-19 epidemic dynamics in French
+    regions and estimation of the lockdown impact on infection rate, Prague et al., 2020.
+    Parameters
+    ----------
+    y: tuple
+       Current states SEIRAH.
+       y = [S, E, I, R, A, H]
+       S: # susceptible individuals
+       E: # individuals in latent state
+       I: # symptomatic infected individuals
+       R: # recovered &amp; dead individuals (deaths represent 0.5 % of R).
+       A: # asymptomatic infected individuals
+       H: # hospitalized individuals
+    t: int
+       Timestep.
+    De: float
+        Latent period (days).
+    Dh: float
+        Average duration of hospitalizations (days).
+    Di: float
+        Infectious period (days).
+    Dq: float
+        Duration from illness onset to hospital (days).
+    N: int
+        Population size.
+    alpha: float
+        Ratio between transmission rates of reported vs not-reported, in [0, 1].
+    b: float
+       Transmission rate.
+    r: float
+       Verification rate
+
+    Returns
+    -------
+    tuple
+        Next states.
+    &#34;&#34;&#34;
+    S, E, I, R, A, H = y
+    dSdt = - b * S * (I + alpha * A) / N
+
+    dEdt = b * S * (I + alpha * A) / N - E / De
+
+    dIdt = r * E / De - I / Dq - I / Di
+
+    dRdt = (I + A) / Di + H / Dh
+
+    dAdt = (1 - r) * E / De - A / Di
+
+    dHdt = I / Dq - H / Dh
+
+    dydt = [dSdt, dEdt, dIdt, dRdt, dAdt, dHdt]
+
+    return dydt
+
+
+class PragueOdeSeirahModel(BaseModel):
+    def __init__(self,
+                 region=&#39;IDF&#39;,
+                 stochastic=False,
+                 noise_params=0.1,
+                 range_delay=(0, 21)
+                 ):
+        &#34;&#34;&#34;
+        Implementation of the SEIRAH model from Prague et al., 2020:
+        Population modeling of early COVID-19 epidemic dynamics in French regions and estimation of the lockdown impact on infection rate.
+
+        Parameters
+        ----------
+        region: str
+                Region identifier.
+        stochastic: bool
+                    Whether to use stochastic models or not.
+        noise_params: float
+                      Normally distributed parameters have an stdev of &#39;noise_params&#39; x their mean.
+
+        Attributes
+        ---------
+        region
+        stochastic
+        noise_params
+        &#34;&#34;&#34;
+        self.fitted_params = pd.read_csv(PATH_TO_FITTED_PARAMS)
+        self.fitted_cov = pd.read_csv(PATH_TO_FITTED_COV)
+        self._regions = list(self.fitted_params[&#39;id&#39;])
+        self.pop_sizes = dict(zip(self.fitted_params[&#39;id&#39;], (self.fitted_params[&#39;popsize&#39;])))
+        assert region in self._regions, &#39;region code should be one of &#39; + str(self._regions)
+
+        self.region = region
+        self.stochastic = stochastic
+        self.noise = noise_params
+        self._all_internal_params_distribs = dict()
+        self._all_initial_state_distribs = dict()
+
+        # Initialize distributions of parameters and initial conditions for all regions
+        self.define_params_and_initial_state_distributions()
+
+        # Sample initial conditions and initial model parameters
+        internal_params_labels = list(self._all_internal_params_distribs[&#39;IDF&#39;].keys())
+        internal_params_labels.remove(&#39;icu&#39;)  # remove irrelevant keys
+        internal_params_labels.remove(&#39;N_av&#39;)
+        internal_params_labels.remove(&#39;beta1&#39;)
+        internal_params_labels.remove(&#39;beta2&#39;)
+        internal_params_labels.remove(&#39;beta3&#39;)
+        internal_params_labels.remove(&#39;beta4&#39;)
+
+        # Define ODE SEIRAH model
+        self.internal_model = seirah_model
+
+        super().__init__(internal_states_labels=[&#39;S&#39;, &#39;E&#39;, &#39;I&#39;, &#39;R&#39;, &#39;A&#39;, &#39;H&#39;],
+                         internal_params_labels=internal_params_labels,
+                         stochastic=stochastic,
+                         range_delay=range_delay)
+
+
+
+    def define_params_and_initial_state_distributions(self):
+        &#34;&#34;&#34;
+        Extract and define distributions of parameters for all French regions
+        &#34;&#34;&#34;
+
+        label2ind = dict(zip(list(self.fitted_cov.columns), np.arange(len(self.fitted_cov.columns))))
+        for i in self.fitted_params.index:
+            r = self.fitted_params[&#39;id&#39;][i]  # region
+            self._all_internal_params_distribs[r] = dict(b_fit=LogNormalDist(params=mv2musig(self.fitted_params[&#39;b1_mean&#39;][i],
+                                                                                             self.fitted_cov[&#39;b1_pop&#39;][label2ind[&#39;b1_pop&#39;]]),
+                                                                             stochastic=self.stochastic),
+                                                         r_fit=NormalDist(params=[0.034, 0.034 * self.noise], stochastic=self.stochastic),
+                                                         N=DiracDist(params=self.fitted_params[&#39;popsize&#39;][i], stochastic=self.stochastic),
+                                                         N_av=DiracDist(params=float(np.mean(self.fitted_params[&#39;popsize&#39;])), stochastic=self.stochastic),
+                                                         Dq_fit=LogNormalDist(params=mv2musig(self.fitted_params[&#39;Dq_mean&#39;][i],
+                                                                                              self.fitted_cov[&#39;Dq_pop&#39;][label2ind[&#39;Dq_pop&#39;]]),
+                                                                              stochastic=self.stochastic),
+                                                         De=NormalDist(params=[5.1, 5.1 * self.noise], stochastic=self.stochastic),
+                                                         Dh=NormalDist(params=[30, 30 * self.noise], stochastic=self.stochastic),
+                                                         Di=NormalDist(params=[2.3, 2.3 * self.noise], stochastic=self.stochastic),
+                                                         alpha=NormalDist(params=[0.55, 0.55 * self.noise], stochastic=self.stochastic),
+                                                         icu=DiracDist(params=self.fitted_params[&#39;ICUcapacity&#39;][i], stochastic=self.stochastic),
+                                                         beta1=NormalDist(params=[self.fitted_params[&#39;betaw1_mean&#39;][i],
+                                                                                  np.sqrt(self.fitted_cov[&#39;betaw1_pop&#39;][label2ind[&#39;betaw1_pop&#39;]])],
+                                                                          stochastic=self.stochastic),
+                                                         beta2=NormalDist(params=[self.fitted_params[&#39;betaw2_mean&#39;][i],
+                                                                                  np.sqrt(self.fitted_cov[&#39;betaw2_pop&#39;][label2ind[&#39;betaw2_pop&#39;]])],
+                                                                          stochastic=self.stochastic),
+                                                         beta3=NormalDist(params=[self.fitted_params[&#39;betaw3_mean&#39;][i],
+                                                                                  np.sqrt(self.fitted_cov[&#39;betaw3_pop&#39;][label2ind[&#39;betaw3_pop&#39;]])],
+                                                                          stochastic=self.stochastic),
+                                                         beta4=NormalDist(params=[self.fitted_params[&#39;betaw4_mean&#39;][i],
+                                                                                  np.sqrt(self.fitted_cov[&#39;betaw4_pop&#39;][label2ind[&#39;betaw4_pop&#39;]])],
+                                                                          stochastic=self.stochastic),
+                                                         )
+            self._all_initial_state_distribs[r] = dict(E0=LogNormalDist(params=mv2musig(self.fitted_params[&#39;initE_mean&#39;][i], self.fitted_cov[&#39;initE_pop&#39;][label2ind[&#39;initE_pop&#39;]]),
+                                                                        stochastic=self.stochastic),
+                                                       I0=DiracDist(params=self.fitted_params[&#39;I0_kalman_mean&#39;][i], stochastic=self.stochastic),
+                                                       R0=DiracDist(params=0, stochastic=self.stochastic),
+                                                       A0=DiracDist(params=1, stochastic=self.stochastic),  # is updated below
+                                                       H0=DiracDist(params=self.fitted_params[&#39;H0_kalman_mean&#39;][i], stochastic=self.stochastic)
+                                                       )
+
+    def _sample_initial_state(self):
+        &#34;&#34;&#34;
+        Samples an initial model state from its distribution (Dirac distributions if self.stochastic is False).
+
+
+        &#34;&#34;&#34;
+        self.initial_state = dict()
+        for k in self._all_initial_state_distribs[self.region].keys():
+            self.initial_state[k] = self._all_initial_state_distribs[self.region][k].sample()
+
+        # A0 is computed as a function of I0 and r_fit (see Prague et al., 2020)
+        self.initial_state[&#39;A0&#39;] = self.initial_state[&#39;I0&#39;] * (1 - self.current_internal_params[&#39;r_fit&#39;]) / self.current_internal_params[&#39;r_fit&#39;]
+        for k in self._all_initial_state_distribs[self.region].keys():
+            self.initial_state[k] = int(self.initial_state[k])
+
+        # S0 is computed from other states, as the sum of all states equals the population size N
+        self.initial_state[&#39;S0&#39;] = self.current_internal_params[&#39;N&#39;] - np.sum([self.initial_state[&#39;{}0&#39;.format(s)] for s in self.internal_states_labels[1:]])
+
+    def _sample_model_params(self):
+        &#34;&#34;&#34;
+        Samples parameters of the model from their distribution (Dirac distributions if self.stochastic is False).
+
+        &#34;&#34;&#34;
+        self.initial_internal_params = dict()
+        for k in self._all_internal_params_distribs[self.region].keys():
+            self.initial_internal_params[k] = self._all_internal_params_distribs[self.region][k].sample()
+        self._reset_model_params()
+
+    def run_n_steps(self, current_state=None, n=1, labelled_states=False):
+        &#34;&#34;&#34;
+        Runs the model for n steps
+
+        Parameters
+        ----------
+        current_state: 1D nd.array
+                       Current model state.
+        n: int
+           Number of steps the model should be run for.
+
+        labelled_states: bool
+                         Whether the result should be a dict with state labels or a nd array.
+
+        Returns
+        -------
+        dict or 2D nd.array
+            Returns a dict if labelled_states is True, where keys are state labels.
+            Returns an array of size (n, n_states) of the last n model states.
+
+        &#34;&#34;&#34;
+        if current_state is None:
+            current_state = self._get_current_state()
+
+        # Use the odeint library to run the ODE model.
+        z = odeint(self.internal_model, current_state, np.linspace(0, n, n + 1), args=self._get_model_params())
+        self._set_current_state(current_state=z[-1].copy())  # save new current state
+
+        # format results
+        if labelled_states:
+            return self._convert_to_labelled_states(np.atleast_2d(z[1:]))
+        else:
+            return np.atleast_2d(z[1:])
+
+
+if __name__ == &#39;__main__&#39;:
+    # Get model
+    model = PragueOdeSeirahModel(region=&#39;IDF&#39;,
+                                 stochastic=False)
+
+    # Run simulation
+    simulation_horizon = 364
+    model_states = model.run_n_steps(n=simulation_horizon)
+
+    # Plot
+    time = np.arange(simulation_horizon)
+    labels = model.internal_states_labels
+
+    plot_stats(t=time,
+               states=model_states.transpose(),
+               labels=labels,
+               show=True)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="epidemioptim.environments.models.prague_ode_seirah_model.seirah_model"><code class="name flex">
+<span>def <span class="ident">seirah_model</span></span>(<span>y: tuple, t: int, De: float, Dh: float, Di: float, Dq: float, N: int, alpha: float, b: float, r: float)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>SEIRAH epidemiological model from Population modeling of early COVID-19 epidemic dynamics in French
+regions and estimation of the lockdown impact on infection rate, Prague et al., 2020.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>y</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>&nbsp;</dd>
+<dt>Current states SEIRAH.</dt>
+<dt>y = [S, E, I, R, A, H]</dt>
+<dt>S: # susceptible individuals</dt>
+<dt>E: # individuals in latent state</dt>
+<dt>I: # symptomatic infected individuals</dt>
+<dt>R: # recovered &amp; dead individuals (deaths represent 0.5 % of R).</dt>
+<dt>A: # asymptomatic infected individuals</dt>
+<dt>H: # hospitalized individuals</dt>
+<dt><strong><code>t</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+<dt>Timestep.</dt>
+<dt><strong><code>De</code></strong> :&ensp;<code>float</code></dt>
+<dd>Latent period (days).</dd>
+<dt><strong><code>Dh</code></strong> :&ensp;<code>float</code></dt>
+<dd>Average duration of hospitalizations (days).</dd>
+<dt><strong><code>Di</code></strong> :&ensp;<code>float</code></dt>
+<dd>Infectious period (days).</dd>
+<dt><strong><code>Dq</code></strong> :&ensp;<code>float</code></dt>
+<dd>Duration from illness onset to hospital (days).</dd>
+<dt><strong><code>N</code></strong> :&ensp;<code>int</code></dt>
+<dd>Population size.</dd>
+<dt><strong><code>alpha</code></strong> :&ensp;<code>float</code></dt>
+<dd>Ratio between transmission rates of reported vs not-reported, in [0, 1].</dd>
+<dt><strong><code>b</code></strong> :&ensp;<code>float</code></dt>
+<dd>&nbsp;</dd>
+<dt>Transmission rate.</dt>
+<dt><strong><code>r</code></strong> :&ensp;<code>float</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<p>Verification rate</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>tuple</code></dt>
+<dd>Next states.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def seirah_model(y: tuple,
+                 t: int,
+                 De: float,
+                 Dh: float,
+                 Di: float,
+                 Dq: float,
+                 N: int,
+                 alpha: float,
+                 b: float,
+                 r: float):
+    &#34;&#34;&#34;
+    SEIRAH epidemiological model from Population modeling of early COVID-19 epidemic dynamics in French
+    regions and estimation of the lockdown impact on infection rate, Prague et al., 2020.
+    Parameters
+    ----------
+    y: tuple
+       Current states SEIRAH.
+       y = [S, E, I, R, A, H]
+       S: # susceptible individuals
+       E: # individuals in latent state
+       I: # symptomatic infected individuals
+       R: # recovered &amp; dead individuals (deaths represent 0.5 % of R).
+       A: # asymptomatic infected individuals
+       H: # hospitalized individuals
+    t: int
+       Timestep.
+    De: float
+        Latent period (days).
+    Dh: float
+        Average duration of hospitalizations (days).
+    Di: float
+        Infectious period (days).
+    Dq: float
+        Duration from illness onset to hospital (days).
+    N: int
+        Population size.
+    alpha: float
+        Ratio between transmission rates of reported vs not-reported, in [0, 1].
+    b: float
+       Transmission rate.
+    r: float
+       Verification rate
+
+    Returns
+    -------
+    tuple
+        Next states.
+    &#34;&#34;&#34;
+    S, E, I, R, A, H = y
+    dSdt = - b * S * (I + alpha * A) / N
+
+    dEdt = b * S * (I + alpha * A) / N - E / De
+
+    dIdt = r * E / De - I / Dq - I / Di
+
+    dRdt = (I + A) / Di + H / Dh
+
+    dAdt = (1 - r) * E / De - A / Di
+
+    dHdt = I / Dq - H / Dh
+
+    dydt = [dSdt, dEdt, dIdt, dRdt, dAdt, dHdt]
+
+    return dydt</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="epidemioptim.environments.models.prague_ode_seirah_model.PragueOdeSeirahModel"><code class="flex name class">
+<span>class <span class="ident">PragueOdeSeirahModel</span></span>
+<span>(</span><span>region='IDF', stochastic=False, noise_params=0.1, range_delay=(0, 21))</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<p>Implementation of the SEIRAH model from Prague et al., 2020:
+Population modeling of early COVID-19 epidemic dynamics in French regions and estimation of the lockdown impact on infection rate.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>region</code></strong> :&ensp;<code>str</code></dt>
+<dd>Region identifier.</dd>
+<dt><strong><code>stochastic</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether to use stochastic models or not.</dd>
+<dt><strong><code>noise_params</code></strong> :&ensp;<code>float</code></dt>
+<dd>Normally distributed parameters have an stdev of 'noise_params' x their mean.</dd>
+</dl>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>region</code></strong></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>stochastic</code></strong></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>noise_params</code></strong></dt>
+<dd>&nbsp;</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PragueOdeSeirahModel(BaseModel):
+    def __init__(self,
+                 region=&#39;IDF&#39;,
+                 stochastic=False,
+                 noise_params=0.1,
+                 range_delay=(0, 21)
+                 ):
+        &#34;&#34;&#34;
+        Implementation of the SEIRAH model from Prague et al., 2020:
+        Population modeling of early COVID-19 epidemic dynamics in French regions and estimation of the lockdown impact on infection rate.
+
+        Parameters
+        ----------
+        region: str
+                Region identifier.
+        stochastic: bool
+                    Whether to use stochastic models or not.
+        noise_params: float
+                      Normally distributed parameters have an stdev of &#39;noise_params&#39; x their mean.
+
+        Attributes
+        ---------
+        region
+        stochastic
+        noise_params
+        &#34;&#34;&#34;
+        self.fitted_params = pd.read_csv(PATH_TO_FITTED_PARAMS)
+        self.fitted_cov = pd.read_csv(PATH_TO_FITTED_COV)
+        self._regions = list(self.fitted_params[&#39;id&#39;])
+        self.pop_sizes = dict(zip(self.fitted_params[&#39;id&#39;], (self.fitted_params[&#39;popsize&#39;])))
+        assert region in self._regions, &#39;region code should be one of &#39; + str(self._regions)
+
+        self.region = region
+        self.stochastic = stochastic
+        self.noise = noise_params
+        self._all_internal_params_distribs = dict()
+        self._all_initial_state_distribs = dict()
+
+        # Initialize distributions of parameters and initial conditions for all regions
+        self.define_params_and_initial_state_distributions()
+
+        # Sample initial conditions and initial model parameters
+        internal_params_labels = list(self._all_internal_params_distribs[&#39;IDF&#39;].keys())
+        internal_params_labels.remove(&#39;icu&#39;)  # remove irrelevant keys
+        internal_params_labels.remove(&#39;N_av&#39;)
+        internal_params_labels.remove(&#39;beta1&#39;)
+        internal_params_labels.remove(&#39;beta2&#39;)
+        internal_params_labels.remove(&#39;beta3&#39;)
+        internal_params_labels.remove(&#39;beta4&#39;)
+
+        # Define ODE SEIRAH model
+        self.internal_model = seirah_model
+
+        super().__init__(internal_states_labels=[&#39;S&#39;, &#39;E&#39;, &#39;I&#39;, &#39;R&#39;, &#39;A&#39;, &#39;H&#39;],
+                         internal_params_labels=internal_params_labels,
+                         stochastic=stochastic,
+                         range_delay=range_delay)
+
+
+
+    def define_params_and_initial_state_distributions(self):
+        &#34;&#34;&#34;
+        Extract and define distributions of parameters for all French regions
+        &#34;&#34;&#34;
+
+        label2ind = dict(zip(list(self.fitted_cov.columns), np.arange(len(self.fitted_cov.columns))))
+        for i in self.fitted_params.index:
+            r = self.fitted_params[&#39;id&#39;][i]  # region
+            self._all_internal_params_distribs[r] = dict(b_fit=LogNormalDist(params=mv2musig(self.fitted_params[&#39;b1_mean&#39;][i],
+                                                                                             self.fitted_cov[&#39;b1_pop&#39;][label2ind[&#39;b1_pop&#39;]]),
+                                                                             stochastic=self.stochastic),
+                                                         r_fit=NormalDist(params=[0.034, 0.034 * self.noise], stochastic=self.stochastic),
+                                                         N=DiracDist(params=self.fitted_params[&#39;popsize&#39;][i], stochastic=self.stochastic),
+                                                         N_av=DiracDist(params=float(np.mean(self.fitted_params[&#39;popsize&#39;])), stochastic=self.stochastic),
+                                                         Dq_fit=LogNormalDist(params=mv2musig(self.fitted_params[&#39;Dq_mean&#39;][i],
+                                                                                              self.fitted_cov[&#39;Dq_pop&#39;][label2ind[&#39;Dq_pop&#39;]]),
+                                                                              stochastic=self.stochastic),
+                                                         De=NormalDist(params=[5.1, 5.1 * self.noise], stochastic=self.stochastic),
+                                                         Dh=NormalDist(params=[30, 30 * self.noise], stochastic=self.stochastic),
+                                                         Di=NormalDist(params=[2.3, 2.3 * self.noise], stochastic=self.stochastic),
+                                                         alpha=NormalDist(params=[0.55, 0.55 * self.noise], stochastic=self.stochastic),
+                                                         icu=DiracDist(params=self.fitted_params[&#39;ICUcapacity&#39;][i], stochastic=self.stochastic),
+                                                         beta1=NormalDist(params=[self.fitted_params[&#39;betaw1_mean&#39;][i],
+                                                                                  np.sqrt(self.fitted_cov[&#39;betaw1_pop&#39;][label2ind[&#39;betaw1_pop&#39;]])],
+                                                                          stochastic=self.stochastic),
+                                                         beta2=NormalDist(params=[self.fitted_params[&#39;betaw2_mean&#39;][i],
+                                                                                  np.sqrt(self.fitted_cov[&#39;betaw2_pop&#39;][label2ind[&#39;betaw2_pop&#39;]])],
+                                                                          stochastic=self.stochastic),
+                                                         beta3=NormalDist(params=[self.fitted_params[&#39;betaw3_mean&#39;][i],
+                                                                                  np.sqrt(self.fitted_cov[&#39;betaw3_pop&#39;][label2ind[&#39;betaw3_pop&#39;]])],
+                                                                          stochastic=self.stochastic),
+                                                         beta4=NormalDist(params=[self.fitted_params[&#39;betaw4_mean&#39;][i],
+                                                                                  np.sqrt(self.fitted_cov[&#39;betaw4_pop&#39;][label2ind[&#39;betaw4_pop&#39;]])],
+                                                                          stochastic=self.stochastic),
+                                                         )
+            self._all_initial_state_distribs[r] = dict(E0=LogNormalDist(params=mv2musig(self.fitted_params[&#39;initE_mean&#39;][i], self.fitted_cov[&#39;initE_pop&#39;][label2ind[&#39;initE_pop&#39;]]),
+                                                                        stochastic=self.stochastic),
+                                                       I0=DiracDist(params=self.fitted_params[&#39;I0_kalman_mean&#39;][i], stochastic=self.stochastic),
+                                                       R0=DiracDist(params=0, stochastic=self.stochastic),
+                                                       A0=DiracDist(params=1, stochastic=self.stochastic),  # is updated below
+                                                       H0=DiracDist(params=self.fitted_params[&#39;H0_kalman_mean&#39;][i], stochastic=self.stochastic)
+                                                       )
+
+    def _sample_initial_state(self):
+        &#34;&#34;&#34;
+        Samples an initial model state from its distribution (Dirac distributions if self.stochastic is False).
+
+
+        &#34;&#34;&#34;
+        self.initial_state = dict()
+        for k in self._all_initial_state_distribs[self.region].keys():
+            self.initial_state[k] = self._all_initial_state_distribs[self.region][k].sample()
+
+        # A0 is computed as a function of I0 and r_fit (see Prague et al., 2020)
+        self.initial_state[&#39;A0&#39;] = self.initial_state[&#39;I0&#39;] * (1 - self.current_internal_params[&#39;r_fit&#39;]) / self.current_internal_params[&#39;r_fit&#39;]
+        for k in self._all_initial_state_distribs[self.region].keys():
+            self.initial_state[k] = int(self.initial_state[k])
+
+        # S0 is computed from other states, as the sum of all states equals the population size N
+        self.initial_state[&#39;S0&#39;] = self.current_internal_params[&#39;N&#39;] - np.sum([self.initial_state[&#39;{}0&#39;.format(s)] for s in self.internal_states_labels[1:]])
+
+    def _sample_model_params(self):
+        &#34;&#34;&#34;
+        Samples parameters of the model from their distribution (Dirac distributions if self.stochastic is False).
+
+        &#34;&#34;&#34;
+        self.initial_internal_params = dict()
+        for k in self._all_internal_params_distribs[self.region].keys():
+            self.initial_internal_params[k] = self._all_internal_params_distribs[self.region][k].sample()
+        self._reset_model_params()
+
+    def run_n_steps(self, current_state=None, n=1, labelled_states=False):
+        &#34;&#34;&#34;
+        Runs the model for n steps
+
+        Parameters
+        ----------
+        current_state: 1D nd.array
+                       Current model state.
+        n: int
+           Number of steps the model should be run for.
+
+        labelled_states: bool
+                         Whether the result should be a dict with state labels or a nd array.
+
+        Returns
+        -------
+        dict or 2D nd.array
+            Returns a dict if labelled_states is True, where keys are state labels.
+            Returns an array of size (n, n_states) of the last n model states.
+
+        &#34;&#34;&#34;
+        if current_state is None:
+            current_state = self._get_current_state()
+
+        # Use the odeint library to run the ODE model.
+        z = odeint(self.internal_model, current_state, np.linspace(0, n, n + 1), args=self._get_model_params())
+        self._set_current_state(current_state=z[-1].copy())  # save new current state
+
+        # format results
+        if labelled_states:
+            return self._convert_to_labelled_states(np.atleast_2d(z[1:]))
+        else:
+            return np.atleast_2d(z[1:])</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="epidemioptim.environments.models.base_model.BaseModel" href="base_model.html#epidemioptim.environments.models.base_model.BaseModel">BaseModel</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="epidemioptim.environments.models.prague_ode_seirah_model.PragueOdeSeirahModel.define_params_and_initial_state_distributions"><code class="name flex">
+<span>def <span class="ident">define_params_and_initial_state_distributions</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Extract and define distributions of parameters for all French regions</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def define_params_and_initial_state_distributions(self):
+    &#34;&#34;&#34;
+    Extract and define distributions of parameters for all French regions
+    &#34;&#34;&#34;
+
+    label2ind = dict(zip(list(self.fitted_cov.columns), np.arange(len(self.fitted_cov.columns))))
+    for i in self.fitted_params.index:
+        r = self.fitted_params[&#39;id&#39;][i]  # region
+        self._all_internal_params_distribs[r] = dict(b_fit=LogNormalDist(params=mv2musig(self.fitted_params[&#39;b1_mean&#39;][i],
+                                                                                         self.fitted_cov[&#39;b1_pop&#39;][label2ind[&#39;b1_pop&#39;]]),
+                                                                         stochastic=self.stochastic),
+                                                     r_fit=NormalDist(params=[0.034, 0.034 * self.noise], stochastic=self.stochastic),
+                                                     N=DiracDist(params=self.fitted_params[&#39;popsize&#39;][i], stochastic=self.stochastic),
+                                                     N_av=DiracDist(params=float(np.mean(self.fitted_params[&#39;popsize&#39;])), stochastic=self.stochastic),
+                                                     Dq_fit=LogNormalDist(params=mv2musig(self.fitted_params[&#39;Dq_mean&#39;][i],
+                                                                                          self.fitted_cov[&#39;Dq_pop&#39;][label2ind[&#39;Dq_pop&#39;]]),
+                                                                          stochastic=self.stochastic),
+                                                     De=NormalDist(params=[5.1, 5.1 * self.noise], stochastic=self.stochastic),
+                                                     Dh=NormalDist(params=[30, 30 * self.noise], stochastic=self.stochastic),
+                                                     Di=NormalDist(params=[2.3, 2.3 * self.noise], stochastic=self.stochastic),
+                                                     alpha=NormalDist(params=[0.55, 0.55 * self.noise], stochastic=self.stochastic),
+                                                     icu=DiracDist(params=self.fitted_params[&#39;ICUcapacity&#39;][i], stochastic=self.stochastic),
+                                                     beta1=NormalDist(params=[self.fitted_params[&#39;betaw1_mean&#39;][i],
+                                                                              np.sqrt(self.fitted_cov[&#39;betaw1_pop&#39;][label2ind[&#39;betaw1_pop&#39;]])],
+                                                                      stochastic=self.stochastic),
+                                                     beta2=NormalDist(params=[self.fitted_params[&#39;betaw2_mean&#39;][i],
+                                                                              np.sqrt(self.fitted_cov[&#39;betaw2_pop&#39;][label2ind[&#39;betaw2_pop&#39;]])],
+                                                                      stochastic=self.stochastic),
+                                                     beta3=NormalDist(params=[self.fitted_params[&#39;betaw3_mean&#39;][i],
+                                                                              np.sqrt(self.fitted_cov[&#39;betaw3_pop&#39;][label2ind[&#39;betaw3_pop&#39;]])],
+                                                                      stochastic=self.stochastic),
+                                                     beta4=NormalDist(params=[self.fitted_params[&#39;betaw4_mean&#39;][i],
+                                                                              np.sqrt(self.fitted_cov[&#39;betaw4_pop&#39;][label2ind[&#39;betaw4_pop&#39;]])],
+                                                                      stochastic=self.stochastic),
+                                                     )
+        self._all_initial_state_distribs[r] = dict(E0=LogNormalDist(params=mv2musig(self.fitted_params[&#39;initE_mean&#39;][i], self.fitted_cov[&#39;initE_pop&#39;][label2ind[&#39;initE_pop&#39;]]),
+                                                                    stochastic=self.stochastic),
+                                                   I0=DiracDist(params=self.fitted_params[&#39;I0_kalman_mean&#39;][i], stochastic=self.stochastic),
+                                                   R0=DiracDist(params=0, stochastic=self.stochastic),
+                                                   A0=DiracDist(params=1, stochastic=self.stochastic),  # is updated below
+                                                   H0=DiracDist(params=self.fitted_params[&#39;H0_kalman_mean&#39;][i], stochastic=self.stochastic)
+                                                   )</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.environments.models.prague_ode_seirah_model.PragueOdeSeirahModel.run_n_steps"><code class="name flex">
+<span>def <span class="ident">run_n_steps</span></span>(<span>self, current_state=None, n=1, labelled_states=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Runs the model for n steps</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>current_state</code></strong> :&ensp;<code>1D nd.array</code></dt>
+<dd>Current model state.</dd>
+<dt><strong><code>n</code></strong> :&ensp;<code>int</code></dt>
+<dd>&nbsp;</dd>
+</dl>
+<p>Number of steps the model should be run for.</p>
+<dl>
+<dt><strong><code>labelled_states</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the result should be a dict with state labels or a nd array.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code> or <code>2D nd.array</code></dt>
+<dd>Returns a dict if labelled_states is True, where keys are state labels.
+Returns an array of size (n, n_states) of the last n model states.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_n_steps(self, current_state=None, n=1, labelled_states=False):
+    &#34;&#34;&#34;
+    Runs the model for n steps
+
+    Parameters
+    ----------
+    current_state: 1D nd.array
+                   Current model state.
+    n: int
+       Number of steps the model should be run for.
+
+    labelled_states: bool
+                     Whether the result should be a dict with state labels or a nd array.
+
+    Returns
+    -------
+    dict or 2D nd.array
+        Returns a dict if labelled_states is True, where keys are state labels.
+        Returns an array of size (n, n_states) of the last n model states.
+
+    &#34;&#34;&#34;
+    if current_state is None:
+        current_state = self._get_current_state()
+
+    # Use the odeint library to run the ODE model.
+    z = odeint(self.internal_model, current_state, np.linspace(0, n, n + 1), args=self._get_model_params())
+    self._set_current_state(current_state=z[-1].copy())  # save new current state
+
+    # format results
+    if labelled_states:
+        return self._convert_to_labelled_states(np.atleast_2d(z[1:]))
+    else:
+        return np.atleast_2d(z[1:])</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="epidemioptim.environments.models.base_model.BaseModel" href="base_model.html#epidemioptim.environments.models.base_model.BaseModel">BaseModel</a></b></code>:
+<ul class="hlist">
+<li><code><a title="epidemioptim.environments.models.base_model.BaseModel.delay" href="base_model.html#epidemioptim.environments.models.base_model.BaseModel.delay">delay</a></code></li>
+<li><code><a title="epidemioptim.environments.models.base_model.BaseModel.reset" href="base_model.html#epidemioptim.environments.models.base_model.BaseModel.reset">reset</a></code></li>
+<li><code><a title="epidemioptim.environments.models.base_model.BaseModel.reset_same_model" href="base_model.html#epidemioptim.environments.models.base_model.BaseModel.reset_same_model">reset_same_model</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="epidemioptim.environments.models" href="index.html">epidemioptim.environments.models</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="epidemioptim.environments.models.prague_ode_seirah_model.seirah_model" href="#epidemioptim.environments.models.prague_ode_seirah_model.seirah_model">seirah_model</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="epidemioptim.environments.models.prague_ode_seirah_model.PragueOdeSeirahModel" href="#epidemioptim.environments.models.prague_ode_seirah_model.PragueOdeSeirahModel">PragueOdeSeirahModel</a></code></h4>
+<ul class="">
+<li><code><a title="epidemioptim.environments.models.prague_ode_seirah_model.PragueOdeSeirahModel.define_params_and_initial_state_distributions" href="#epidemioptim.environments.models.prague_ode_seirah_model.PragueOdeSeirahModel.define_params_and_initial_state_distributions">define_params_and_initial_state_distributions</a></code></li>
+<li><code><a title="epidemioptim.environments.models.prague_ode_seirah_model.PragueOdeSeirahModel.run_n_steps" href="#epidemioptim.environments.models.prague_ode_seirah_model.PragueOdeSeirahModel.run_n_steps">run_n_steps</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+</footer>
+</body>
+</html>

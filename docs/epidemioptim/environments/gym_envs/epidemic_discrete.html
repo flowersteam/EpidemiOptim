@@ -1,0 +1,1234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.1" />
+<title>epidemioptim.environments.gym_envs.epidemic_discrete API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>epidemioptim.environments.gym_envs.epidemic_discrete</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import numpy as np
+import gym
+from epidemioptim.environments.gym_envs.base_env import BaseEnv
+
+
+class EpidemicDiscrete(BaseEnv):
+    def __init__(self,
+                 cost_function,
+                 model,
+                 simulation_horizon,
+                 ratio_death_to_R=0.005,  # death ratio among people who were infected
+                 time_resolution=7,
+                 seed=np.random.randint(1e6)
+                 ):
+        &#34;&#34;&#34;
+        EpidemicDiscrete environment is based on the Epidemiological SEIRAH model from Prague et al., 2020 and on a bi-objective
+        cost function (death toll and gdp recess).
+
+        Parameters
+        ----------
+        cost_function: BaseCostFunction
+            A cost function.
+        model: BaseModel
+            An epidemiological model.
+        simulation_horizon: int
+            Simulation horizon in days.
+        ratio_death_to_R: float
+            Ratio of deaths among recovered individuals.
+        time_resolution: int
+            In days.
+        &#34;&#34;&#34;
+
+        # Initialize model
+        self.model = model
+        self.stochastic = self.model.stochastic
+        self.simulation_horizon = simulation_horizon
+        self.reset_same = False  # whether the next reset resets the same epidemiological model
+
+        # Initialize cost function
+        self.cost_function = cost_function
+        self.nb_costs = cost_function.nb_costs
+        self.cumulative_costs = [0 for _ in range(self.nb_costs)]
+
+        # Initialize states
+        self.state_labels = self.model.internal_states_labels + [&#39;previous_lockdown_state&#39;, &#39;current_lockdown_state&#39;] + \
+            [&#39;cumulative_cost_{}&#39;.format(id_cost) for id_cost in range(self.cost_function.nb_costs)] + [&#39;level_b&#39;]
+        self.label_to_id = dict(zip(self.state_labels, np.arange(len(self.state_labels))))
+        self.normalization_factors = [self.model.current_internal_params[&#39;N_av&#39;]] * len(self.model.internal_states_labels) + \
+                                     [1, 1, self.model.current_internal_params[&#39;N_av&#39;], 150, 1]
+
+        super().__init__(cost_function=cost_function,
+                         model=model,
+                         simulation_horizon=simulation_horizon,
+                         dim_action=2,
+                         discrete=True,
+                         seed=seed)
+
+        self.ratio_death_to_R = ratio_death_to_R
+        self.time_resolution = time_resolution
+        self._max_episode_steps = simulation_horizon // time_resolution
+        self.history = None
+
+        # Action modalities
+        self.level_b_splits = (7, 14, 21)  # switches between transmission rates, in days (4 stages)
+        self.level_b = 0  # index of the stage
+        self.b0 = self.model.current_internal_params[&#39;b_fit&#39;]  # initial transmission rate
+        self.betas = [self.b0] + [np.exp(self.model.current_internal_params[&#39;beta{}&#39;.format(i + 1)]) for i in range(4)]  # factors of reduction for each stage
+        self.bs = None
+
+    def _compute_b(self, times_since_start, times_since_last):
+        &#34;&#34;&#34;
+        Computes the transmission rate depending on the number of days since the last lock-down or since beginning of the current lock-down.
+
+        Parameters
+        ----------
+        times_since_start: nd.array of ints
+            Time since the start of the current lock-down, for each day.
+        times_since_last: nd.array of ints
+            Time since the last lock-down, for each day.
+
+        Returns
+        -------
+        list
+            The values of transmission rates for each day.
+        &#34;&#34;&#34;
+        if self.lockdown_state == 0:
+            # if new lock-down decrease the transmission rate of one stage
+            if self.previous_lockdown_state != self.lockdown_state:
+                self.level_b =  max(self.level_b - 1, 0)
+
+            # further decrease the transmission rate every 7 days until first stage.
+            assert times_since_start.size == 0
+            bs = []
+            for t_i in times_since_last:
+                if t_i in self.level_b_splits:
+                    self.level_b =  max(self.level_b - 1, 0)
+                bs.append(np.product(self.betas[:self.level_b + 1]))
+        else:
+            # if lock-down terminated, increase the transmission rate of one stage.
+            if self.previous_lockdown_state != self.lockdown_state:
+                self.level_b = min(self.level_b + 1, len(self.betas) - 1)
+
+            # further increase the transmission rate every 7 days until last stage.
+            assert times_since_last.size == 0
+            bs = []
+            for t_i in times_since_start:
+                if t_i in self.level_b_splits:
+                    self.level_b = min(self.level_b + 1, len(self.betas) - 1)
+                bs.append(np.product(self.betas[:self.level_b+1]))
+        return bs
+
+    def _update_previous_env_state(self):
+        &#34;&#34;&#34;
+        Save previous env state.
+
+        &#34;&#34;&#34;
+        if self.env_state is not None:
+            self.previous_env_state = self.env_state.copy()
+            self.previous_env_state_labelled = self.env_state_labelled.copy()
+
+    def _update_env_state(self):
+        &#34;&#34;&#34;
+        Update the environment state.
+
+        &#34;&#34;&#34;
+
+        # Update env state
+        self.env_state_labelled = dict(zip(self.model.internal_states_labels, self.model_state))
+        self.env_state_labelled.update(previous_lockdown_state=self.previous_lockdown_state,
+                                       current_lockdown_state=self.lockdown_state,
+                                       level_b=self.level_b)
+        # track cumulative costs in the state.
+        for id_cost in range(self.nb_costs):
+            self.env_state_labelled[&#39;cumulative_cost_{}&#39;.format(id_cost)] = self.cumulative_costs[id_cost]
+        assert sorted(list(self.env_state_labelled.keys())) == sorted(self.state_labels), &#34;labels do not match&#34;
+        self.env_state = np.array([self.env_state_labelled[k] for k in self.state_labels])
+
+        # Set previous env state to env state if first step
+        if self.previous_env_state is None:
+            # happens at first step
+            self.previous_env_state = self.env_state.copy()
+            self.previous_env_state_labelled = self.env_state_labelled.copy()
+
+    def reset_same_model(self):
+        &#34;&#34;&#34;
+        To call if you want to reset to the same model the next time you call reset.
+        Will be cancelled after the first reset, it needs to be called again each time.
+
+
+        &#34;&#34;&#34;
+        self.reset_same = True
+
+    def reset(self):
+        &#34;&#34;&#34;
+        Reset the environment and the tracking of data.
+
+        Returns
+        -------
+        nd.array
+            The initial environment state.
+
+        &#34;&#34;&#34;
+        # initialize history of states, internal model states, actions, cost_functions, deaths
+        self.history = dict(env_states=[],
+                            model_states=[],
+                            env_timesteps=[],
+                            actions=[],
+                            aggregated_costs=[],
+                            costs=[],
+                            lockdown=[],
+                            deaths=[],
+                            b=[])
+        # initialize time and lockdown days counter
+        self.t = 0
+        self.count_lockdown = 0
+        self.count_deaths = 0
+        self.count_since_start_lockdown = 0
+        self.count_since_last_lockdown = 0
+        self.level_b = 0
+        self.b = self.model.current_internal_params[&#39;b_fit&#39;]
+
+        self.lockdown_state = 0  # 0 not lockdown, 1 lockdown
+        self.previous_lockdown_state = self.lockdown_state
+        self.cumulative_costs = [0 for _ in range(self.nb_costs)]
+
+        # initialize model internal state and params
+        if self.reset_same:
+            self.model.reset_same_model()
+            self.reset_same = False
+        else:
+            self.model.reset()
+        self.model_state = self.model._get_current_state()
+
+        self._update_previous_env_state()
+        self._update_env_state()
+
+        self.history[&#39;env_states&#39;].append(self.env_state.copy())
+        self.history[&#39;model_states&#39;].append(self.model_state.copy().tolist())
+        self.history[&#39;env_timesteps&#39;].append(self.t)
+
+        return self._normalize_env_state(self.env_state)
+
+    def update_with_action(self, action):
+        &#34;&#34;&#34;
+        Implement effect of action on transmission rate.
+
+        Parameters
+        ----------
+        action: int
+            Action is 0 (no lock-down) or 1 (lock-down).
+
+        &#34;&#34;&#34;
+
+        # Translate actions
+        self.previous_lockdown_state = self.lockdown_state
+        previous_count_start = self.count_since_start_lockdown
+        previous_count_last = self.count_since_last_lockdown
+
+        if action == 0:
+            # no lock-down
+            self.jump_of = min(self.time_resolution, self.simulation_horizon - self.t)
+            self.lockdown_state = 0
+            if self.previous_lockdown_state == self.lockdown_state:
+                self.count_since_last_lockdown += self.jump_of
+            else:
+                self.count_since_last_lockdown = self.jump_of
+                self.count_since_start_lockdown = 0
+        else:
+            self.jump_of = min(self.time_resolution, self.simulation_horizon - self.t)
+            self.lockdown_state = 1
+            if self.lockdown_state == self.previous_lockdown_state:
+                self.count_since_start_lockdown += self.jump_of
+            else:
+                self.count_since_start_lockdown = self.jump_of
+                self.count_since_last_lockdown = 0
+
+        # Modify model parameters based on lockdown state
+        since_start = np.arange(previous_count_start, self.count_since_start_lockdown)
+        since_last = np.arange(previous_count_last, self.count_since_last_lockdown)
+        self.bs = self._compute_b(times_since_start=since_start, times_since_last=since_last)
+        self.model.current_internal_params[&#39;b_fit&#39;] = self.b
+
+    def step(self, action):
+        &#34;&#34;&#34;
+        Traditional step function from OpenAI Gym envs. Uses the action to update the environment.
+
+        Parameters
+        ----------
+        action: int
+            Action is 0 (no lock-down) or 1 (lock-down).
+
+
+        Returns
+        -------
+        state: nd.array
+            New environment state.
+        cost_aggregated: float
+            Aggregated measure of the cost.
+        done: bool
+            Whether the episode is terminated.
+        info: dict
+            Further infos. In our case, the costs, icu capacity of the region and whether constraints are violated.
+
+        &#34;&#34;&#34;
+        action = int(action)
+        assert 0 &lt;= action &lt; self.dim_action
+
+        self.update_with_action(action)
+        if self.lockdown_state == 1:
+            self.count_lockdown += self.jump_of
+
+        # Run model for jump_of steps
+        model_state = [self.model_state]
+        model_states = []
+        for b in self.bs:
+            self.model.current_internal_params[&#39;b_fit&#39;] = b
+            model_state = self.model.run_n_steps(model_state[-1], 1)
+            model_states += model_state.tolist()
+        self.model_state = model_state[-1]  # last internal state is the new current one
+        self.t += self.jump_of
+
+        # Update state
+        self._update_previous_env_state()
+        self._update_env_state()
+
+        # Store history
+        costs = [c.compute_cost(previous_state=np.atleast_2d(self.previous_env_state),
+                                state=np.atleast_2d(self.env_state),
+                                label_to_id=self.label_to_id,
+                                action=action,
+                                others=dict(jump_of=self.time_resolution))[0] for c in self.cost_function.costs]
+        for i in range(len(costs)):
+            self.cumulative_costs[i] += costs[i]
+        n_deaths = self.cost_function.compute_deaths(previous_state=np.atleast_2d(self.previous_env_state),
+                                                     state=np.atleast_2d(self.env_state),
+                                                     label_to_id=self.label_to_id,
+                                                     action=action)[0]
+
+        self._update_env_state()
+
+        self.history[&#39;actions&#39;] += [action] * self.jump_of
+        self.history[&#39;env_states&#39;] += [self.env_state.copy()] * self.jump_of
+        self.history[&#39;env_timesteps&#39;] += list(range(self.t - self.jump_of, self.t))
+        self.history[&#39;model_states&#39;] += model_states
+        self.history[&#39;lockdown&#39;] += [self.lockdown_state] * self.jump_of
+        self.history[&#39;deaths&#39;] += [n_deaths / self.jump_of] * self.jump_of
+        self.history[&#39;b&#39;] += self.bs
+
+        # Compute cost_function
+        cost_aggregated, costs, over_constraints = self.cost_function.compute_cost(previous_state=self.previous_env_state,
+                                                                                   state=self.env_state,
+                                                                                   label_to_id=self.label_to_id,
+                                                                                   action=action,
+                                                                                   others=dict(jump_of=self.jump_of))
+        costs = costs.flatten()
+
+        self.history[&#39;aggregated_costs&#39;] += [cost_aggregated / self.jump_of] * self.jump_of
+        self.history[&#39;costs&#39;] += [costs / self.jump_of for _ in range(self.jump_of)]
+        self.costs = costs.copy()
+
+        if self.t &gt;= self.simulation_horizon:
+            done = 1
+        else:
+            done = 0
+
+        return self._normalize_env_state(self.env_state), cost_aggregated, done, dict(costs=costs,
+                                                                                      constraints=over_constraints.flatten(),
+                                                                                      n_icu=self.env_state[self.label_to_id[&#34;H&#34;]] * 0.25)
+
+    # Utils
+    def _normalize_env_state(self, env_state):
+        return (env_state / np.array(self.normalization_factors)).copy()
+
+    def _set_rew_params(self, goal):
+        self.cost_function.set_goal_params(goal.copy())
+
+    def sample_cost_function_params(self):
+        return self.cost_function.sample_goal_params()
+
+    # Format data for plotting
+    def get_data(self):
+
+        data = dict(history=self.history.copy(),
+                    time_jump=1,
+                    model_states_labels=self.model.internal_states_labels,
+                    icu_capacity=self.model.current_internal_params[&#39;icu&#39;])
+        t = self.history[&#39;env_timesteps&#39;]
+        cumulative_death = [np.sum(self.history[&#39;deaths&#39;][:i]) for i in range(len(t) - 1)]
+        cumulative_eco_cost = [np.array(self.history[&#39;costs&#39;])[:i, 1].sum() for i in range(len(t) - 1)]
+        betas = [0, 0.25, 0.5, 0.75, 1]
+        costs = np.array(self.history[&#39;costs&#39;])
+        aggregated = [self.cost_function.compute_aggregated_cost(costs, beta) for beta in betas]
+        to_plot = [np.array(self.history[&#39;deaths&#39;]),
+                   np.array(cumulative_death),
+                   aggregated,
+                   costs[:, 1],
+                   np.array(cumulative_eco_cost),
+                   np.array(self.history[&#39;b&#39;])
+                   ]
+        labels = [&#39;New Deaths&#39;, &#39;Total Deaths&#39;, r&#39;Aggregated Cost&#39;, &#39;New GDP Loss (B€)&#39;, &#39;Total GDP Loss (B€)&#39;, &#39;Transmission rate&#39;]
+        legends = [None, None, [r&#39;$\beta = $&#39; + str(beta) for beta in betas], None, None, None]
+        stats_run = dict(to_plot=to_plot,
+                         labels=labels,
+                         legends=legends)
+        data[&#39;stats_run&#39;] = stats_run
+        data[&#39;title&#39;] = &#39;Eco cost: {:.2f} B, Death Cost: {}, Aggregated Cost: {:.2f}&#39;.format(cumulative_eco_cost[-1],
+                                                                                             int(cumulative_death[-1]),
+                                                                                             np.sum(self.history[&#39;aggregated_costs&#39;]))
+        return data
+
+
+if __name__ == &#39;__main__&#39;:
+    from epidemioptim.utils import plot_stats
+    from epidemioptim.environments.cost_functions import get_cost_function
+    from epidemioptim.environments.models import get_model
+
+    simulation_horizon = 364
+    stochastic = False
+    region = &#39;IDF&#39;
+
+    model = get_model(model_id=&#39;prague_seirah&#39;, params=dict(region=region,
+                                                      stochastic=stochastic))
+
+    N_region = model.pop_sizes[region]
+    N_country = np.sum(list(model.pop_sizes.values()))
+    ratio_death_to_R = 0.005
+
+    cost_func = get_cost_function(cost_function_id=&#39;multi_cost_death_gdp_controllable&#39;, params=dict(N_region=N_region,
+                                                                                                    N_country=N_country,
+                                                                                                    ratio_death_to_R=ratio_death_to_R)
+                                  )
+
+    env = gym.make(&#39;EpidemicDiscrete-v0&#39;,
+                   cost_function=cost_func,
+                   model=model,
+                   simulation_horizon=simulation_horizon)
+    env.reset()
+
+    actions = np.random.choice([0, 1], size=53)
+    actions = np.zeros([53])
+    actions[3:3+8] = 1
+    t = 0
+    r = 0
+    done = False
+    while not done:
+        out = env.step(actions[t])
+        t += 1
+        r += out[1]
+        done = out[2]
+    stats = env.unwrapped.get_data()
+
+    # plot model states
+    plot_stats(t=stats[&#39;history&#39;][&#39;env_timesteps&#39;],
+               states=np.array(stats[&#39;history&#39;][&#39;model_states&#39;]).transpose(),
+               labels=stats[&#39;model_states_labels&#39;],
+               lockdown=np.array(stats[&#39;history&#39;][&#39;lockdown&#39;]),
+               icu_capacity=stats[&#39;icu_capacity&#39;],
+               time_jump=stats[&#39;time_jump&#39;])
+    plot_stats(t=stats[&#39;history&#39;][&#39;env_timesteps&#39;][1:],
+               states=stats[&#39;stats_run&#39;][&#39;to_plot&#39;],
+               labels=stats[&#39;stats_run&#39;][&#39;labels&#39;],
+               legends=stats[&#39;stats_run&#39;][&#39;legends&#39;],
+               title=stats[&#39;title&#39;],
+               lockdown=np.array(stats[&#39;history&#39;][&#39;lockdown&#39;]),
+               time_jump=stats[&#39;time_jump&#39;],
+               show=True
+               )</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete"><code class="flex name class">
+<span>class <span class="ident">EpidemicDiscrete</span></span>
+<span>(</span><span>cost_function, model, simulation_horizon, ratio_death_to_R=0.005, time_resolution=7, seed=437573)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The main OpenAI Gym class. It encapsulates an environment with
+arbitrary behind-the-scenes dynamics. An environment can be
+partially or fully observed.</p>
+<p>The main API methods that users of this class need to know are:</p>
+<pre><code>step
+reset
+render
+close
+seed
+</code></pre>
+<p>And set the following attributes:</p>
+<pre><code>action_space: The Space object corresponding to valid actions
+observation_space: The Space object corresponding to valid observations
+reward_range: A tuple corresponding to the min and max possible rewards
+</code></pre>
+<p>Note: a default reward range set to [-inf,+inf] already exists. Set it if you want a narrower range.</p>
+<p>The methods are accessed publicly as "step", "reset", etc.. The
+non-underscored versions are wrapper methods to which we may add
+functionality over time.</p>
+<p>EpidemicDiscrete environment is based on the Epidemiological SEIRAH model from Prague et al., 2020 and on a bi-objective
+cost function (death toll and gdp recess).</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>cost_function</code></strong> :&ensp;<code>BaseCostFunction</code></dt>
+<dd>A cost function.</dd>
+<dt><strong><code>model</code></strong> :&ensp;<code>BaseModel</code></dt>
+<dd>An epidemiological model.</dd>
+<dt><strong><code>simulation_horizon</code></strong> :&ensp;<code>int</code></dt>
+<dd>Simulation horizon in days.</dd>
+<dt><strong><code>ratio_death_to_R</code></strong> :&ensp;<code>float</code></dt>
+<dd>Ratio of deaths among recovered individuals.</dd>
+<dt><strong><code>time_resolution</code></strong> :&ensp;<code>int</code></dt>
+<dd>In days.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class EpidemicDiscrete(BaseEnv):
+    def __init__(self,
+                 cost_function,
+                 model,
+                 simulation_horizon,
+                 ratio_death_to_R=0.005,  # death ratio among people who were infected
+                 time_resolution=7,
+                 seed=np.random.randint(1e6)
+                 ):
+        &#34;&#34;&#34;
+        EpidemicDiscrete environment is based on the Epidemiological SEIRAH model from Prague et al., 2020 and on a bi-objective
+        cost function (death toll and gdp recess).
+
+        Parameters
+        ----------
+        cost_function: BaseCostFunction
+            A cost function.
+        model: BaseModel
+            An epidemiological model.
+        simulation_horizon: int
+            Simulation horizon in days.
+        ratio_death_to_R: float
+            Ratio of deaths among recovered individuals.
+        time_resolution: int
+            In days.
+        &#34;&#34;&#34;
+
+        # Initialize model
+        self.model = model
+        self.stochastic = self.model.stochastic
+        self.simulation_horizon = simulation_horizon
+        self.reset_same = False  # whether the next reset resets the same epidemiological model
+
+        # Initialize cost function
+        self.cost_function = cost_function
+        self.nb_costs = cost_function.nb_costs
+        self.cumulative_costs = [0 for _ in range(self.nb_costs)]
+
+        # Initialize states
+        self.state_labels = self.model.internal_states_labels + [&#39;previous_lockdown_state&#39;, &#39;current_lockdown_state&#39;] + \
+            [&#39;cumulative_cost_{}&#39;.format(id_cost) for id_cost in range(self.cost_function.nb_costs)] + [&#39;level_b&#39;]
+        self.label_to_id = dict(zip(self.state_labels, np.arange(len(self.state_labels))))
+        self.normalization_factors = [self.model.current_internal_params[&#39;N_av&#39;]] * len(self.model.internal_states_labels) + \
+                                     [1, 1, self.model.current_internal_params[&#39;N_av&#39;], 150, 1]
+
+        super().__init__(cost_function=cost_function,
+                         model=model,
+                         simulation_horizon=simulation_horizon,
+                         dim_action=2,
+                         discrete=True,
+                         seed=seed)
+
+        self.ratio_death_to_R = ratio_death_to_R
+        self.time_resolution = time_resolution
+        self._max_episode_steps = simulation_horizon // time_resolution
+        self.history = None
+
+        # Action modalities
+        self.level_b_splits = (7, 14, 21)  # switches between transmission rates, in days (4 stages)
+        self.level_b = 0  # index of the stage
+        self.b0 = self.model.current_internal_params[&#39;b_fit&#39;]  # initial transmission rate
+        self.betas = [self.b0] + [np.exp(self.model.current_internal_params[&#39;beta{}&#39;.format(i + 1)]) for i in range(4)]  # factors of reduction for each stage
+        self.bs = None
+
+    def _compute_b(self, times_since_start, times_since_last):
+        &#34;&#34;&#34;
+        Computes the transmission rate depending on the number of days since the last lock-down or since beginning of the current lock-down.
+
+        Parameters
+        ----------
+        times_since_start: nd.array of ints
+            Time since the start of the current lock-down, for each day.
+        times_since_last: nd.array of ints
+            Time since the last lock-down, for each day.
+
+        Returns
+        -------
+        list
+            The values of transmission rates for each day.
+        &#34;&#34;&#34;
+        if self.lockdown_state == 0:
+            # if new lock-down decrease the transmission rate of one stage
+            if self.previous_lockdown_state != self.lockdown_state:
+                self.level_b =  max(self.level_b - 1, 0)
+
+            # further decrease the transmission rate every 7 days until first stage.
+            assert times_since_start.size == 0
+            bs = []
+            for t_i in times_since_last:
+                if t_i in self.level_b_splits:
+                    self.level_b =  max(self.level_b - 1, 0)
+                bs.append(np.product(self.betas[:self.level_b + 1]))
+        else:
+            # if lock-down terminated, increase the transmission rate of one stage.
+            if self.previous_lockdown_state != self.lockdown_state:
+                self.level_b = min(self.level_b + 1, len(self.betas) - 1)
+
+            # further increase the transmission rate every 7 days until last stage.
+            assert times_since_last.size == 0
+            bs = []
+            for t_i in times_since_start:
+                if t_i in self.level_b_splits:
+                    self.level_b = min(self.level_b + 1, len(self.betas) - 1)
+                bs.append(np.product(self.betas[:self.level_b+1]))
+        return bs
+
+    def _update_previous_env_state(self):
+        &#34;&#34;&#34;
+        Save previous env state.
+
+        &#34;&#34;&#34;
+        if self.env_state is not None:
+            self.previous_env_state = self.env_state.copy()
+            self.previous_env_state_labelled = self.env_state_labelled.copy()
+
+    def _update_env_state(self):
+        &#34;&#34;&#34;
+        Update the environment state.
+
+        &#34;&#34;&#34;
+
+        # Update env state
+        self.env_state_labelled = dict(zip(self.model.internal_states_labels, self.model_state))
+        self.env_state_labelled.update(previous_lockdown_state=self.previous_lockdown_state,
+                                       current_lockdown_state=self.lockdown_state,
+                                       level_b=self.level_b)
+        # track cumulative costs in the state.
+        for id_cost in range(self.nb_costs):
+            self.env_state_labelled[&#39;cumulative_cost_{}&#39;.format(id_cost)] = self.cumulative_costs[id_cost]
+        assert sorted(list(self.env_state_labelled.keys())) == sorted(self.state_labels), &#34;labels do not match&#34;
+        self.env_state = np.array([self.env_state_labelled[k] for k in self.state_labels])
+
+        # Set previous env state to env state if first step
+        if self.previous_env_state is None:
+            # happens at first step
+            self.previous_env_state = self.env_state.copy()
+            self.previous_env_state_labelled = self.env_state_labelled.copy()
+
+    def reset_same_model(self):
+        &#34;&#34;&#34;
+        To call if you want to reset to the same model the next time you call reset.
+        Will be cancelled after the first reset, it needs to be called again each time.
+
+
+        &#34;&#34;&#34;
+        self.reset_same = True
+
+    def reset(self):
+        &#34;&#34;&#34;
+        Reset the environment and the tracking of data.
+
+        Returns
+        -------
+        nd.array
+            The initial environment state.
+
+        &#34;&#34;&#34;
+        # initialize history of states, internal model states, actions, cost_functions, deaths
+        self.history = dict(env_states=[],
+                            model_states=[],
+                            env_timesteps=[],
+                            actions=[],
+                            aggregated_costs=[],
+                            costs=[],
+                            lockdown=[],
+                            deaths=[],
+                            b=[])
+        # initialize time and lockdown days counter
+        self.t = 0
+        self.count_lockdown = 0
+        self.count_deaths = 0
+        self.count_since_start_lockdown = 0
+        self.count_since_last_lockdown = 0
+        self.level_b = 0
+        self.b = self.model.current_internal_params[&#39;b_fit&#39;]
+
+        self.lockdown_state = 0  # 0 not lockdown, 1 lockdown
+        self.previous_lockdown_state = self.lockdown_state
+        self.cumulative_costs = [0 for _ in range(self.nb_costs)]
+
+        # initialize model internal state and params
+        if self.reset_same:
+            self.model.reset_same_model()
+            self.reset_same = False
+        else:
+            self.model.reset()
+        self.model_state = self.model._get_current_state()
+
+        self._update_previous_env_state()
+        self._update_env_state()
+
+        self.history[&#39;env_states&#39;].append(self.env_state.copy())
+        self.history[&#39;model_states&#39;].append(self.model_state.copy().tolist())
+        self.history[&#39;env_timesteps&#39;].append(self.t)
+
+        return self._normalize_env_state(self.env_state)
+
+    def update_with_action(self, action):
+        &#34;&#34;&#34;
+        Implement effect of action on transmission rate.
+
+        Parameters
+        ----------
+        action: int
+            Action is 0 (no lock-down) or 1 (lock-down).
+
+        &#34;&#34;&#34;
+
+        # Translate actions
+        self.previous_lockdown_state = self.lockdown_state
+        previous_count_start = self.count_since_start_lockdown
+        previous_count_last = self.count_since_last_lockdown
+
+        if action == 0:
+            # no lock-down
+            self.jump_of = min(self.time_resolution, self.simulation_horizon - self.t)
+            self.lockdown_state = 0
+            if self.previous_lockdown_state == self.lockdown_state:
+                self.count_since_last_lockdown += self.jump_of
+            else:
+                self.count_since_last_lockdown = self.jump_of
+                self.count_since_start_lockdown = 0
+        else:
+            self.jump_of = min(self.time_resolution, self.simulation_horizon - self.t)
+            self.lockdown_state = 1
+            if self.lockdown_state == self.previous_lockdown_state:
+                self.count_since_start_lockdown += self.jump_of
+            else:
+                self.count_since_start_lockdown = self.jump_of
+                self.count_since_last_lockdown = 0
+
+        # Modify model parameters based on lockdown state
+        since_start = np.arange(previous_count_start, self.count_since_start_lockdown)
+        since_last = np.arange(previous_count_last, self.count_since_last_lockdown)
+        self.bs = self._compute_b(times_since_start=since_start, times_since_last=since_last)
+        self.model.current_internal_params[&#39;b_fit&#39;] = self.b
+
+    def step(self, action):
+        &#34;&#34;&#34;
+        Traditional step function from OpenAI Gym envs. Uses the action to update the environment.
+
+        Parameters
+        ----------
+        action: int
+            Action is 0 (no lock-down) or 1 (lock-down).
+
+
+        Returns
+        -------
+        state: nd.array
+            New environment state.
+        cost_aggregated: float
+            Aggregated measure of the cost.
+        done: bool
+            Whether the episode is terminated.
+        info: dict
+            Further infos. In our case, the costs, icu capacity of the region and whether constraints are violated.
+
+        &#34;&#34;&#34;
+        action = int(action)
+        assert 0 &lt;= action &lt; self.dim_action
+
+        self.update_with_action(action)
+        if self.lockdown_state == 1:
+            self.count_lockdown += self.jump_of
+
+        # Run model for jump_of steps
+        model_state = [self.model_state]
+        model_states = []
+        for b in self.bs:
+            self.model.current_internal_params[&#39;b_fit&#39;] = b
+            model_state = self.model.run_n_steps(model_state[-1], 1)
+            model_states += model_state.tolist()
+        self.model_state = model_state[-1]  # last internal state is the new current one
+        self.t += self.jump_of
+
+        # Update state
+        self._update_previous_env_state()
+        self._update_env_state()
+
+        # Store history
+        costs = [c.compute_cost(previous_state=np.atleast_2d(self.previous_env_state),
+                                state=np.atleast_2d(self.env_state),
+                                label_to_id=self.label_to_id,
+                                action=action,
+                                others=dict(jump_of=self.time_resolution))[0] for c in self.cost_function.costs]
+        for i in range(len(costs)):
+            self.cumulative_costs[i] += costs[i]
+        n_deaths = self.cost_function.compute_deaths(previous_state=np.atleast_2d(self.previous_env_state),
+                                                     state=np.atleast_2d(self.env_state),
+                                                     label_to_id=self.label_to_id,
+                                                     action=action)[0]
+
+        self._update_env_state()
+
+        self.history[&#39;actions&#39;] += [action] * self.jump_of
+        self.history[&#39;env_states&#39;] += [self.env_state.copy()] * self.jump_of
+        self.history[&#39;env_timesteps&#39;] += list(range(self.t - self.jump_of, self.t))
+        self.history[&#39;model_states&#39;] += model_states
+        self.history[&#39;lockdown&#39;] += [self.lockdown_state] * self.jump_of
+        self.history[&#39;deaths&#39;] += [n_deaths / self.jump_of] * self.jump_of
+        self.history[&#39;b&#39;] += self.bs
+
+        # Compute cost_function
+        cost_aggregated, costs, over_constraints = self.cost_function.compute_cost(previous_state=self.previous_env_state,
+                                                                                   state=self.env_state,
+                                                                                   label_to_id=self.label_to_id,
+                                                                                   action=action,
+                                                                                   others=dict(jump_of=self.jump_of))
+        costs = costs.flatten()
+
+        self.history[&#39;aggregated_costs&#39;] += [cost_aggregated / self.jump_of] * self.jump_of
+        self.history[&#39;costs&#39;] += [costs / self.jump_of for _ in range(self.jump_of)]
+        self.costs = costs.copy()
+
+        if self.t &gt;= self.simulation_horizon:
+            done = 1
+        else:
+            done = 0
+
+        return self._normalize_env_state(self.env_state), cost_aggregated, done, dict(costs=costs,
+                                                                                      constraints=over_constraints.flatten(),
+                                                                                      n_icu=self.env_state[self.label_to_id[&#34;H&#34;]] * 0.25)
+
+    # Utils
+    def _normalize_env_state(self, env_state):
+        return (env_state / np.array(self.normalization_factors)).copy()
+
+    def _set_rew_params(self, goal):
+        self.cost_function.set_goal_params(goal.copy())
+
+    def sample_cost_function_params(self):
+        return self.cost_function.sample_goal_params()
+
+    # Format data for plotting
+    def get_data(self):
+
+        data = dict(history=self.history.copy(),
+                    time_jump=1,
+                    model_states_labels=self.model.internal_states_labels,
+                    icu_capacity=self.model.current_internal_params[&#39;icu&#39;])
+        t = self.history[&#39;env_timesteps&#39;]
+        cumulative_death = [np.sum(self.history[&#39;deaths&#39;][:i]) for i in range(len(t) - 1)]
+        cumulative_eco_cost = [np.array(self.history[&#39;costs&#39;])[:i, 1].sum() for i in range(len(t) - 1)]
+        betas = [0, 0.25, 0.5, 0.75, 1]
+        costs = np.array(self.history[&#39;costs&#39;])
+        aggregated = [self.cost_function.compute_aggregated_cost(costs, beta) for beta in betas]
+        to_plot = [np.array(self.history[&#39;deaths&#39;]),
+                   np.array(cumulative_death),
+                   aggregated,
+                   costs[:, 1],
+                   np.array(cumulative_eco_cost),
+                   np.array(self.history[&#39;b&#39;])
+                   ]
+        labels = [&#39;New Deaths&#39;, &#39;Total Deaths&#39;, r&#39;Aggregated Cost&#39;, &#39;New GDP Loss (B€)&#39;, &#39;Total GDP Loss (B€)&#39;, &#39;Transmission rate&#39;]
+        legends = [None, None, [r&#39;$\beta = $&#39; + str(beta) for beta in betas], None, None, None]
+        stats_run = dict(to_plot=to_plot,
+                         labels=labels,
+                         legends=legends)
+        data[&#39;stats_run&#39;] = stats_run
+        data[&#39;title&#39;] = &#39;Eco cost: {:.2f} B, Death Cost: {}, Aggregated Cost: {:.2f}&#39;.format(cumulative_eco_cost[-1],
+                                                                                             int(cumulative_death[-1]),
+                                                                                             np.sum(self.history[&#39;aggregated_costs&#39;]))
+        return data</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="epidemioptim.environments.gym_envs.base_env.BaseEnv" href="base_env.html#epidemioptim.environments.gym_envs.base_env.BaseEnv">BaseEnv</a></li>
+<li>gym.core.Env</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.get_data"><code class="name flex">
+<span>def <span class="ident">get_data</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_data(self):
+
+    data = dict(history=self.history.copy(),
+                time_jump=1,
+                model_states_labels=self.model.internal_states_labels,
+                icu_capacity=self.model.current_internal_params[&#39;icu&#39;])
+    t = self.history[&#39;env_timesteps&#39;]
+    cumulative_death = [np.sum(self.history[&#39;deaths&#39;][:i]) for i in range(len(t) - 1)]
+    cumulative_eco_cost = [np.array(self.history[&#39;costs&#39;])[:i, 1].sum() for i in range(len(t) - 1)]
+    betas = [0, 0.25, 0.5, 0.75, 1]
+    costs = np.array(self.history[&#39;costs&#39;])
+    aggregated = [self.cost_function.compute_aggregated_cost(costs, beta) for beta in betas]
+    to_plot = [np.array(self.history[&#39;deaths&#39;]),
+               np.array(cumulative_death),
+               aggregated,
+               costs[:, 1],
+               np.array(cumulative_eco_cost),
+               np.array(self.history[&#39;b&#39;])
+               ]
+    labels = [&#39;New Deaths&#39;, &#39;Total Deaths&#39;, r&#39;Aggregated Cost&#39;, &#39;New GDP Loss (B€)&#39;, &#39;Total GDP Loss (B€)&#39;, &#39;Transmission rate&#39;]
+    legends = [None, None, [r&#39;$\beta = $&#39; + str(beta) for beta in betas], None, None, None]
+    stats_run = dict(to_plot=to_plot,
+                     labels=labels,
+                     legends=legends)
+    data[&#39;stats_run&#39;] = stats_run
+    data[&#39;title&#39;] = &#39;Eco cost: {:.2f} B, Death Cost: {}, Aggregated Cost: {:.2f}&#39;.format(cumulative_eco_cost[-1],
+                                                                                         int(cumulative_death[-1]),
+                                                                                         np.sum(self.history[&#39;aggregated_costs&#39;]))
+    return data</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.reset"><code class="name flex">
+<span>def <span class="ident">reset</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reset the environment and the tracking of data.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>nd.array</code></dt>
+<dd>The initial environment state.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset(self):
+    &#34;&#34;&#34;
+    Reset the environment and the tracking of data.
+
+    Returns
+    -------
+    nd.array
+        The initial environment state.
+
+    &#34;&#34;&#34;
+    # initialize history of states, internal model states, actions, cost_functions, deaths
+    self.history = dict(env_states=[],
+                        model_states=[],
+                        env_timesteps=[],
+                        actions=[],
+                        aggregated_costs=[],
+                        costs=[],
+                        lockdown=[],
+                        deaths=[],
+                        b=[])
+    # initialize time and lockdown days counter
+    self.t = 0
+    self.count_lockdown = 0
+    self.count_deaths = 0
+    self.count_since_start_lockdown = 0
+    self.count_since_last_lockdown = 0
+    self.level_b = 0
+    self.b = self.model.current_internal_params[&#39;b_fit&#39;]
+
+    self.lockdown_state = 0  # 0 not lockdown, 1 lockdown
+    self.previous_lockdown_state = self.lockdown_state
+    self.cumulative_costs = [0 for _ in range(self.nb_costs)]
+
+    # initialize model internal state and params
+    if self.reset_same:
+        self.model.reset_same_model()
+        self.reset_same = False
+    else:
+        self.model.reset()
+    self.model_state = self.model._get_current_state()
+
+    self._update_previous_env_state()
+    self._update_env_state()
+
+    self.history[&#39;env_states&#39;].append(self.env_state.copy())
+    self.history[&#39;model_states&#39;].append(self.model_state.copy().tolist())
+    self.history[&#39;env_timesteps&#39;].append(self.t)
+
+    return self._normalize_env_state(self.env_state)</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.reset_same_model"><code class="name flex">
+<span>def <span class="ident">reset_same_model</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>To call if you want to reset to the same model the next time you call reset.
+Will be cancelled after the first reset, it needs to be called again each time.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset_same_model(self):
+    &#34;&#34;&#34;
+    To call if you want to reset to the same model the next time you call reset.
+    Will be cancelled after the first reset, it needs to be called again each time.
+
+
+    &#34;&#34;&#34;
+    self.reset_same = True</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.sample_cost_function_params"><code class="name flex">
+<span>def <span class="ident">sample_cost_function_params</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sample_cost_function_params(self):
+    return self.cost_function.sample_goal_params()</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, action)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Traditional step function from OpenAI Gym envs. Uses the action to update the environment.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>action</code></strong> :&ensp;<code>int</code></dt>
+<dd>Action is 0 (no lock-down) or 1 (lock-down).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>state</code></strong> :&ensp;<code>nd.array</code></dt>
+<dd>New environment state.</dd>
+<dt><strong><code>cost_aggregated</code></strong> :&ensp;<code>float</code></dt>
+<dd>Aggregated measure of the cost.</dd>
+<dt><strong><code>done</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether the episode is terminated.</dd>
+<dt><strong><code>info</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Further infos. In our case, the costs, icu capacity of the region and whether constraints are violated.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def step(self, action):
+    &#34;&#34;&#34;
+    Traditional step function from OpenAI Gym envs. Uses the action to update the environment.
+
+    Parameters
+    ----------
+    action: int
+        Action is 0 (no lock-down) or 1 (lock-down).
+
+
+    Returns
+    -------
+    state: nd.array
+        New environment state.
+    cost_aggregated: float
+        Aggregated measure of the cost.
+    done: bool
+        Whether the episode is terminated.
+    info: dict
+        Further infos. In our case, the costs, icu capacity of the region and whether constraints are violated.
+
+    &#34;&#34;&#34;
+    action = int(action)
+    assert 0 &lt;= action &lt; self.dim_action
+
+    self.update_with_action(action)
+    if self.lockdown_state == 1:
+        self.count_lockdown += self.jump_of
+
+    # Run model for jump_of steps
+    model_state = [self.model_state]
+    model_states = []
+    for b in self.bs:
+        self.model.current_internal_params[&#39;b_fit&#39;] = b
+        model_state = self.model.run_n_steps(model_state[-1], 1)
+        model_states += model_state.tolist()
+    self.model_state = model_state[-1]  # last internal state is the new current one
+    self.t += self.jump_of
+
+    # Update state
+    self._update_previous_env_state()
+    self._update_env_state()
+
+    # Store history
+    costs = [c.compute_cost(previous_state=np.atleast_2d(self.previous_env_state),
+                            state=np.atleast_2d(self.env_state),
+                            label_to_id=self.label_to_id,
+                            action=action,
+                            others=dict(jump_of=self.time_resolution))[0] for c in self.cost_function.costs]
+    for i in range(len(costs)):
+        self.cumulative_costs[i] += costs[i]
+    n_deaths = self.cost_function.compute_deaths(previous_state=np.atleast_2d(self.previous_env_state),
+                                                 state=np.atleast_2d(self.env_state),
+                                                 label_to_id=self.label_to_id,
+                                                 action=action)[0]
+
+    self._update_env_state()
+
+    self.history[&#39;actions&#39;] += [action] * self.jump_of
+    self.history[&#39;env_states&#39;] += [self.env_state.copy()] * self.jump_of
+    self.history[&#39;env_timesteps&#39;] += list(range(self.t - self.jump_of, self.t))
+    self.history[&#39;model_states&#39;] += model_states
+    self.history[&#39;lockdown&#39;] += [self.lockdown_state] * self.jump_of
+    self.history[&#39;deaths&#39;] += [n_deaths / self.jump_of] * self.jump_of
+    self.history[&#39;b&#39;] += self.bs
+
+    # Compute cost_function
+    cost_aggregated, costs, over_constraints = self.cost_function.compute_cost(previous_state=self.previous_env_state,
+                                                                               state=self.env_state,
+                                                                               label_to_id=self.label_to_id,
+                                                                               action=action,
+                                                                               others=dict(jump_of=self.jump_of))
+    costs = costs.flatten()
+
+    self.history[&#39;aggregated_costs&#39;] += [cost_aggregated / self.jump_of] * self.jump_of
+    self.history[&#39;costs&#39;] += [costs / self.jump_of for _ in range(self.jump_of)]
+    self.costs = costs.copy()
+
+    if self.t &gt;= self.simulation_horizon:
+        done = 1
+    else:
+        done = 0
+
+    return self._normalize_env_state(self.env_state), cost_aggregated, done, dict(costs=costs,
+                                                                                  constraints=over_constraints.flatten(),
+                                                                                  n_icu=self.env_state[self.label_to_id[&#34;H&#34;]] * 0.25)</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.update_with_action"><code class="name flex">
+<span>def <span class="ident">update_with_action</span></span>(<span>self, action)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Implement effect of action on transmission rate.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>action</code></strong> :&ensp;<code>int</code></dt>
+<dd>Action is 0 (no lock-down) or 1 (lock-down).</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_with_action(self, action):
+    &#34;&#34;&#34;
+    Implement effect of action on transmission rate.
+
+    Parameters
+    ----------
+    action: int
+        Action is 0 (no lock-down) or 1 (lock-down).
+
+    &#34;&#34;&#34;
+
+    # Translate actions
+    self.previous_lockdown_state = self.lockdown_state
+    previous_count_start = self.count_since_start_lockdown
+    previous_count_last = self.count_since_last_lockdown
+
+    if action == 0:
+        # no lock-down
+        self.jump_of = min(self.time_resolution, self.simulation_horizon - self.t)
+        self.lockdown_state = 0
+        if self.previous_lockdown_state == self.lockdown_state:
+            self.count_since_last_lockdown += self.jump_of
+        else:
+            self.count_since_last_lockdown = self.jump_of
+            self.count_since_start_lockdown = 0
+    else:
+        self.jump_of = min(self.time_resolution, self.simulation_horizon - self.t)
+        self.lockdown_state = 1
+        if self.lockdown_state == self.previous_lockdown_state:
+            self.count_since_start_lockdown += self.jump_of
+        else:
+            self.count_since_start_lockdown = self.jump_of
+            self.count_since_last_lockdown = 0
+
+    # Modify model parameters based on lockdown state
+    since_start = np.arange(previous_count_start, self.count_since_start_lockdown)
+    since_last = np.arange(previous_count_last, self.count_since_last_lockdown)
+    self.bs = self._compute_b(times_since_start=since_start, times_since_last=since_last)
+    self.model.current_internal_params[&#39;b_fit&#39;] = self.b</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="epidemioptim.environments.gym_envs.base_env.BaseEnv" href="base_env.html#epidemioptim.environments.gym_envs.base_env.BaseEnv">BaseEnv</a></b></code>:
+<ul class="hlist">
+<li><code><a title="epidemioptim.environments.gym_envs.base_env.BaseEnv.run_model" href="base_env.html#epidemioptim.environments.gym_envs.base_env.BaseEnv.run_model">run_model</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="epidemioptim.environments.gym_envs" href="index.html">epidemioptim.environments.gym_envs</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete" href="#epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete">EpidemicDiscrete</a></code></h4>
+<ul class="">
+<li><code><a title="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.get_data" href="#epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.get_data">get_data</a></code></li>
+<li><code><a title="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.reset" href="#epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.reset">reset</a></code></li>
+<li><code><a title="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.reset_same_model" href="#epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.reset_same_model">reset_same_model</a></code></li>
+<li><code><a title="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.sample_cost_function_params" href="#epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.sample_cost_function_params">sample_cost_function_params</a></code></li>
+<li><code><a title="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.step" href="#epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.step">step</a></code></li>
+<li><code><a title="epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.update_with_action" href="#epidemioptim.environments.gym_envs.epidemic_discrete.EpidemicDiscrete.update_with_action">update_with_action</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+</footer>
+</body>
+</html>

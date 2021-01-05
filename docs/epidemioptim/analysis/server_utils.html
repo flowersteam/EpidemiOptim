@@ -1,0 +1,2000 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.1" />
+<title>epidemioptim.analysis.server_utils API documentation</title>
+<meta name="description" content="Created on Tue Oct 27 12:02:27 2020 …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>epidemioptim.analysis.server_utils</code></h1>
+</header>
+<section id="section-intro">
+<p>Created on Tue Oct 27 12:02:27 2020</p>
+<p>@author: ddutartr</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+&#34;&#34;&#34;
+Created on Tue Oct 27 12:02:27 2020
+
+@author: ddutartr
+&#34;&#34;&#34;
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.append(&#39;../../&#39;)
+
+from epidemioptim.utils import *
+from epidemioptim.analysis.notebook_utils import setup_for_replay,replot_stats,setup_fig_notebook,run_env,get_action_base
+from ipywidgets import HTML,Layout,VBox,FloatSlider,IntSlider,HBox,Label,ToggleButton,Dropdown,Checkbox,interactive_output,Box, Text, Output, Button
+from IPython.display import display
+import time
+# About
+
+
+# -apple-system,.SFNSText-Regular,San Francisco,Segoe UI,Helvetica Neue,Lucida Grande,
+p_style = &#39;style=&#34;line-height:150%;font-weight:300;font-size:22px;font-family:Hind,sans-serif;&#34;&#39;
+h3_style = &#39;style=&#34;color:#004c8f;line-height:150%;font-weight:700;font-size:24px;font-family:Montserrat,sans-serif;&#34;&gt;&#39;
+h2_style = &#39;style=&#34;color:#004c8f;line-height:150%;font-weight:700;font-size:40px;font-family:Montserrat,sans-serif;&#34;&gt;&#39;
+h2_style_2 = &#39;style=&#34;color:#004c8f;line-height:150%;font-weight:700;font-size:35px;font-family:Montserrat,sans-serif;&#34;&gt;&#39;
+def introduction():
+
+    intro_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#39; &lt;link href=&#34;https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&amp;family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap&#34; rel=&#34;stylesheet&#34;&gt; &#39; +
+                            &#34;&lt;font color=&#39;black&#39;&gt;&lt;font face = &#39;Comic sans MS&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style + &#39;Using AI to Design Intervention Strategies Against Epidemics&lt;/h2&gt;&lt;/center&gt;&#39;
+                           +&#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           + &#39;&lt;center&gt;&lt;figure&gt; &lt;img src=&#34;logo_inserm_inria.png&#34; width=&#34;500px&#34;&gt;&lt;/figure&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           + &#39;&lt;center&gt;&lt;figure&gt; &lt;img src=&#34;visu.gif&#34; alt=&#34;COVID-19 epidemic in France&#34; /&gt; &lt;figcaption &#39; + p_style +&#39;&gt;&#39;
+                           &#39;Evolution of French COVID-19 cases in intensive care&lt;br&gt;from March to November 2020.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Context&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;Epidemiologists  model  the  dynamics  of  epidemics  in  order  to  propose  mitigation strategies based on pharmaceutical and non-pharmaceutical &#39;
+                            &#39;interventions (contact limitation,  lock down,  vaccination,  etc.). &#39;
+                           +&#39;Hand-designing such strategies is not trivial because of the number of possible interventions and the difficulty to predict their long-term effects.  &#39;
+                            &#39;This task can be seen as an optimization problem where state-of-the-art  machine  learning  algorithms  might  &#39;
+                            &#39;bring  significant value. &lt;/p&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           + &#39;This website presents an interactive demo of a set of machine learning methods we presented in our research paper: &#39;
+                           + &#39;&lt;a href=&#34;https://arxiv.org/pdf/2010.04452.pdf&#34; style=&#34;color:#004c8f;&#34; target=&#34;_blank&#34;&gt;EpidemiOptim: A Toolbox for the Optimization of Control &#39;
+                             &#39;Policies in Epidemiological Models&lt;/a&gt;. The full code of this toolbox is open-source and available on github &#39;
+                           + &#39;&lt;a href=&#34;https://github.com/flowersteam/EpidemiOptim&#34;&gt; here &lt;/a&gt;.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Interact with trained models, design your own intervention strategy!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;To demonstrate the use of EpidemiOptim, we run experiments to optimize the design of an on/off lock-down policy in the context of the COVID-19 &#39;
+                            &#39;epidemic in the French region of Ile-de-France. &lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We have two objectives here: minimizing the death toll and minimizing the economic recess. &#39;
+                           +&#39;In the tabs below, you will be able to &lt;span style=&#34;font-weight:500;&#34;&gt;explore strategies optimized by various optimization algorithms&lt;/span&gt;. &#39;
+                           +&#39;In the last tab, you will be able to &lt;span style=&#34;font-weight:500;&#34;&gt;design your own strategy&lt;/span&gt;, apply it over a year of epidemic and observe its health and economic consequences.&#39;
+                           +&#39;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt; &#39;
+
+                           +&#39;&lt;/font&gt;&#39;))
+    return intro_html
+
+def footer():
+    footer = HTML(layout=Layout(width=&#39;800px&#39;,
+                                    height=&#39;100%&#39;,
+                                    margin=&#39;auto&#39;,
+                                    ),
+                      value=(
+                                  &#39;&lt;link href=&#34;https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&amp;family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap&#34; rel=&#34;stylesheet&#34;&gt; &#39; +
+                                  &#34;&lt;font color=&#39;black&#39;&gt;&lt;font face = &#39;Comic sans MS&#39;&gt;&#34;
+                                  + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                                  + &#39;&lt;h3 &#39; + h3_style + &#39;Acknowledgements&lt;/h3&gt;&#39;
+                                  + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                  + &#39;This work is supported inpart by Inria Mission COVID19, project GESTEPID. &#39;
+                                  + &#39;It is the product of a collaboration between the &lt;a &#39;
+                                    &#39;href=&#34;https://www.bordeaux-population-health.center/les-equipes/statistiques-pour-la-medecine-translationnelle-sistm/&#34;&#39;
+                                    &#39;style=&#34;color:#004c8f;&#34; target=&#34;_blank&#34;&gt;Inria SISTM team&lt;/a&gt; (epidemiology) and the &lt;a href=&#34;https://flowers.inria.fr/&#34;&#39;
+                                    &#39;style=&#34;color:#004c8f;&#34; target=&#34;_blank&#34;&gt;Inria Flowers team&lt;/a&gt; (optimization). We would like to thank Sebastien Rouillon (Univ. de Bordeaux) &#39;
+                                    &#39;for his contribution on the elaboration of the model of economic recess and Dan Dutartre (Inria) for the design of this web interface. &#39;
+                                    &#39;The paper describing the approach can be found &lt;a href=&#34;https://arxiv.org/pdf/2010.04452.pdf&#34; style=&#34;color:#004c8f;&#34; &#39;
+                                    &#39;target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#39;
+
+                                  + &#39;&lt;h3 &#39; + h3_style + &#39;Reference&lt;/h3&gt;&#39;
+                                  + &#39;&lt;p align=&#34;left&#34; &#39; + p_style + &#39;&gt;&#39;
+                                  + &#39;The bibtex reference to the EpidemiOptim paper can be found here:&#39;
+                                  + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                                  + &#39;&lt;code&gt; @article{colas2020epidemioptim, &lt;br&gt;&#39;
+                                  + &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;title={EpidemiOptim: A Toolbox for the Optimization of Control Policies in Epidemiological&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Models}, &lt;br&gt;&#39;
+                                  + &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;author={Colas, C{\&#39;e}dric and Hejblum, Boris and Rouillon, S{\&#39;e}bastien and Thi{\&#39;e}baut, &#39;
+                                    &#39;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Rodolphe and Oudeyer, &#39;
+                                    &#39; Pierre-Yves and Moulin-Frier, Cl{\&#39;e}ment and Prague, M{\&#39;e}lanie}, &lt;br&gt;&#39;
+                                  + &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;journal={arXiv preprint arXiv:2010.04452}, &lt;br&gt;&#39;
+                                  + &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;year={2020}} &lt;/code&gt;&#39;
+                                  + &#39;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                                  + &#39;&lt;/font&gt;&#39;))
+    return footer
+
+def algorithm_description(algorithm):
+    if algorithm==&#39;DQN&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Algo 1: Deep Q-Networks (DQN)&lt;/h2&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           + &#39;The first algorithm belongs to the family of &lt;span style=&#34;font-weight:500;&#34;&gt;reinforcement learning&lt;/span&gt; algorithms: &lt;span style=&#34;font-weight:500;&#34;&gt;Deep Q-Networks (&#39;
+                           + &#39;DQN)&lt;/span&gt;. DQN is traditionally used to minimize a unique cost function. To circumvent this problem, we train several control policies, &#39;
+                           + &#39;where each policy minimizes a certain combination of the two costs:&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;center&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;&lt;var&gt;C&lt;/var&gt; = (1 - &amp;#946) &amp;#215 &lt;var&gt;C&lt;sub&gt;h&lt;/sub&gt;&lt;/var&gt; +  &amp;#946 &amp;#215 &lt;var&gt;C&lt;sub&gt;e&lt;/sub&gt;&lt;/var&gt; ,&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;where &lt;var&gt;C&lt;/var&gt; is the aggregated cost and &amp;#946 is the mixing parameter. The lower the &amp;#946 the more important the health cost.&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The four plots below show the evolution of the daily economic and health costs over a one-year period (left: per day; right: cumulated). Red dots &#39;
+                            &#39;indicate lock-down enforcement for the corresponding week. &#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The slider &amp;#946 allows to control the mixing of the two costs. &amp;#946 = 1 results in the pure minimization of the economic cost. &#39;
+                            &#39;&amp;#946 = 0 results in the pure minimization of the death toll. The &lt;span style=&#34;font-weight:500;&#34;&gt;deterministic model&lt;/span&gt; box controls whether the epidemic &#39;
+                            &#39;is deterministic (always the same), or stochastic (always different).&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;/font&gt;&#39;))
+    elif algorithm==&#39;GOAL_DQN&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font size = 5&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Algo 2: Goal-Conditioned Deep Q-Networks (Goal-DQN)&lt;/h2&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;This algorithm is a variant of the traditional &lt;span style=&#34;font-weight:500;&#34;&gt;Deep Q-Network&lt;/span&gt;. In the &lt;span style=&#34;font-weight:500;&#34;&gt;Goal-Conditioned Q-Networks (Goal-DQN)&lt;/span&gt;, we train one policy to minmize all the combinations of the health and economic costs:&#39;
+                           + &#39;&lt;p align=&#34;center&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;&lt;var&gt;C&lt;/var&gt; = (1 - &amp;#946) &amp;#215 &lt;var&gt;C&lt;sub&gt;h&lt;/sub&gt;&lt;/var&gt; +  &amp;#946 &amp;#215 &lt;var&gt;C&lt;sub&gt;e&lt;/sub&gt;&lt;/var&gt; ,&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;for all values of &amp;#946 in [0, 1].&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;To do so, the policy receives the value of &amp;#946 corresponding to the mixture of costs it needs to minimize. This dramatically reduces &#39;
+                            &#39;training time compared to a simple DQN (Algo 1 tab), as only one policy is trained.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The four plots below show the evolution of the daily economic and health costs over a one-year period (left: per day; right: cumulated). Red dots &#39;
+                            &#39;indicate lock-down enforcement for the corresponding week. &#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The slider &amp;#946 allows to control the mixing of the two costs. &amp;#946 = 1 results in the pure minimization of the economic cost. &amp;#946 = 0 &#39;
+                            &#39;results in the pure minimization of the death toll. The &lt;span style=&#34;font-weight:500;&#34;&gt;deterministic model&lt;/span&gt; box controls whether the epidemic &#39;
+                            &#39;is deterministic (always the same), or stochastic (always different). &#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;/font&gt;&#39;))
+    elif algorithm==&#39;GOAL_DQN_CONST&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font size = 5&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Algo 3: Goal-Conditioned Deep Q-Networks with Constraints (Goal-DQN-C)&lt;/h2&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;This algorithm is a variant of the traditional &lt;span style=&#34;font-weight:500;&#34;&gt;Deep Q-Network&lt;/span&gt;. In the &lt;span style=&#34;font-weight:500;&#34;&gt;Goal-Conditioned Q-Networks with Constraints (Goal-DQN-C)&lt;/span&gt;, we train one policy to minmize all the combinations of the health and economic costs:&#39;
+                           + &#39;&lt;p align=&#34;center&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;&lt;var&gt;C&lt;/var&gt; = (1 - &amp;#946) &amp;#215 &lt;var&gt;C&lt;sub&gt;h&lt;/sub&gt;&lt;/var&gt; +  &amp;#946 &amp;#215 &lt;var&gt;C&lt;sub&gt;e&lt;/sub&gt;&lt;/var&gt; ,&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;for all values of &amp;#946 in [0, 1].&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39; In addition, we can set constraints on maximum values for each of the cumulated cost over the one-year period. To do so, the policy receives the value of &amp;#946 corresponding to the mixture of costs it needs to minimize, as well as the value of the maximum cumulative cost that forms its constraints .&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The four plots below show the evolution of the daily economic and health costs over a one-year period (left: per day; right: cumulated). Red dots &#39;
+                            &#39;indicate lock-down enforcement for the corresponding week. &#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The slider &amp;#946 allows to control the mixing of the two costs. &amp;#946 = 1 results in the pure minimization of the economic cost. &amp;#946 = 0 &#39;
+                            &#39;results in the pure minimization of the death toll. The &lt;span style=&#34;font-weight:500;&#34;&gt;deterministic model&lt;/span&gt; box controls whether the epidemic &#39;
+                            &#39;is deterministic (always the same), or stochastic (always different).&#39;
+                           +&#39; The other two sliders control the maximum values the cumulative costs can take. Explore the effect of these parameters. Note how the policy adapts to the constraints. If you push further, and set strong constraints on the two costs, a good policy might not exist (e.g. 0 death and 0 euros of economic recess.)&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;/font&gt;&#39;))
+    elif algorithm==&#39;NSGA&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font size = 5&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Algo 4: Non-dominated Sorting Genetic Algorithm II (NSGA-II)&lt;/h2&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;&lt;span style=&#34;font-weight:500;&#34;&gt;Non-dominated Sorting Genetic Algorithm II (NSGA-II)&lt;/span&gt; is a state-of-the-art multi-objective optimization algorithm from the family of evolutionary algorithms. In contrast to previous algorithms, this one is explicitely built to optimize several costs at a time instead of linear combinations of them. In practice, this algorithm aims to find a &#39;
+                           +&#39;&lt;span style=&#34;font-weight:500;&#34;&gt;Pareto Front&lt;/span&gt;, the set of &lt;span style=&#34;font-weight:500;&#34;&gt;non-dominated solutions&lt;/span&gt;: solutions for which one cannot find any other solution that performs better on both dimensions (better health cost &lt;span style=&#34;font-weight:500;&#34;&gt;and&lt;/span&gt; better economic cost). The result of this algorithm is thus a set of control policies, each having their particular trade-off with respect to the two costs.&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The first plot represents the Pareto front found by one run of the NSGA-II algorithm. Note that no solution performs better than any other on both dimensions, or worse on both dimensions. Each point represent the average performance of a given policy on the two costs, after it is run on 30 different simulations of the epidemic. The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. &#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;You can click on points in the first plot to select the corresponding policy and see its consequences in terms of the two costs in the graphs below. &#39;
+                            &#39;When the &lt;span style=&#34;font-weight:500;&#34;&gt;deterministic model&lt;/span&gt; box is unchecked, the model becomes stochastic:  &#39;
+                            &#39;each time you click on the policy a new simulation is run, and the way the policy reacts to the epidemic might vary.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;/font&gt;&#39;))
+    elif algorithm==&#39;yourself&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                          value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                                 &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Try It Yourself!&lt;/h2&gt;&lt;/center&gt;&#39;
+                                 + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                                 +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                                 +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                 +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                                 + &#39;&lt;/p&gt;&#39;
+                                 + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                                 +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                 + &#39;Here, you are the algorithm!&#39;
+                                 +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                                 +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                 +&#39;The first plot represents the Pareto front found by one run of the NSGA-II algorithm. The red dot is the average performance of the strategy you design (computed over 30 simulations). The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. &#39;
+                                 +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                                 +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                 +&#39;To perform better than NSGA-II, you need to get closer to the origin of the plot (0, 0). Note that algorithms train policies that are &#39;
+                                  &#39;reactive to the epidemic and can adapt to its state as it progresses. You are designing, on the other hand, &#39;
+                                  &#39;a &lt;span style=&#34;font-weight:500;&#34;&gt;fixed-strategy&lt;/span&gt; that is evaluated on 10 different simulated epidemics. This explains why running &#39;
+                                  &#39;several evaluations might result in different results. The graphs shows only one of the 10 simulations.&#39;
+                                 + &#39;&lt;br&gt;You can design your strategy with two tools:&#39;
+                                 + &#39;&lt;ol &#39; + p_style +&#39;&gt;&lt;li&gt;The four dropdown menus allow to define a pattern of the form: &#39;
+                                 + &#39;&lt;span style=&#34;font-weight:500;&#34;&gt; implement lock-down N1 weeks every N2 weeks&lt;/span&gt;.&#39;
+                                 + &#39; The first two menus control the start and end of the pattern (in weeks), the following two respectively &#39;
+                                 + &#39;control the duration of the lock-down and the period of the pattern. Click &lt;span style=&#34;font-weight:500;&#34;&gt;&#34;Set to pattern&#34;&lt;/span&gt; &#39;
+                                   &#39;to synchronize the checkboxes and implement the intervention. &lt;/li&gt;&#39;
+                                 +&#39;&lt;li&gt;The checkboxes control the enforcement of the lockdown on a weekly basis. You can finetune the intervention defined by the &#39;
+                                  &#39;pattern by checking/unchecking specific boxes. Once you are ready, run the simulations by clicking &lt;span style=&#34;font-weight:500;&#34;&gt;&#34;Run &#39;
+                                  &#39;simulations&#34;&lt;/span&gt;.&lt;/li&gt;&lt;/ol&gt;&#39;
+                                 + &#39;&lt;/p&gt;&#39;
+                                 +&#39;&lt;/font&gt;&#39;))
+            
+    else:
+        NotImplementedError
+    
+    return str_html
+
+def slider_setup(slider):
+    slider.layout.max_width = &#39;100%&#39;
+    #desc=slider.description
+    #slider.description=&#39;&#39;
+    #sliderHbox=HBox([Label(desc,style={&#39;description_width&#39; : &#39;initial&#39;}),slider])
+    return slider
+def modify_description(slider):
+    desc=slider.description
+    slider.description=&#39;&#39;
+    sliderHbox=HBox([Label(desc,style={&#39;description_width&#39; : &#39;initial&#39;}),slider])
+    return sliderHbox
+def update_fig(fig):
+    fig.canvas.draw_idle()
+    fig.canvas.draw()
+    fig.canvas.flush_events()
+    return fig
+def canvas_setup(fig):
+    fig.canvas.header_visible = False
+    fig.canvas.toolbar_visible = False
+    fig.canvas.layout.min_height = &#39;400px&#39;
+    return fig
+
+def deter_checkbox():
+    is_deter=Checkbox(
+        value=True,
+        description=&#39;Deterministic model&#39;,
+        disabled=False,
+        indent=False,
+        layout={&#39;max_width&#39;: &#39;100%&#39;})
+    return is_deter
+
+def plot_pareto(algorithm,size,color):
+    # Plot pareto front
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    sign = 1
+    a = sign * algorithm.res_eval[&#39;F&#39;][:, 0]
+    b = sign * algorithm.res_eval[&#39;F&#39;][:, 1]
+    nb_points=a.shape[0]
+    sc = ax.scatter(a, b, picker=5)
+    ax.tick_params(axis=&#39;x&#39;, labelrotation=30,labelsize=12)
+    ax.tick_params(axis=&#39;y&#39;,labelsize=12)
+    colors = [color] * nb_points
+    sc.set_color(colors)
+    sizes = np.ones(nb_points) * size
+    sc.set_sizes(sizes)
+    ax.set_xlabel(&#39;Total Deaths&#39;,fontsize=14)
+    ax.set_ylabel(&#39;Total GDP Loss (B)&#39;,fontsize=14)
+
+    return fig,ax,sc
+def normalize(x,data_min,data_max):
+    return (x - data_min) / (data_max - data_min)
+
+def center_vbox(children):
+    box_layout = Layout(display=&#39;flex&#39;,
+                flex_flow=&#39;column&#39;,
+                align_items=&#39;center&#39;,
+                width=&#39;100%&#39;)
+    centered_layout = VBox(children=children, layout = box_layout)
+    return centered_layout
+
+
+
+def run_env_with_actions(actions, env, reset_same_model):
+
+    additional_keys = (&#39;costs&#39;, &#39;constraints&#39;)
+    # Setup saved values
+    episode = dict(zip(additional_keys, [[] for _ in range(len(additional_keys))] ))
+    env_states = []
+    aggregated_costs = []
+    dones = []
+    if reset_same_model:
+        env.reset_same_model()
+    state = env.reset()
+    env_states.append(state)
+
+    done = False
+    t = 0
+    counter = 0
+    while not done:
+        # Interact
+        next_state, agg_cost, done, info = env.step(actions[counter])
+        # Save stuff
+        state = next_state
+        t = env.unwrapped.t
+        counter += 1
+        aggregated_costs.append(agg_cost)
+        env_states.append(state)
+        dones.append(done)
+
+        for k in additional_keys:
+            episode[k].append(info[k])
+
+    # Form episode dict
+    episode.update(env_states=np.array(env_states),
+                   aggregated_costs=np.array(aggregated_costs),
+                   actions=np.array(actions),
+                   dones=np.array(dones))
+
+    aggregated_costs = np.sum(episode[&#39;aggregated_costs&#39;])
+    costs = np.sum(episode[&#39;costs&#39;], axis=0)
+    stats = env.unwrapped.get_data()
+
+    return stats, costs
+
+def try_it_ui(checkbox_objects,box_layout):
+    number_of_week=52
+    number_of_week_per_row=5
+    offset_button=10
+
+    weekBox=Box(children=[])
+    for i in range(int(number_of_week/number_of_week_per_row)):
+        weekBox=VBox([weekBox,Box(checkbox_objects[number_of_week_per_row*(i)+offset_button:
+                                                   number_of_week_per_row*(i+1)+offset_button])])
+    setBox=Box([checkbox_objects[6]],layout=Layout(display=&#39;flex&#39;,
+                                                   flex_flow=&#39;column&#39;,
+                                                   align_items=&#39;center&#39;,
+                                                   width=&#39;100%&#39;))
+    runBox = Box([checkbox_objects[8]], layout=Layout(display=&#39;flex&#39;,
+                                                      flex_flow=&#39;column&#39;,
+                                                      align_items=&#39;center&#39;,
+                                                      width=&#39;100%&#39;))
+    ui=Box(children=[HBox([checkbox_objects[0], checkbox_objects[2], checkbox_objects[1]]),
+                     checkbox_objects[2],
+                     HBox([checkbox_objects[3], checkbox_objects[2], checkbox_objects[4]]),
+                     checkbox_objects[5],
+                     setBox,
+                     checkbox_objects[7],
+                     weekBox,
+                     checkbox_objects[7],
+                     runBox,
+                     checkbox_objects[7],
+                     ]
+            ,layout=box_layout)
+    return ui
+def test_layout(algorithm_str,seed,deterministic_model):
+    def update_algo_deter(change):
+        deterministic_model=change.new
+        algorithm, cost_function, env, params = setup_for_replay(folder+to_add , seed, deterministic_model)
+        return algorithm, cost_function, env, params
+    if seed is None:
+        seed = np.random.randint(1e6)
+    if algorithm_str == &#39;DQN&#39;:
+        to_add = &#39;0.5/&#39;
+        folder = get_repo_path() + &#34;/data/data_for_visualization/DQN/&#34;
+    elif algorithm_str==&#39;yourself&#39;:
+        folder = get_repo_path() + &#34;/data/data_for_visualization/NSGA/1/&#34;
+        to_add = &#39;&#39;
+    else:
+        to_add = &#39;&#39;
+        folder = get_repo_path() + &#34;/data/data_for_visualization/&#34;+ algorithm_str+ &#34;/1/&#34;
+    algorithm, cost_function, env, params = setup_for_replay(folder+to_add , seed, deterministic_model)
+
+    def get_lockdown_stats(stats):
+        lockdown = stats[&#39;history&#39;][&#39;lockdown&#39;]
+        n_lockdowns = sum(lockdown)
+        consecutive_locks = []
+        counter = 0
+        for a_prev, a in zip(lockdown[:-1], lockdown[1:]):
+            if a == 1:
+                counter += 1
+            else:
+                if a_prev == 1:
+                    consecutive_locks.append(counter)
+                    counter = 0
+        if len(consecutive_locks) == 0:
+            av_lockdown = 0
+        else:
+            av_lockdown = np.mean(consecutive_locks)
+        nb_lockdowns = len(consecutive_locks)
+        return int(n_lockdowns), av_lockdown, int(nb_lockdowns)
+
+    def get_costs(stats):
+        costs = np.array([stats[&#39;stats_run&#39;][&#39;to_plot&#39;][1], stats[&#39;stats_run&#39;][&#39;to_plot&#39;][4]])
+        return costs[:, -1]
+
+    def update_stats(stats, lockdown_stats, costs_stats):
+
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats.value = &#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39; + \
+                               &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                               &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                               &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&lt;br&gt;&#39;.format(n_lockdowns) + \
+                               &#39;&lt;/p&gt;&lt;/font&gt;&#39;
+        costs_stats.value = &#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39; + \
+                            &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(int(costs[0])) + \
+                            &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&#39;.format(costs[1]) + \
+                            &#39;&lt;/p&gt;&lt;/font&gt;&#39;
+
+    if algorithm_str == &#39;DQN&#39;:
+        is_deter=deter_checkbox()
+        str_html=algorithm_description(algorithm_str)
+        stats, msg = run_env(algorithm, env, first=True)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+        slider = FloatSlider(orientation=&#39;horizontal&#39;,description=&#39;beta:&#39;,value=0.5,
+                             min=0,
+                             max=1,
+                             step=0.05,layout={&#39;width&#39;: &#39;450px&#39;}
+                             )
+
+        slider=slider_setup(slider)
+        fig=canvas_setup(fig)
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39;
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&#39;.format(n_lockdowns) + \
+                                    &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+        fake_stats = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        costs_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39;
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(
+            int(costs[0])) + \
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&amp;nbsp;&lt;br&gt;&#39;.format(costs[1]) + \
+                                 &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        def update_lines(change):
+            beta=slider.value
+            deterministic_model=is_deter.value
+            algorithm, cost_function, env, params = setup_for_replay(folder + str(beta) + &#39;/&#39;, seed, deterministic_model)
+            stats, msg = run_env(algorithm, env, goal=np.array([beta]))
+            replot_stats(lines, stats, plots_i, cost_function, high)
+            update_fig(fig)
+            update_stats(stats, lockdown_stats, costs_stats)
+
+        slider.observe(update_lines, names=&#39;value&#39;)
+        is_deter.observe(update_lines,names=&#39;value&#39;)
+        final_layout = center_vbox([str_html,is_deter,slider,fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+        return final_layout
+    elif algorithm_str == &#39;NSGA&#39;:
+        is_deter=deter_checkbox()
+        str_html=algorithm_description(algorithm_str)
+        stats, msg = run_env(algorithm, env)
+        fig1, lines, plots_i, high, axs = setup_fig_notebook(stats)
+        size = 15
+        color = &#34;#004ab3&#34;
+        color_highlight = &#34;#b30000&#34;
+
+        fig,ax,sc=plot_pareto(algorithm,size,color)
+        data = sc.get_offsets().data
+        data_max = np.max(data, axis=0)
+        data_min = np.min(data, axis=0)
+        nb_points = data.shape[0]
+        
+        def normalize(x):
+            return (x - data_min) / (data_max - data_min)
+
+        normalized_data = normalize(data)
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39;
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&lt;br&gt;&#39;.format(n_lockdowns) + \
+                                    &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        fake_stats = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        costs_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39;
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(
+            int(costs[0])) + \
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&amp;nbsp;&lt;br&gt;&#39;.format(costs[1]) + \
+                                 &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+        def onclick2(event):
+            x = event.xdata
+            y = event.ydata
+
+            # find closest in dataset
+            point = np.array([x, y])
+            normalized_point = normalize(point)
+            dists = np.sqrt(np.sum((normalized_point - normalized_data) ** 2, axis=1))
+            closest_ind = np.argmin(dists)
+
+            # highlight it
+            order = np.concatenate([np.arange(closest_ind), np.arange(closest_ind + 1, nb_points), np.array([closest_ind])])
+            sc.set_offsets(data[order])
+            sizes = np.ones(nb_points) * size
+            sizes[-1] = size * 5
+            colors = [color] * nb_points
+            colors[-1] = color_highlight
+            sc.set_sizes(sizes)  # you can set you markers to different sizes
+            sc.set_color(colors)
+            # rerun env
+            weights = algorithm.res_eval[&#39;X&#39;][closest_ind]
+            algorithm.policy.set_params(weights)
+            stats, msg = run_env(algorithm, env)
+            replot_stats(lines, stats, plots_i, cost_function, high)
+            print(env.model.stochastic)
+            # refresh figure
+            update_fig(fig1)
+            update_fig(fig)
+            update_stats(stats, lockdown_stats, costs_stats)
+
+        def update_deter(change):
+            deterministic_model=change.new
+            env.model.stochastic = not deterministic_model
+            env.model.define_params_and_initial_state_distributions()
+        is_deter.observe(update_deter,names=&#39;value&#39;)
+        cid = fig.canvas.mpl_connect(&#39;button_press_event&#39;, onclick2)
+        fig=canvas_setup(fig)
+        fig1=canvas_setup(fig1)
+        final_layout = center_vbox([str_html,is_deter,fig.canvas, fig1.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+        return(final_layout)
+    elif &#39;GOAL_DQN&#39; in algorithm_str:
+        if cost_function.use_constraints:
+            goal = np.array([0.5, 1, 1])
+        else:
+            goal = np.array([0.5])
+        str_html=algorithm_description(algorithm_str)
+        
+        stats, msg = run_env(algorithm, env, goal, first=True)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39;
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&lt;br&gt;&#39;.format(n_lockdowns) + \
+                                    &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        fake_stats = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        costs_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39;
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(
+            int(costs[0])) + \
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&amp;nbsp;&lt;br&gt;&#39;.format(costs[1]) + \
+                                 &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        if cost_function.use_constraints:
+            # Plot constraints as dotted line.
+            style={&#39;description_width&#39;: &#39;150px&#39;}
+            M_sanitary = cost_function.costs[0].compute_constraint(1)
+            line, = axs[1].plot([0, params[&#39;simulation_horizon&#39;]],
+                                [M_sanitary, M_sanitary],
+                                c=&#39;k&#39;,
+                                linestyle=&#39;--&#39;)
+            lines.append(line)
+            M_economic = cost_function.costs[1].compute_constraint(1)
+            line, = axs[3].plot([0, params[&#39;simulation_horizon&#39;]],
+                                [M_economic, M_economic],
+                                c=&#39;k&#39;,
+                                linestyle=&#39;--&#39;)
+            lines.append(line)
+            #Define slider
+            slider_beta = FloatSlider(orientation=&#39;horizontal&#39;,
+                                            description=&#39;beta&#39;,
+                                            style = style,
+                                            value=0.5,
+                                            min=0,
+                                            max=1,
+                                            step=0.05,
+                                            layout={&#39;width&#39;: &#39;450px&#39;}
+                                            )
+            slider_M_sanitary = IntSlider(orientation=&#39;horizontal&#39;,
+                                            description=&#39;Sanitary constraint&#39;,
+                                            style = style,
+                                            value=62000,
+                                            min=1000,
+                                            max=62000,
+                                            step=5000,
+                                            layout={&#39;width&#39;: &#39;450px&#39;}
+                                            )   
+            slider_M_economic = IntSlider(orientation=&#39;horizontal&#39;,
+                                            description=&#39;Economic constraint&#39;,
+                                            style = style,
+                                            value=160,
+                                            min=20,
+                                            max=160,
+                                            step=20,
+                                            layout={&#39;width&#39;: &#39;450px&#39;}
+                                            )
+            slider_beta=slider_setup(slider_beta)
+            slider_M_sanitary=slider_setup(slider_M_sanitary)
+            slider_M_economic=slider_setup(slider_M_economic)
+            fig=canvas_setup(fig)
+            is_deter=deter_checkbox()
+            is_deter.style=style
+            is_deter.layout.width=&#39;200px&#39;
+
+
+            def update_const(change):
+                # normalize constraints
+                M_sanitary=slider_M_sanitary.value
+                M_economic=slider_M_economic.value
+                beta=slider_beta.value
+                deterministic_model=is_deter.value
+                algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model)
+                c_sanitary = cost_function.costs[0].compute_normalized_constraint(M_sanitary)
+                c_economic = cost_function.costs[1].compute_normalized_constraint(M_economic)
+                stats, msg = run_env(algorithm, env, goal=np.array([beta, c_sanitary, c_economic]))
+                replot_stats(lines, stats, plots_i, cost_function, high, constraints=[c_sanitary, c_economic])
+                update_fig(fig)
+                update_stats(stats, lockdown_stats, costs_stats)
+
+            slider_beta.observe(update_const, &#39;value&#39;)
+            slider_M_sanitary.observe(update_const, &#39;value&#39;)
+            slider_M_economic.observe(update_const, &#39;value&#39;)
+            is_deter.observe(update_const,names=&#39;value&#39;)
+
+            final_layout = center_vbox([str_html,
+                                        center_vbox([is_deter,slider_beta,slider_M_sanitary,slider_M_economic]),
+                                        fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+            return final_layout
+        else :
+            is_deter=deter_checkbox()
+            slider_goal = FloatSlider(orientation=&#39;horizontal&#39;,
+                                      description=&#39;beta:&#39;,
+                                      value=0.5,
+                                      min=0,
+                                      max=1,
+                                      step=0.05,
+                                      layout={&#39;width&#39;: &#39;450px&#39;}
+                                      )
+            slider_goal=slider_setup(slider_goal)
+
+
+            fig=canvas_setup(fig)
+
+            def update_goal(change):
+                beta=slider_goal.value
+                deterministic_model=is_deter.value
+                algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model)
+                stats, msg = run_env(algorithm, env, goal=np.array([beta]))
+                replot_stats(lines, stats, plots_i, cost_function, high)
+                update_fig(fig)
+                update_stats(stats, lockdown_stats, costs_stats)
+
+            slider_goal.observe(update_goal, names=&#39;value&#39;)
+            is_deter.observe(update_goal,names=&#39;value&#39;)
+            final_layout = center_vbox([str_html, is_deter, slider_goal,fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+            return final_layout
+    elif algorithm_str == &#39;yourself&#39;:
+        algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model=False)
+        style={&#39;description_width&#39;: &#39;250px&#39;, &#39;widget_width&#39;: &#39;50%&#39;}
+        run_eval = True
+        n_evals = 10  # number of evaluation rolloutsseed = None  # None picks a random seed
+        str_html=algorithm_description(algorithm_str)
+        global actions
+        actions = get_action_base(&#39;never&#39;)
+        stats, costs = run_env_with_actions(actions,env, reset_same_model=False)
+        fig1, lines, plots_i, high, axs = setup_fig_notebook(stats)
+        size = 15
+        color = &#34;#004ab3&#34;
+        color_highlight = &#34;#b30000&#34;
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39;
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&lt;br&gt;&#39;.format(n_lockdowns) + \
+                                    &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        fake_stats = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        costs_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39;
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(
+            int(costs[0])) + \
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&amp;nbsp;&lt;br&gt;&#39;.format(costs[1]) + \
+                                 &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        fig,ax,sc=plot_pareto(algorithm,size,color)
+        data = sc.get_offsets().data
+        off_sets = sc.get_offsets()
+        data_max = np.max(data, axis=0)
+        data_min = np.min(data, axis=0)
+        nb_points = data.shape[0]
+        set_button = Button(value=True,
+                                      description=&#39;Set to pattern&#39;,
+                                      disabled=False,
+                                      button_style=&#39;&#39;,  # &#39;success&#39;, &#39;info&#39;, &#39;warning&#39;, &#39;danger&#39; or &#39;&#39;
+                                      layout=Layout(width=&#39;30%&#39;, height=&#39;50px&#39;),
+                                      style=style,
+                                      tooltip=&#39;Click to reset to pattern defined above.&#39;,
+                                      icon=&#39;check&#39;  # (FontAwesome names without the `fa-` prefix)
+                                      )
+
+        run_button = Button(value=True,
+                            description=&#39;Run simulations&#39;,
+                            disabled=False,
+                            button_style=&#39;&#39;,  # &#39;success&#39;, &#39;info&#39;, &#39;warning&#39;, &#39;danger&#39; or &#39;&#39;
+                            layout=Layout(width=&#39;30%&#39;, height=&#39;50px&#39;),
+                            style=style,
+                            tooltip=&#39;Click to run a simulation with the intervention defined by the checkboxes.&#39;,
+                            icon=&#39;check&#39;  # (FontAwesome names without the `fa-` prefix)
+                            )
+        start = Dropdown(options=[str(i) for i in range(1, 54)],
+                                 value=&#39;1&#39;,
+                                 description=&#34;# weeks before pattern starts&#34;,
+                                 layout=Layout(width=&#39;35%&#39;, height=&#39;30px&#39;),
+                                 style=style)
+
+        stop = Dropdown(options=[str(i) for i in range(1, 55)],
+                                 value=&#39;54&#39;,
+                                 description=&#34;# weeks before pattern stops&#34;,
+                                 layout=Layout(width=&#39;35%&#39;, height=&#39;30px&#39;),
+                                 style=style)
+
+        nb_weeks = Dropdown(options=[str(i) for i in range(0, 54)],
+                                    value=&#39;0&#39;,
+                                    description=&#34;Duration of lockdown phase (weeks)&#34;,
+                                    layout=Layout(width=&#39;35%&#39;, height=&#39;30px&#39;),
+                                    style=style)
+
+        every = Dropdown(options=[str(i) for i in range(1, 54)],
+                                 value=&#39;1&#39;,
+                                 description=&#34;Duration of the cycle or period (weeks)&#34;,
+                                 layout=Layout(width=&#39;35%&#39;, height=&#39;30px&#39;),
+                                 style=style)
+        fake_stats1 = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        names = [&#39;start&#39;,&#39;stop&#39;, &#39;fake&#39;, &#39;nb_weeks&#39;, &#39;every&#39;, &#39;fake&#39;, &#39;set_button&#39;, &#39;fake&#39;, &#39;run_button&#39;, &#39;fake&#39;]
+        checkbox_objects = [start,stop,fake_stats1, nb_weeks,every, fake_stats1, set_button, fake_stats1, run_button, fake_stats1]
+        arg_dict_2 = {names[i]: checkbox for i, checkbox in enumerate(checkbox_objects)}
+        for i in range(52):
+            desc=&#39;Week {}&#39;.format(i + 1)
+            checkbox_objects.append(Checkbox(value=False, description=desc))
+            names.append(desc)
+        arg_dict = {names[i]: checkbox for i, checkbox in enumerate(checkbox_objects)}
+        del arg_dict[&#39;set_button&#39;]
+        del arg_dict[&#39;run_button&#39;]
+        box_layout = Layout(overflow_y=&#39;auto&#39;,
+                    #border=&#39;3px solid black&#39;,
+                    #height=&#39;450px&#39;,
+                    display=&#39;block&#39;,width=&#39;950px&#39;)
+        # ui = Box(children=checkbox_objects, layout=box_layout)
+        ui=try_it_ui(checkbox_objects,box_layout)
+        # global ACT
+        # ACT = np.zeros([52])
+        def update_try(**kwargs):
+            # start=int(kwargs[&#39;start&#39;])-1
+            # stop=int(kwargs[&#39;stop&#39;])-1
+            # nb_weeks=int(kwargs[&#39;nb_weeks&#39;])
+            # every=int(kwargs[&#39;every&#39;])
+            # action_str = str(nb_weeks) + &#39;_&#39; + str(every)
+            # set_button=kwargs[&#39;set_button&#39;]
+            # t_i = time.time()
+            # actions = get_action_base(action_str, start, stop)
+            # if not np.all(ACT == actions):
+            #     assert False
+            #     ACT = actions.copy()
+            # if set_button:
+            #     for i in range(52):
+            #         checkbox_objects[8+i].value = bool(actions[i])
+            #
+            actions = np.array([int(kwargs[&#39;Week {}&#39;.format(i+1)]) for i in range(52)])
+            # for i in range(52):
+            #     actions[i] = int(kwargs[&#39;Week {}&#39;.format(i+1)])
+            # stats, costs = run_env_with_actions(actions, env, reset_same_model=deterministic_model)
+            # # if run_eval:
+            # #     all_costs = [run_env_with_actions(actions, env, reset_same_model=False)[1] for _ in range(n_evals)]
+            # #     all_costs = np.array(all_costs)
+            # #     print(all_costs)
+            # #     means = all_costs.mean(axis=0)
+            # #     x, y = means
+            # #     stds = all_costs.std(axis=0)
+            # #     # msg = &#39;\nEvaluation (over {} seeds):&#39;.format(n_evals)
+            # #     # msg += &#39;\n\t Death toll: {} +/- {}&#39;.format(int(means[0]), int(stds[0]))
+            # #     # msg += &#39;\n\t Economic cost: {:.2f} +/- {:.2f} B€.&#39;.format(int(means[1]), int(stds[1]))
+            # #     # print(msg)
+            # # else:
+            # x, y = costs
+            # # print(&#39;\nDeath toll: {}, Economic cost: {:.2f} B€.&#39;.format(int(costs[0]), costs[1]))
+            # replot_stats(lines, stats, plots_i, cost_function, high)
+            #
+            # # update PAreto:
+            # new_offsets = np.concatenate([off_sets, np.array([[x, y]])], axis=0)
+            # sc.set_offsets(new_offsets)
+            # new_colors = [color] * nb_points + [color_highlight]
+            # sc.set_color(new_colors)
+            # new_sizes = [size] * nb_points + [size * 2]
+            # sc.set_sizes(new_sizes)
+            #
+            # update_fig(fig)
+            # update_fig(fig1)
+            # update_stats(stats, lockdown_stats, costs_stats)
+            return actions
+
+        def update_set_pattern(b):
+            start_value = int(start.value) - 1
+            stop_value = int(stop.value) - 1
+            nb_weeks_value = int(nb_weeks.value)
+            every_value = int(every.value)
+
+            # start = int(kwargs[&#39;start&#39;]) - 1
+            # stop = int(kwargs[&#39;stop&#39;]) - 1
+            # nb_weeks = int(kwargs[&#39;nb_weeks&#39;])
+            # every = int(kwargs[&#39;every&#39;])
+            action_str = str(nb_weeks_value) + &#39;_&#39; + str(every_value)
+            actions = get_action_base(action_str, start_value, stop_value)
+            for i in range(52):
+                checkbox_objects[10 + i].value = bool(actions[i])
+
+        def run_simulation(b):
+            actions = np.array([int(cb.value) for cb in checkbox_objects[10:]])
+            stats, costs = run_env_with_actions(actions, env, reset_same_model=deterministic_model)
+            if run_eval:
+                all_costs = [run_env_with_actions(actions, env, reset_same_model=False)[1] for _ in range(n_evals)]
+                all_costs = np.array(all_costs)
+                means = all_costs.mean(axis=0)
+                x, y = means
+            else:
+                x, y = costs
+            # print(&#39;\nDeath toll: {}, Economic cost: {:.2f} B€.&#39;.format(int(costs[0]), costs[1]))
+            replot_stats(lines, stats, plots_i, cost_function, high)
+
+            # update PAreto:
+            new_offsets = np.concatenate([off_sets, np.array([[x, y]])], axis=0)
+            sc.set_offsets(new_offsets)
+            new_colors = [color] * nb_points + [color_highlight]
+            sc.set_color(new_colors)
+            new_sizes = [size] * nb_points + [size * 2]
+            sc.set_sizes(new_sizes)
+
+            update_fig(fig)
+            update_fig(fig1)
+            update_stats(stats, lockdown_stats, costs_stats)
+            return actions
+
+        out = interactive_output(update_try, arg_dict)
+        # out2 = interactive_output(update_set_pattern, arg_dict_2)
+        set_button.on_click(update_set_pattern)
+        run_button.on_click(run_simulation)
+
+        fig=canvas_setup(fig)
+        fig1=canvas_setup(fig1)
+        final_layout = center_vbox([str_html,ui,fig.canvas, fig1.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+        return final_layout
+    else:
+        raise NotImplementedError</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="epidemioptim.analysis.server_utils.algorithm_description"><code class="name flex">
+<span>def <span class="ident">algorithm_description</span></span>(<span>algorithm)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def algorithm_description(algorithm):
+    if algorithm==&#39;DQN&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Algo 1: Deep Q-Networks (DQN)&lt;/h2&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           + &#39;The first algorithm belongs to the family of &lt;span style=&#34;font-weight:500;&#34;&gt;reinforcement learning&lt;/span&gt; algorithms: &lt;span style=&#34;font-weight:500;&#34;&gt;Deep Q-Networks (&#39;
+                           + &#39;DQN)&lt;/span&gt;. DQN is traditionally used to minimize a unique cost function. To circumvent this problem, we train several control policies, &#39;
+                           + &#39;where each policy minimizes a certain combination of the two costs:&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;center&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;&lt;var&gt;C&lt;/var&gt; = (1 - &amp;#946) &amp;#215 &lt;var&gt;C&lt;sub&gt;h&lt;/sub&gt;&lt;/var&gt; +  &amp;#946 &amp;#215 &lt;var&gt;C&lt;sub&gt;e&lt;/sub&gt;&lt;/var&gt; ,&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;where &lt;var&gt;C&lt;/var&gt; is the aggregated cost and &amp;#946 is the mixing parameter. The lower the &amp;#946 the more important the health cost.&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The four plots below show the evolution of the daily economic and health costs over a one-year period (left: per day; right: cumulated). Red dots &#39;
+                            &#39;indicate lock-down enforcement for the corresponding week. &#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The slider &amp;#946 allows to control the mixing of the two costs. &amp;#946 = 1 results in the pure minimization of the economic cost. &#39;
+                            &#39;&amp;#946 = 0 results in the pure minimization of the death toll. The &lt;span style=&#34;font-weight:500;&#34;&gt;deterministic model&lt;/span&gt; box controls whether the epidemic &#39;
+                            &#39;is deterministic (always the same), or stochastic (always different).&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;/font&gt;&#39;))
+    elif algorithm==&#39;GOAL_DQN&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font size = 5&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Algo 2: Goal-Conditioned Deep Q-Networks (Goal-DQN)&lt;/h2&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;This algorithm is a variant of the traditional &lt;span style=&#34;font-weight:500;&#34;&gt;Deep Q-Network&lt;/span&gt;. In the &lt;span style=&#34;font-weight:500;&#34;&gt;Goal-Conditioned Q-Networks (Goal-DQN)&lt;/span&gt;, we train one policy to minmize all the combinations of the health and economic costs:&#39;
+                           + &#39;&lt;p align=&#34;center&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;&lt;var&gt;C&lt;/var&gt; = (1 - &amp;#946) &amp;#215 &lt;var&gt;C&lt;sub&gt;h&lt;/sub&gt;&lt;/var&gt; +  &amp;#946 &amp;#215 &lt;var&gt;C&lt;sub&gt;e&lt;/sub&gt;&lt;/var&gt; ,&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;for all values of &amp;#946 in [0, 1].&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;To do so, the policy receives the value of &amp;#946 corresponding to the mixture of costs it needs to minimize. This dramatically reduces &#39;
+                            &#39;training time compared to a simple DQN (Algo 1 tab), as only one policy is trained.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The four plots below show the evolution of the daily economic and health costs over a one-year period (left: per day; right: cumulated). Red dots &#39;
+                            &#39;indicate lock-down enforcement for the corresponding week. &#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The slider &amp;#946 allows to control the mixing of the two costs. &amp;#946 = 1 results in the pure minimization of the economic cost. &amp;#946 = 0 &#39;
+                            &#39;results in the pure minimization of the death toll. The &lt;span style=&#34;font-weight:500;&#34;&gt;deterministic model&lt;/span&gt; box controls whether the epidemic &#39;
+                            &#39;is deterministic (always the same), or stochastic (always different). &#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;/font&gt;&#39;))
+    elif algorithm==&#39;GOAL_DQN_CONST&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font size = 5&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Algo 3: Goal-Conditioned Deep Q-Networks with Constraints (Goal-DQN-C)&lt;/h2&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;This algorithm is a variant of the traditional &lt;span style=&#34;font-weight:500;&#34;&gt;Deep Q-Network&lt;/span&gt;. In the &lt;span style=&#34;font-weight:500;&#34;&gt;Goal-Conditioned Q-Networks with Constraints (Goal-DQN-C)&lt;/span&gt;, we train one policy to minmize all the combinations of the health and economic costs:&#39;
+                           + &#39;&lt;p align=&#34;center&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;&lt;var&gt;C&lt;/var&gt; = (1 - &amp;#946) &amp;#215 &lt;var&gt;C&lt;sub&gt;h&lt;/sub&gt;&lt;/var&gt; +  &amp;#946 &amp;#215 &lt;var&gt;C&lt;sub&gt;e&lt;/sub&gt;&lt;/var&gt; ,&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;for all values of &amp;#946 in [0, 1].&lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39; In addition, we can set constraints on maximum values for each of the cumulated cost over the one-year period. To do so, the policy receives the value of &amp;#946 corresponding to the mixture of costs it needs to minimize, as well as the value of the maximum cumulative cost that forms its constraints .&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The four plots below show the evolution of the daily economic and health costs over a one-year period (left: per day; right: cumulated). Red dots &#39;
+                            &#39;indicate lock-down enforcement for the corresponding week. &#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The slider &amp;#946 allows to control the mixing of the two costs. &amp;#946 = 1 results in the pure minimization of the economic cost. &amp;#946 = 0 &#39;
+                            &#39;results in the pure minimization of the death toll. The &lt;span style=&#34;font-weight:500;&#34;&gt;deterministic model&lt;/span&gt; box controls whether the epidemic &#39;
+                            &#39;is deterministic (always the same), or stochastic (always different).&#39;
+                           +&#39; The other two sliders control the maximum values the cumulative costs can take. Explore the effect of these parameters. Note how the policy adapts to the constraints. If you push further, and set strong constraints on the two costs, a good policy might not exist (e.g. 0 death and 0 euros of economic recess.)&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;/font&gt;&#39;))
+    elif algorithm==&#39;NSGA&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font size = 5&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Algo 4: Non-dominated Sorting Genetic Algorithm II (NSGA-II)&lt;/h2&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;&lt;span style=&#34;font-weight:500;&#34;&gt;Non-dominated Sorting Genetic Algorithm II (NSGA-II)&lt;/span&gt; is a state-of-the-art multi-objective optimization algorithm from the family of evolutionary algorithms. In contrast to previous algorithms, this one is explicitely built to optimize several costs at a time instead of linear combinations of them. In practice, this algorithm aims to find a &#39;
+                           +&#39;&lt;span style=&#34;font-weight:500;&#34;&gt;Pareto Front&lt;/span&gt;, the set of &lt;span style=&#34;font-weight:500;&#34;&gt;non-dominated solutions&lt;/span&gt;: solutions for which one cannot find any other solution that performs better on both dimensions (better health cost &lt;span style=&#34;font-weight:500;&#34;&gt;and&lt;/span&gt; better economic cost). The result of this algorithm is thus a set of control policies, each having their particular trade-off with respect to the two costs.&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;The first plot represents the Pareto front found by one run of the NSGA-II algorithm. Note that no solution performs better than any other on both dimensions, or worse on both dimensions. Each point represent the average performance of a given policy on the two costs, after it is run on 30 different simulations of the epidemic. The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. &#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;You can click on points in the first plot to select the corresponding policy and see its consequences in terms of the two costs in the graphs below. &#39;
+                            &#39;When the &lt;span style=&#34;font-weight:500;&#34;&gt;deterministic model&lt;/span&gt; box is unchecked, the model becomes stochastic:  &#39;
+                            &#39;each time you click on the policy a new simulation is run, and the way the policy reacts to the epidemic might vary.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           +&#39;&lt;/font&gt;&#39;))
+    elif algorithm==&#39;yourself&#39;:
+        str_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                          value=(&#34;&lt;font color=&#39;black&#39;&gt;&lt;font face = &#39;Verdana&#39;&gt;&#34; +
+                                 &#39;&lt;center&gt;&lt;h2 &#39; + h2_style_2 + &#39;Try It Yourself!&lt;/h2&gt;&lt;/center&gt;&#39;
+                                 + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                                 +&#39;&lt;h3 &#39; + h3_style + &#39;Objective&lt;/h3&gt;&#39;
+                                 +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                 +&#39;We want to minimize two costs: the death toll &lt;var&gt;C&lt;sub&gt;health&lt;/sub&gt;&lt;/var&gt; and the economic recess &lt;var&gt;C&lt;sub&gt;economic&lt;/sub&gt;&lt;/var&gt; computed over a one-year period.&#39;
+                                 + &#39;&lt;/p&gt;&#39;
+                                 + &#39;&lt;h3 &#39; + h3_style + &#39;The algorithm&lt;/h3&gt;&#39;
+                                 +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                 + &#39;Here, you are the algorithm!&#39;
+                                 +&#39;&lt;h3 &#39; + h3_style + &#39;What is plotted&lt;/h3&gt;&#39;
+                                 +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                 +&#39;The first plot represents the Pareto front found by one run of the NSGA-II algorithm. The red dot is the average performance of the strategy you design (computed over 30 simulations). The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. &#39;
+                                 +&#39;&lt;h3 &#39; + h3_style + &#39;Try it yourself!&lt;/h3&gt;&#39;
+                                 +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                 +&#39;To perform better than NSGA-II, you need to get closer to the origin of the plot (0, 0). Note that algorithms train policies that are &#39;
+                                  &#39;reactive to the epidemic and can adapt to its state as it progresses. You are designing, on the other hand, &#39;
+                                  &#39;a &lt;span style=&#34;font-weight:500;&#34;&gt;fixed-strategy&lt;/span&gt; that is evaluated on 10 different simulated epidemics. This explains why running &#39;
+                                  &#39;several evaluations might result in different results. The graphs shows only one of the 10 simulations.&#39;
+                                 + &#39;&lt;br&gt;You can design your strategy with two tools:&#39;
+                                 + &#39;&lt;ol &#39; + p_style +&#39;&gt;&lt;li&gt;The four dropdown menus allow to define a pattern of the form: &#39;
+                                 + &#39;&lt;span style=&#34;font-weight:500;&#34;&gt; implement lock-down N1 weeks every N2 weeks&lt;/span&gt;.&#39;
+                                 + &#39; The first two menus control the start and end of the pattern (in weeks), the following two respectively &#39;
+                                 + &#39;control the duration of the lock-down and the period of the pattern. Click &lt;span style=&#34;font-weight:500;&#34;&gt;&#34;Set to pattern&#34;&lt;/span&gt; &#39;
+                                   &#39;to synchronize the checkboxes and implement the intervention. &lt;/li&gt;&#39;
+                                 +&#39;&lt;li&gt;The checkboxes control the enforcement of the lockdown on a weekly basis. You can finetune the intervention defined by the &#39;
+                                  &#39;pattern by checking/unchecking specific boxes. Once you are ready, run the simulations by clicking &lt;span style=&#34;font-weight:500;&#34;&gt;&#34;Run &#39;
+                                  &#39;simulations&#34;&lt;/span&gt;.&lt;/li&gt;&lt;/ol&gt;&#39;
+                                 + &#39;&lt;/p&gt;&#39;
+                                 +&#39;&lt;/font&gt;&#39;))
+            
+    else:
+        NotImplementedError
+    
+    return str_html</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.canvas_setup"><code class="name flex">
+<span>def <span class="ident">canvas_setup</span></span>(<span>fig)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def canvas_setup(fig):
+    fig.canvas.header_visible = False
+    fig.canvas.toolbar_visible = False
+    fig.canvas.layout.min_height = &#39;400px&#39;
+    return fig</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.center_vbox"><code class="name flex">
+<span>def <span class="ident">center_vbox</span></span>(<span>children)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def center_vbox(children):
+    box_layout = Layout(display=&#39;flex&#39;,
+                flex_flow=&#39;column&#39;,
+                align_items=&#39;center&#39;,
+                width=&#39;100%&#39;)
+    centered_layout = VBox(children=children, layout = box_layout)
+    return centered_layout</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.deter_checkbox"><code class="name flex">
+<span>def <span class="ident">deter_checkbox</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deter_checkbox():
+    is_deter=Checkbox(
+        value=True,
+        description=&#39;Deterministic model&#39;,
+        disabled=False,
+        indent=False,
+        layout={&#39;max_width&#39;: &#39;100%&#39;})
+    return is_deter</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.footer"><code class="name flex">
+<span>def <span class="ident">footer</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def footer():
+    footer = HTML(layout=Layout(width=&#39;800px&#39;,
+                                    height=&#39;100%&#39;,
+                                    margin=&#39;auto&#39;,
+                                    ),
+                      value=(
+                                  &#39;&lt;link href=&#34;https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&amp;family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap&#34; rel=&#34;stylesheet&#34;&gt; &#39; +
+                                  &#34;&lt;font color=&#39;black&#39;&gt;&lt;font face = &#39;Comic sans MS&#39;&gt;&#34;
+                                  + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                                  + &#39;&lt;h3 &#39; + h3_style + &#39;Acknowledgements&lt;/h3&gt;&#39;
+                                  + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                                  + &#39;This work is supported inpart by Inria Mission COVID19, project GESTEPID. &#39;
+                                  + &#39;It is the product of a collaboration between the &lt;a &#39;
+                                    &#39;href=&#34;https://www.bordeaux-population-health.center/les-equipes/statistiques-pour-la-medecine-translationnelle-sistm/&#34;&#39;
+                                    &#39;style=&#34;color:#004c8f;&#34; target=&#34;_blank&#34;&gt;Inria SISTM team&lt;/a&gt; (epidemiology) and the &lt;a href=&#34;https://flowers.inria.fr/&#34;&#39;
+                                    &#39;style=&#34;color:#004c8f;&#34; target=&#34;_blank&#34;&gt;Inria Flowers team&lt;/a&gt; (optimization). We would like to thank Sebastien Rouillon (Univ. de Bordeaux) &#39;
+                                    &#39;for his contribution on the elaboration of the model of economic recess and Dan Dutartre (Inria) for the design of this web interface. &#39;
+                                    &#39;The paper describing the approach can be found &lt;a href=&#34;https://arxiv.org/pdf/2010.04452.pdf&#34; style=&#34;color:#004c8f;&#34; &#39;
+                                    &#39;target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#39;
+
+                                  + &#39;&lt;h3 &#39; + h3_style + &#39;Reference&lt;/h3&gt;&#39;
+                                  + &#39;&lt;p align=&#34;left&#34; &#39; + p_style + &#39;&gt;&#39;
+                                  + &#39;The bibtex reference to the EpidemiOptim paper can be found here:&#39;
+                                  + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                                  + &#39;&lt;code&gt; @article{colas2020epidemioptim, &lt;br&gt;&#39;
+                                  + &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;title={EpidemiOptim: A Toolbox for the Optimization of Control Policies in Epidemiological&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Models}, &lt;br&gt;&#39;
+                                  + &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;author={Colas, C{\&#39;e}dric and Hejblum, Boris and Rouillon, S{\&#39;e}bastien and Thi{\&#39;e}baut, &#39;
+                                    &#39;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Rodolphe and Oudeyer, &#39;
+                                    &#39; Pierre-Yves and Moulin-Frier, Cl{\&#39;e}ment and Prague, M{\&#39;e}lanie}, &lt;br&gt;&#39;
+                                  + &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;journal={arXiv preprint arXiv:2010.04452}, &lt;br&gt;&#39;
+                                  + &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;year={2020}} &lt;/code&gt;&#39;
+                                  + &#39;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                                  + &#39;&lt;/font&gt;&#39;))
+    return footer</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.introduction"><code class="name flex">
+<span>def <span class="ident">introduction</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def introduction():
+
+    intro_html=HTML(layout=Layout(width=&#39;800px&#39;,
+                                  height=&#39;100%&#39;,
+                                  margin=&#39;auto&#39;,
+                                  ),
+                    value=(&#39; &lt;link href=&#34;https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&amp;family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap&#34; rel=&#34;stylesheet&#34;&gt; &#39; +
+                            &#34;&lt;font color=&#39;black&#39;&gt;&lt;font face = &#39;Comic sans MS&#39;&gt;&#34; +
+                           &#39;&lt;center&gt;&lt;h2 &#39; + h2_style + &#39;Using AI to Design Intervention Strategies Against Epidemics&lt;/h2&gt;&lt;/center&gt;&#39;
+                           +&#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           + &#39;&lt;center&gt;&lt;figure&gt; &lt;img src=&#34;logo_inserm_inria.png&#34; width=&#34;500px&#34;&gt;&lt;/figure&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           + &#39;&lt;center&gt;&lt;figure&gt; &lt;img src=&#34;visu.gif&#34; alt=&#34;COVID-19 epidemic in France&#34; /&gt; &lt;figcaption &#39; + p_style +&#39;&gt;&#39;
+                           &#39;Evolution of French COVID-19 cases in intensive care&lt;br&gt;from March to November 2020.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/center&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Context&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;Epidemiologists  model  the  dynamics  of  epidemics  in  order  to  propose  mitigation strategies based on pharmaceutical and non-pharmaceutical &#39;
+                            &#39;interventions (contact limitation,  lock down,  vaccination,  etc.). &#39;
+                           +&#39;Hand-designing such strategies is not trivial because of the number of possible interventions and the difficulty to predict their long-term effects.  &#39;
+                            &#39;This task can be seen as an optimization problem where state-of-the-art  machine  learning  algorithms  might  &#39;
+                            &#39;bring  significant value. &lt;/p&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           + &#39;This website presents an interactive demo of a set of machine learning methods we presented in our research paper: &#39;
+                           + &#39;&lt;a href=&#34;https://arxiv.org/pdf/2010.04452.pdf&#34; style=&#34;color:#004c8f;&#34; target=&#34;_blank&#34;&gt;EpidemiOptim: A Toolbox for the Optimization of Control &#39;
+                             &#39;Policies in Epidemiological Models&lt;/a&gt;. The full code of this toolbox is open-source and available on github &#39;
+                           + &#39;&lt;a href=&#34;https://github.com/flowersteam/EpidemiOptim&#34;&gt; here &lt;/a&gt;.&#39;
+                           + &#39;&lt;/p&gt;&#39;
+                           + &#39;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#39;
+                           +&#39;&lt;h3 &#39; + h3_style + &#39;Interact with trained models, design your own intervention strategy!&lt;/h3&gt;&#39;
+                           +&#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;To demonstrate the use of EpidemiOptim, we run experiments to optimize the design of an on/off lock-down policy in the context of the COVID-19 &#39;
+                            &#39;epidemic in the French region of Ile-de-France. &lt;/p&gt;&#39;
+                           + &#39;&lt;p align=&#34;justify&#34; &#39; + p_style + &#39;&gt;&#39;
+                           +&#39;We have two objectives here: minimizing the death toll and minimizing the economic recess. &#39;
+                           +&#39;In the tabs below, you will be able to &lt;span style=&#34;font-weight:500;&#34;&gt;explore strategies optimized by various optimization algorithms&lt;/span&gt;. &#39;
+                           +&#39;In the last tab, you will be able to &lt;span style=&#34;font-weight:500;&#34;&gt;design your own strategy&lt;/span&gt;, apply it over a year of epidemic and observe its health and economic consequences.&#39;
+                           +&#39;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt; &#39;
+
+                           +&#39;&lt;/font&gt;&#39;))
+    return intro_html</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.modify_description"><code class="name flex">
+<span>def <span class="ident">modify_description</span></span>(<span>slider)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def modify_description(slider):
+    desc=slider.description
+    slider.description=&#39;&#39;
+    sliderHbox=HBox([Label(desc,style={&#39;description_width&#39; : &#39;initial&#39;}),slider])
+    return sliderHbox</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.normalize"><code class="name flex">
+<span>def <span class="ident">normalize</span></span>(<span>x, data_min, data_max)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def normalize(x,data_min,data_max):
+    return (x - data_min) / (data_max - data_min)</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.plot_pareto"><code class="name flex">
+<span>def <span class="ident">plot_pareto</span></span>(<span>algorithm, size, color)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_pareto(algorithm,size,color):
+    # Plot pareto front
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    sign = 1
+    a = sign * algorithm.res_eval[&#39;F&#39;][:, 0]
+    b = sign * algorithm.res_eval[&#39;F&#39;][:, 1]
+    nb_points=a.shape[0]
+    sc = ax.scatter(a, b, picker=5)
+    ax.tick_params(axis=&#39;x&#39;, labelrotation=30,labelsize=12)
+    ax.tick_params(axis=&#39;y&#39;,labelsize=12)
+    colors = [color] * nb_points
+    sc.set_color(colors)
+    sizes = np.ones(nb_points) * size
+    sc.set_sizes(sizes)
+    ax.set_xlabel(&#39;Total Deaths&#39;,fontsize=14)
+    ax.set_ylabel(&#39;Total GDP Loss (B)&#39;,fontsize=14)
+
+    return fig,ax,sc</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.run_env_with_actions"><code class="name flex">
+<span>def <span class="ident">run_env_with_actions</span></span>(<span>actions, env, reset_same_model)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_env_with_actions(actions, env, reset_same_model):
+
+    additional_keys = (&#39;costs&#39;, &#39;constraints&#39;)
+    # Setup saved values
+    episode = dict(zip(additional_keys, [[] for _ in range(len(additional_keys))] ))
+    env_states = []
+    aggregated_costs = []
+    dones = []
+    if reset_same_model:
+        env.reset_same_model()
+    state = env.reset()
+    env_states.append(state)
+
+    done = False
+    t = 0
+    counter = 0
+    while not done:
+        # Interact
+        next_state, agg_cost, done, info = env.step(actions[counter])
+        # Save stuff
+        state = next_state
+        t = env.unwrapped.t
+        counter += 1
+        aggregated_costs.append(agg_cost)
+        env_states.append(state)
+        dones.append(done)
+
+        for k in additional_keys:
+            episode[k].append(info[k])
+
+    # Form episode dict
+    episode.update(env_states=np.array(env_states),
+                   aggregated_costs=np.array(aggregated_costs),
+                   actions=np.array(actions),
+                   dones=np.array(dones))
+
+    aggregated_costs = np.sum(episode[&#39;aggregated_costs&#39;])
+    costs = np.sum(episode[&#39;costs&#39;], axis=0)
+    stats = env.unwrapped.get_data()
+
+    return stats, costs</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.slider_setup"><code class="name flex">
+<span>def <span class="ident">slider_setup</span></span>(<span>slider)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def slider_setup(slider):
+    slider.layout.max_width = &#39;100%&#39;
+    #desc=slider.description
+    #slider.description=&#39;&#39;
+    #sliderHbox=HBox([Label(desc,style={&#39;description_width&#39; : &#39;initial&#39;}),slider])
+    return slider</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.test_layout"><code class="name flex">
+<span>def <span class="ident">test_layout</span></span>(<span>algorithm_str, seed, deterministic_model)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_layout(algorithm_str,seed,deterministic_model):
+    def update_algo_deter(change):
+        deterministic_model=change.new
+        algorithm, cost_function, env, params = setup_for_replay(folder+to_add , seed, deterministic_model)
+        return algorithm, cost_function, env, params
+    if seed is None:
+        seed = np.random.randint(1e6)
+    if algorithm_str == &#39;DQN&#39;:
+        to_add = &#39;0.5/&#39;
+        folder = get_repo_path() + &#34;/data/data_for_visualization/DQN/&#34;
+    elif algorithm_str==&#39;yourself&#39;:
+        folder = get_repo_path() + &#34;/data/data_for_visualization/NSGA/1/&#34;
+        to_add = &#39;&#39;
+    else:
+        to_add = &#39;&#39;
+        folder = get_repo_path() + &#34;/data/data_for_visualization/&#34;+ algorithm_str+ &#34;/1/&#34;
+    algorithm, cost_function, env, params = setup_for_replay(folder+to_add , seed, deterministic_model)
+
+    def get_lockdown_stats(stats):
+        lockdown = stats[&#39;history&#39;][&#39;lockdown&#39;]
+        n_lockdowns = sum(lockdown)
+        consecutive_locks = []
+        counter = 0
+        for a_prev, a in zip(lockdown[:-1], lockdown[1:]):
+            if a == 1:
+                counter += 1
+            else:
+                if a_prev == 1:
+                    consecutive_locks.append(counter)
+                    counter = 0
+        if len(consecutive_locks) == 0:
+            av_lockdown = 0
+        else:
+            av_lockdown = np.mean(consecutive_locks)
+        nb_lockdowns = len(consecutive_locks)
+        return int(n_lockdowns), av_lockdown, int(nb_lockdowns)
+
+    def get_costs(stats):
+        costs = np.array([stats[&#39;stats_run&#39;][&#39;to_plot&#39;][1], stats[&#39;stats_run&#39;][&#39;to_plot&#39;][4]])
+        return costs[:, -1]
+
+    def update_stats(stats, lockdown_stats, costs_stats):
+
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats.value = &#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39; + \
+                               &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                               &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                               &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&lt;br&gt;&#39;.format(n_lockdowns) + \
+                               &#39;&lt;/p&gt;&lt;/font&gt;&#39;
+        costs_stats.value = &#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39; + \
+                            &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(int(costs[0])) + \
+                            &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&#39;.format(costs[1]) + \
+                            &#39;&lt;/p&gt;&lt;/font&gt;&#39;
+
+    if algorithm_str == &#39;DQN&#39;:
+        is_deter=deter_checkbox()
+        str_html=algorithm_description(algorithm_str)
+        stats, msg = run_env(algorithm, env, first=True)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+        slider = FloatSlider(orientation=&#39;horizontal&#39;,description=&#39;beta:&#39;,value=0.5,
+                             min=0,
+                             max=1,
+                             step=0.05,layout={&#39;width&#39;: &#39;450px&#39;}
+                             )
+
+        slider=slider_setup(slider)
+        fig=canvas_setup(fig)
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39;
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&#39;.format(n_lockdowns) + \
+                                    &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+        fake_stats = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        costs_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39;
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(
+            int(costs[0])) + \
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&amp;nbsp;&lt;br&gt;&#39;.format(costs[1]) + \
+                                 &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        def update_lines(change):
+            beta=slider.value
+            deterministic_model=is_deter.value
+            algorithm, cost_function, env, params = setup_for_replay(folder + str(beta) + &#39;/&#39;, seed, deterministic_model)
+            stats, msg = run_env(algorithm, env, goal=np.array([beta]))
+            replot_stats(lines, stats, plots_i, cost_function, high)
+            update_fig(fig)
+            update_stats(stats, lockdown_stats, costs_stats)
+
+        slider.observe(update_lines, names=&#39;value&#39;)
+        is_deter.observe(update_lines,names=&#39;value&#39;)
+        final_layout = center_vbox([str_html,is_deter,slider,fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+        return final_layout
+    elif algorithm_str == &#39;NSGA&#39;:
+        is_deter=deter_checkbox()
+        str_html=algorithm_description(algorithm_str)
+        stats, msg = run_env(algorithm, env)
+        fig1, lines, plots_i, high, axs = setup_fig_notebook(stats)
+        size = 15
+        color = &#34;#004ab3&#34;
+        color_highlight = &#34;#b30000&#34;
+
+        fig,ax,sc=plot_pareto(algorithm,size,color)
+        data = sc.get_offsets().data
+        data_max = np.max(data, axis=0)
+        data_min = np.min(data, axis=0)
+        nb_points = data.shape[0]
+        
+        def normalize(x):
+            return (x - data_min) / (data_max - data_min)
+
+        normalized_data = normalize(data)
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39;
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&lt;br&gt;&#39;.format(n_lockdowns) + \
+                                    &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        fake_stats = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        costs_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39;
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(
+            int(costs[0])) + \
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&amp;nbsp;&lt;br&gt;&#39;.format(costs[1]) + \
+                                 &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+        def onclick2(event):
+            x = event.xdata
+            y = event.ydata
+
+            # find closest in dataset
+            point = np.array([x, y])
+            normalized_point = normalize(point)
+            dists = np.sqrt(np.sum((normalized_point - normalized_data) ** 2, axis=1))
+            closest_ind = np.argmin(dists)
+
+            # highlight it
+            order = np.concatenate([np.arange(closest_ind), np.arange(closest_ind + 1, nb_points), np.array([closest_ind])])
+            sc.set_offsets(data[order])
+            sizes = np.ones(nb_points) * size
+            sizes[-1] = size * 5
+            colors = [color] * nb_points
+            colors[-1] = color_highlight
+            sc.set_sizes(sizes)  # you can set you markers to different sizes
+            sc.set_color(colors)
+            # rerun env
+            weights = algorithm.res_eval[&#39;X&#39;][closest_ind]
+            algorithm.policy.set_params(weights)
+            stats, msg = run_env(algorithm, env)
+            replot_stats(lines, stats, plots_i, cost_function, high)
+            print(env.model.stochastic)
+            # refresh figure
+            update_fig(fig1)
+            update_fig(fig)
+            update_stats(stats, lockdown_stats, costs_stats)
+
+        def update_deter(change):
+            deterministic_model=change.new
+            env.model.stochastic = not deterministic_model
+            env.model.define_params_and_initial_state_distributions()
+        is_deter.observe(update_deter,names=&#39;value&#39;)
+        cid = fig.canvas.mpl_connect(&#39;button_press_event&#39;, onclick2)
+        fig=canvas_setup(fig)
+        fig1=canvas_setup(fig1)
+        final_layout = center_vbox([str_html,is_deter,fig.canvas, fig1.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+        return(final_layout)
+    elif &#39;GOAL_DQN&#39; in algorithm_str:
+        if cost_function.use_constraints:
+            goal = np.array([0.5, 1, 1])
+        else:
+            goal = np.array([0.5])
+        str_html=algorithm_description(algorithm_str)
+        
+        stats, msg = run_env(algorithm, env, goal, first=True)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39;
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&lt;br&gt;&#39;.format(n_lockdowns) + \
+                                    &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        fake_stats = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        costs_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39;
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(
+            int(costs[0])) + \
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&amp;nbsp;&lt;br&gt;&#39;.format(costs[1]) + \
+                                 &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        if cost_function.use_constraints:
+            # Plot constraints as dotted line.
+            style={&#39;description_width&#39;: &#39;150px&#39;}
+            M_sanitary = cost_function.costs[0].compute_constraint(1)
+            line, = axs[1].plot([0, params[&#39;simulation_horizon&#39;]],
+                                [M_sanitary, M_sanitary],
+                                c=&#39;k&#39;,
+                                linestyle=&#39;--&#39;)
+            lines.append(line)
+            M_economic = cost_function.costs[1].compute_constraint(1)
+            line, = axs[3].plot([0, params[&#39;simulation_horizon&#39;]],
+                                [M_economic, M_economic],
+                                c=&#39;k&#39;,
+                                linestyle=&#39;--&#39;)
+            lines.append(line)
+            #Define slider
+            slider_beta = FloatSlider(orientation=&#39;horizontal&#39;,
+                                            description=&#39;beta&#39;,
+                                            style = style,
+                                            value=0.5,
+                                            min=0,
+                                            max=1,
+                                            step=0.05,
+                                            layout={&#39;width&#39;: &#39;450px&#39;}
+                                            )
+            slider_M_sanitary = IntSlider(orientation=&#39;horizontal&#39;,
+                                            description=&#39;Sanitary constraint&#39;,
+                                            style = style,
+                                            value=62000,
+                                            min=1000,
+                                            max=62000,
+                                            step=5000,
+                                            layout={&#39;width&#39;: &#39;450px&#39;}
+                                            )   
+            slider_M_economic = IntSlider(orientation=&#39;horizontal&#39;,
+                                            description=&#39;Economic constraint&#39;,
+                                            style = style,
+                                            value=160,
+                                            min=20,
+                                            max=160,
+                                            step=20,
+                                            layout={&#39;width&#39;: &#39;450px&#39;}
+                                            )
+            slider_beta=slider_setup(slider_beta)
+            slider_M_sanitary=slider_setup(slider_M_sanitary)
+            slider_M_economic=slider_setup(slider_M_economic)
+            fig=canvas_setup(fig)
+            is_deter=deter_checkbox()
+            is_deter.style=style
+            is_deter.layout.width=&#39;200px&#39;
+
+
+            def update_const(change):
+                # normalize constraints
+                M_sanitary=slider_M_sanitary.value
+                M_economic=slider_M_economic.value
+                beta=slider_beta.value
+                deterministic_model=is_deter.value
+                algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model)
+                c_sanitary = cost_function.costs[0].compute_normalized_constraint(M_sanitary)
+                c_economic = cost_function.costs[1].compute_normalized_constraint(M_economic)
+                stats, msg = run_env(algorithm, env, goal=np.array([beta, c_sanitary, c_economic]))
+                replot_stats(lines, stats, plots_i, cost_function, high, constraints=[c_sanitary, c_economic])
+                update_fig(fig)
+                update_stats(stats, lockdown_stats, costs_stats)
+
+            slider_beta.observe(update_const, &#39;value&#39;)
+            slider_M_sanitary.observe(update_const, &#39;value&#39;)
+            slider_M_economic.observe(update_const, &#39;value&#39;)
+            is_deter.observe(update_const,names=&#39;value&#39;)
+
+            final_layout = center_vbox([str_html,
+                                        center_vbox([is_deter,slider_beta,slider_M_sanitary,slider_M_economic]),
+                                        fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+            return final_layout
+        else :
+            is_deter=deter_checkbox()
+            slider_goal = FloatSlider(orientation=&#39;horizontal&#39;,
+                                      description=&#39;beta:&#39;,
+                                      value=0.5,
+                                      min=0,
+                                      max=1,
+                                      step=0.05,
+                                      layout={&#39;width&#39;: &#39;450px&#39;}
+                                      )
+            slider_goal=slider_setup(slider_goal)
+
+
+            fig=canvas_setup(fig)
+
+            def update_goal(change):
+                beta=slider_goal.value
+                deterministic_model=is_deter.value
+                algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model)
+                stats, msg = run_env(algorithm, env, goal=np.array([beta]))
+                replot_stats(lines, stats, plots_i, cost_function, high)
+                update_fig(fig)
+                update_stats(stats, lockdown_stats, costs_stats)
+
+            slider_goal.observe(update_goal, names=&#39;value&#39;)
+            is_deter.observe(update_goal,names=&#39;value&#39;)
+            final_layout = center_vbox([str_html, is_deter, slider_goal,fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+            return final_layout
+    elif algorithm_str == &#39;yourself&#39;:
+        algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model=False)
+        style={&#39;description_width&#39;: &#39;250px&#39;, &#39;widget_width&#39;: &#39;50%&#39;}
+        run_eval = True
+        n_evals = 10  # number of evaluation rolloutsseed = None  # None picks a random seed
+        str_html=algorithm_description(algorithm_str)
+        global actions
+        actions = get_action_base(&#39;never&#39;)
+        stats, costs = run_env_with_actions(actions,env, reset_same_model=False)
+        fig1, lines, plots_i, high, axs = setup_fig_notebook(stats)
+        size = 15
+        color = &#34;#004ab3&#34;
+        color_highlight = &#34;#b30000&#34;
+        n_lockdowns, av_lockdown, nb_lockdowns = get_lockdown_stats(stats)
+        costs = get_costs(stats)
+        lockdown_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Lockdown statistics:&lt;/span&gt;&lt;br&gt;&#39;
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Number of lockdown periods: {}&lt;br&gt;&#39;.format(nb_lockdowns) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Average lockdown length: {:.2f} days&lt;br&gt;&#39;.format(av_lockdown) + \
+                                    &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Total under lockdown: {} days&lt;br&gt;&#39;.format(n_lockdowns) + \
+                                    &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        fake_stats = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        costs_stats = HTML(value=&#39;&lt;font size=3&gt;&lt;p&gt;&lt;span style=&#34;font-weight:500;&#34;&gt;Cumulative costs:&lt;/span&gt;&lt;br&gt;&#39;
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sanitary cost: {} deaths&lt;br&gt;&#39;.format(
+            int(costs[0])) + \
+                                 &#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Economic cost: {:.2f} B€.&lt;br&gt;&amp;nbsp;&lt;br&gt;&#39;.format(costs[1]) + \
+                                 &#39;&lt;/p&gt;&lt;/font&gt;&#39;)
+
+        fig,ax,sc=plot_pareto(algorithm,size,color)
+        data = sc.get_offsets().data
+        off_sets = sc.get_offsets()
+        data_max = np.max(data, axis=0)
+        data_min = np.min(data, axis=0)
+        nb_points = data.shape[0]
+        set_button = Button(value=True,
+                                      description=&#39;Set to pattern&#39;,
+                                      disabled=False,
+                                      button_style=&#39;&#39;,  # &#39;success&#39;, &#39;info&#39;, &#39;warning&#39;, &#39;danger&#39; or &#39;&#39;
+                                      layout=Layout(width=&#39;30%&#39;, height=&#39;50px&#39;),
+                                      style=style,
+                                      tooltip=&#39;Click to reset to pattern defined above.&#39;,
+                                      icon=&#39;check&#39;  # (FontAwesome names without the `fa-` prefix)
+                                      )
+
+        run_button = Button(value=True,
+                            description=&#39;Run simulations&#39;,
+                            disabled=False,
+                            button_style=&#39;&#39;,  # &#39;success&#39;, &#39;info&#39;, &#39;warning&#39;, &#39;danger&#39; or &#39;&#39;
+                            layout=Layout(width=&#39;30%&#39;, height=&#39;50px&#39;),
+                            style=style,
+                            tooltip=&#39;Click to run a simulation with the intervention defined by the checkboxes.&#39;,
+                            icon=&#39;check&#39;  # (FontAwesome names without the `fa-` prefix)
+                            )
+        start = Dropdown(options=[str(i) for i in range(1, 54)],
+                                 value=&#39;1&#39;,
+                                 description=&#34;# weeks before pattern starts&#34;,
+                                 layout=Layout(width=&#39;35%&#39;, height=&#39;30px&#39;),
+                                 style=style)
+
+        stop = Dropdown(options=[str(i) for i in range(1, 55)],
+                                 value=&#39;54&#39;,
+                                 description=&#34;# weeks before pattern stops&#34;,
+                                 layout=Layout(width=&#39;35%&#39;, height=&#39;30px&#39;),
+                                 style=style)
+
+        nb_weeks = Dropdown(options=[str(i) for i in range(0, 54)],
+                                    value=&#39;0&#39;,
+                                    description=&#34;Duration of lockdown phase (weeks)&#34;,
+                                    layout=Layout(width=&#39;35%&#39;, height=&#39;30px&#39;),
+                                    style=style)
+
+        every = Dropdown(options=[str(i) for i in range(1, 54)],
+                                 value=&#39;1&#39;,
+                                 description=&#34;Duration of the cycle or period (weeks)&#34;,
+                                 layout=Layout(width=&#39;35%&#39;, height=&#39;30px&#39;),
+                                 style=style)
+        fake_stats1 = HTML(value=&#39;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#39;)
+        names = [&#39;start&#39;,&#39;stop&#39;, &#39;fake&#39;, &#39;nb_weeks&#39;, &#39;every&#39;, &#39;fake&#39;, &#39;set_button&#39;, &#39;fake&#39;, &#39;run_button&#39;, &#39;fake&#39;]
+        checkbox_objects = [start,stop,fake_stats1, nb_weeks,every, fake_stats1, set_button, fake_stats1, run_button, fake_stats1]
+        arg_dict_2 = {names[i]: checkbox for i, checkbox in enumerate(checkbox_objects)}
+        for i in range(52):
+            desc=&#39;Week {}&#39;.format(i + 1)
+            checkbox_objects.append(Checkbox(value=False, description=desc))
+            names.append(desc)
+        arg_dict = {names[i]: checkbox for i, checkbox in enumerate(checkbox_objects)}
+        del arg_dict[&#39;set_button&#39;]
+        del arg_dict[&#39;run_button&#39;]
+        box_layout = Layout(overflow_y=&#39;auto&#39;,
+                    #border=&#39;3px solid black&#39;,
+                    #height=&#39;450px&#39;,
+                    display=&#39;block&#39;,width=&#39;950px&#39;)
+        # ui = Box(children=checkbox_objects, layout=box_layout)
+        ui=try_it_ui(checkbox_objects,box_layout)
+        # global ACT
+        # ACT = np.zeros([52])
+        def update_try(**kwargs):
+            # start=int(kwargs[&#39;start&#39;])-1
+            # stop=int(kwargs[&#39;stop&#39;])-1
+            # nb_weeks=int(kwargs[&#39;nb_weeks&#39;])
+            # every=int(kwargs[&#39;every&#39;])
+            # action_str = str(nb_weeks) + &#39;_&#39; + str(every)
+            # set_button=kwargs[&#39;set_button&#39;]
+            # t_i = time.time()
+            # actions = get_action_base(action_str, start, stop)
+            # if not np.all(ACT == actions):
+            #     assert False
+            #     ACT = actions.copy()
+            # if set_button:
+            #     for i in range(52):
+            #         checkbox_objects[8+i].value = bool(actions[i])
+            #
+            actions = np.array([int(kwargs[&#39;Week {}&#39;.format(i+1)]) for i in range(52)])
+            # for i in range(52):
+            #     actions[i] = int(kwargs[&#39;Week {}&#39;.format(i+1)])
+            # stats, costs = run_env_with_actions(actions, env, reset_same_model=deterministic_model)
+            # # if run_eval:
+            # #     all_costs = [run_env_with_actions(actions, env, reset_same_model=False)[1] for _ in range(n_evals)]
+            # #     all_costs = np.array(all_costs)
+            # #     print(all_costs)
+            # #     means = all_costs.mean(axis=0)
+            # #     x, y = means
+            # #     stds = all_costs.std(axis=0)
+            # #     # msg = &#39;\nEvaluation (over {} seeds):&#39;.format(n_evals)
+            # #     # msg += &#39;\n\t Death toll: {} +/- {}&#39;.format(int(means[0]), int(stds[0]))
+            # #     # msg += &#39;\n\t Economic cost: {:.2f} +/- {:.2f} B€.&#39;.format(int(means[1]), int(stds[1]))
+            # #     # print(msg)
+            # # else:
+            # x, y = costs
+            # # print(&#39;\nDeath toll: {}, Economic cost: {:.2f} B€.&#39;.format(int(costs[0]), costs[1]))
+            # replot_stats(lines, stats, plots_i, cost_function, high)
+            #
+            # # update PAreto:
+            # new_offsets = np.concatenate([off_sets, np.array([[x, y]])], axis=0)
+            # sc.set_offsets(new_offsets)
+            # new_colors = [color] * nb_points + [color_highlight]
+            # sc.set_color(new_colors)
+            # new_sizes = [size] * nb_points + [size * 2]
+            # sc.set_sizes(new_sizes)
+            #
+            # update_fig(fig)
+            # update_fig(fig1)
+            # update_stats(stats, lockdown_stats, costs_stats)
+            return actions
+
+        def update_set_pattern(b):
+            start_value = int(start.value) - 1
+            stop_value = int(stop.value) - 1
+            nb_weeks_value = int(nb_weeks.value)
+            every_value = int(every.value)
+
+            # start = int(kwargs[&#39;start&#39;]) - 1
+            # stop = int(kwargs[&#39;stop&#39;]) - 1
+            # nb_weeks = int(kwargs[&#39;nb_weeks&#39;])
+            # every = int(kwargs[&#39;every&#39;])
+            action_str = str(nb_weeks_value) + &#39;_&#39; + str(every_value)
+            actions = get_action_base(action_str, start_value, stop_value)
+            for i in range(52):
+                checkbox_objects[10 + i].value = bool(actions[i])
+
+        def run_simulation(b):
+            actions = np.array([int(cb.value) for cb in checkbox_objects[10:]])
+            stats, costs = run_env_with_actions(actions, env, reset_same_model=deterministic_model)
+            if run_eval:
+                all_costs = [run_env_with_actions(actions, env, reset_same_model=False)[1] for _ in range(n_evals)]
+                all_costs = np.array(all_costs)
+                means = all_costs.mean(axis=0)
+                x, y = means
+            else:
+                x, y = costs
+            # print(&#39;\nDeath toll: {}, Economic cost: {:.2f} B€.&#39;.format(int(costs[0]), costs[1]))
+            replot_stats(lines, stats, plots_i, cost_function, high)
+
+            # update PAreto:
+            new_offsets = np.concatenate([off_sets, np.array([[x, y]])], axis=0)
+            sc.set_offsets(new_offsets)
+            new_colors = [color] * nb_points + [color_highlight]
+            sc.set_color(new_colors)
+            new_sizes = [size] * nb_points + [size * 2]
+            sc.set_sizes(new_sizes)
+
+            update_fig(fig)
+            update_fig(fig1)
+            update_stats(stats, lockdown_stats, costs_stats)
+            return actions
+
+        out = interactive_output(update_try, arg_dict)
+        # out2 = interactive_output(update_set_pattern, arg_dict_2)
+        set_button.on_click(update_set_pattern)
+        run_button.on_click(run_simulation)
+
+        fig=canvas_setup(fig)
+        fig1=canvas_setup(fig1)
+        final_layout = center_vbox([str_html,ui,fig.canvas, fig1.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
+        return final_layout
+    else:
+        raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.try_it_ui"><code class="name flex">
+<span>def <span class="ident">try_it_ui</span></span>(<span>checkbox_objects, box_layout)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def try_it_ui(checkbox_objects,box_layout):
+    number_of_week=52
+    number_of_week_per_row=5
+    offset_button=10
+
+    weekBox=Box(children=[])
+    for i in range(int(number_of_week/number_of_week_per_row)):
+        weekBox=VBox([weekBox,Box(checkbox_objects[number_of_week_per_row*(i)+offset_button:
+                                                   number_of_week_per_row*(i+1)+offset_button])])
+    setBox=Box([checkbox_objects[6]],layout=Layout(display=&#39;flex&#39;,
+                                                   flex_flow=&#39;column&#39;,
+                                                   align_items=&#39;center&#39;,
+                                                   width=&#39;100%&#39;))
+    runBox = Box([checkbox_objects[8]], layout=Layout(display=&#39;flex&#39;,
+                                                      flex_flow=&#39;column&#39;,
+                                                      align_items=&#39;center&#39;,
+                                                      width=&#39;100%&#39;))
+    ui=Box(children=[HBox([checkbox_objects[0], checkbox_objects[2], checkbox_objects[1]]),
+                     checkbox_objects[2],
+                     HBox([checkbox_objects[3], checkbox_objects[2], checkbox_objects[4]]),
+                     checkbox_objects[5],
+                     setBox,
+                     checkbox_objects[7],
+                     weekBox,
+                     checkbox_objects[7],
+                     runBox,
+                     checkbox_objects[7],
+                     ]
+            ,layout=box_layout)
+    return ui</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.server_utils.update_fig"><code class="name flex">
+<span>def <span class="ident">update_fig</span></span>(<span>fig)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_fig(fig):
+    fig.canvas.draw_idle()
+    fig.canvas.draw()
+    fig.canvas.flush_events()
+    return fig</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="epidemioptim.analysis" href="index.html">epidemioptim.analysis</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="epidemioptim.analysis.server_utils.algorithm_description" href="#epidemioptim.analysis.server_utils.algorithm_description">algorithm_description</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.canvas_setup" href="#epidemioptim.analysis.server_utils.canvas_setup">canvas_setup</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.center_vbox" href="#epidemioptim.analysis.server_utils.center_vbox">center_vbox</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.deter_checkbox" href="#epidemioptim.analysis.server_utils.deter_checkbox">deter_checkbox</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.footer" href="#epidemioptim.analysis.server_utils.footer">footer</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.introduction" href="#epidemioptim.analysis.server_utils.introduction">introduction</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.modify_description" href="#epidemioptim.analysis.server_utils.modify_description">modify_description</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.normalize" href="#epidemioptim.analysis.server_utils.normalize">normalize</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.plot_pareto" href="#epidemioptim.analysis.server_utils.plot_pareto">plot_pareto</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.run_env_with_actions" href="#epidemioptim.analysis.server_utils.run_env_with_actions">run_env_with_actions</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.slider_setup" href="#epidemioptim.analysis.server_utils.slider_setup">slider_setup</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.test_layout" href="#epidemioptim.analysis.server_utils.test_layout">test_layout</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.try_it_ui" href="#epidemioptim.analysis.server_utils.try_it_ui">try_it_ui</a></code></li>
+<li><code><a title="epidemioptim.analysis.server_utils.update_fig" href="#epidemioptim.analysis.server_utils.update_fig">update_fig</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+</footer>
+</body>
+</html>

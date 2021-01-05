@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.1" />
+<title>epidemioptim.analysis.notebook_utils API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>epidemioptim.analysis.notebook_utils</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import json
+import numpy as np
+import matplotlib.pyplot as plt
+from epidemioptim.utils import set_seeds, get_repo_path
+from ipywidgets import *
+
+# # # # # # # # # # # # # # # # # # # # # # # #
+# Notebook utils
+# # # # # # # # # # # # # # # # # # # # # # # #
+
+def setup_diy(seed, run_eval, n_evals, deterministic_model):
+
+    if run_eval:
+        deterministic_model = False
+
+    algorithm, cost_function, env, params = setup_for_replay(get_repo_path() + &#34;/data/data_for_visualization/NSGA/1/&#34;, seed, deterministic_model)
+
+    def run_env_with_actions(actions, reset_same_model):
+
+        additional_keys = (&#39;costs&#39;, &#39;constraints&#39;)
+        # Setup saved values
+        episode = dict(zip(additional_keys, [[] for _ in range(len(additional_keys))] ))
+        env_states = []
+        aggregated_costs = []
+        dones = []
+        if reset_same_model:
+            env.reset_same_model()
+        state = env.reset()
+        env_states.append(state)
+
+        done = False
+        t = 0
+        counter = 0
+        while not done:
+            # Interact
+            next_state, agg_cost, done, info = env.step(actions[counter])
+
+            # Save stuff
+            state = next_state
+            t = env.unwrapped.t
+            counter += 1
+            aggregated_costs.append(agg_cost)
+            env_states.append(state)
+            dones.append(done)
+
+            for k in additional_keys:
+                episode[k].append(info[k])
+
+        # Form episode dict
+        episode.update(env_states=np.array(env_states),
+                       aggregated_costs=np.array(aggregated_costs),
+                       actions=np.array(actions),
+                       dones=np.array(dones))
+
+        aggregated_costs = np.sum(episode[&#39;aggregated_costs&#39;])
+        costs = np.sum(episode[&#39;costs&#39;], axis=0)
+        stats = env.unwrapped.get_data()
+
+        return stats, costs
+    global actions
+    actions = get_action_base(&#39;never&#39;)
+    stats, costs = run_env_with_actions(actions, reset_same_model=False)
+    fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+    #NSGA:
+
+    # Plot pareto front
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    sign = 1
+    a = sign * algorithm.res_eval[&#39;F&#39;][:, 0]
+    b = sign * algorithm.res_eval[&#39;F&#39;][:, 1]
+    sc = ax.scatter(a, b, picker=5)
+    data = sc.get_offsets().data
+    off_sets = sc.get_offsets()
+    nb_points = data.shape[0]
+
+    size = 30
+    color = &#34;#004ab3&#34;
+    color_highlight = &#34;#b30000&#34;
+    old_colors = [color] * nb_points
+    sc.set_color(old_colors)
+    sizes = np.ones(nb_points) * size
+    sc.set_sizes(sizes)
+    text = ax.text(0, 0, &#34;&#34;, va=&#34;bottom&#34;, ha=&#34;left&#34;)
+
+
+
+    checkboxes = [widgets.Checkbox(value=False,
+                                   description=&#39;Week {}&#39;.format(i + 1),
+                                   disabled=False,
+                                   indent=False) for i in range(53)]
+    button_widgets_ = dict(zip([&#39;Week {}&#39;.format(i) for i in range(53)],
+                              checkboxes))
+
+    start = widgets.Dropdown(options=[str(i) for i in range(1, 54)],
+                             value=&#39;1&#39;,
+                             description=&#34;# weeks before pattern starts&#34;,
+                             layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                             style={&#39;description_width&#39;: &#39;initial&#39;, &#39;widget_width&#39;: &#39;50%&#39;})
+
+    stop = widgets.Dropdown(options=[str(i) for i in range(1, 55)],
+                             value=&#39;54&#39;,
+                             description=&#34;# weeks before pattern stops&#34;,
+                             layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                             style={&#39;description_width&#39;: &#39;initial&#39;, &#39;widget_width&#39;: &#39;50%&#39;})
+
+    nb_weeks = widgets.Dropdown(options=[str(i) for i in range(0, 54)],
+                            value=&#39;0&#39;,
+                            description=&#34;Duration of lockdown phase (weeks)&#34;,
+                            layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                            style={&#39;description_width&#39;: &#39;initial&#39;, &#39;widget_width&#39;: &#39;50%&#39;})
+
+    every = widgets.Dropdown(options=[str(i) for i in range(1, 54)],
+                                value=&#39;1&#39;,
+                                description=&#34;Duration of the cycle or period (weeks)&#34;,
+                                layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                                style={&#39;description_width&#39;: &#39;initial&#39;, &#39;widget_width&#39;: &#39;50%&#39;})
+
+    set_button = widgets.ToggleButton(value=True,
+                                      description=&#39;Set to pattern&#39;,
+                                      disabled=False,
+                                      button_style=&#39;&#39;,  # &#39;success&#39;, &#39;info&#39;, &#39;warning&#39;, &#39;danger&#39; or &#39;&#39;
+                                      layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                                      style={&#39;description_width&#39;: &#39;initial&#39;},
+                                      tooltip=&#39;Description&#39;,
+                                      icon=&#39;check&#39;  # (FontAwesome names without the `fa-` prefix)
+                                      )
+
+    @interact(start=start, stop=stop, nb_weeks=nb_weeks, every=every, set_button=set_button, **button_widgets_)
+    def update(start, stop, nb_weeks, every, set_button, **button_widgets):
+
+        start = int(start) - 1
+        stop = int(stop) - 1
+        nb_weeks = int(nb_weeks)
+        every = int(every)
+        action_str = str(nb_weeks) + &#39;_&#39; + str(every)
+        if set_button:
+            print(&#39;Set to pattern. Closing {} weeks every {} weeks.&#39;.format(nb_weeks, every))
+        else:
+            print(&#39;Custom strategy.&#39;)
+
+            if every &lt; nb_weeks:
+                print(&#39;When &#34;every&#34; is superior or equal to &#34;nb_weeks&#34;, lockdown is always on.&#39;)
+        actions = get_action_base(action_str, start, stop)
+
+        if set_button:
+            for i in range(53):
+                button_widgets_[&#39;Week {}&#39;.format(i)].value = bool(actions[i])
+        else:
+            for i in range(53):
+                actions[i] = int(button_widgets[&#39;Week {}&#39;.format(i)])
+
+        stats, costs = run_env_with_actions(actions, reset_same_model=deterministic_model)
+
+        if run_eval:
+            all_costs = [run_env_with_actions(actions, reset_same_model=False)[1] for _ in range(n_evals)]
+            all_costs = np.array(all_costs)
+            print(all_costs)
+            means = all_costs.mean(axis=0)
+            x, y = means
+            stds = all_costs.std(axis=0)
+            msg = &#39;\nEvaluation (over {} seeds):&#39;.format(n_evals)
+            msg += &#39;\n\t Death toll: {} +/- {}&#39;.format(int(means[0]), int(stds[0]))
+            msg += &#39;\n\t Economic cost: {:.2f} +/- {:.2f} B€.&#39;.format(int(means[1]), int(stds[1]))
+            print(msg)
+        else:
+            x, y = costs
+        print(&#39;\nDeath toll: {}, Economic cost: {:.2f} B€.&#39;.format(int(costs[0]), costs[1]))
+        replot_stats(lines, stats, plots_i, cost_function, high)
+
+        # update PAreto:
+        new_offsets = np.concatenate([off_sets, np.array([[x, y]])], axis=0)
+        sc.set_offsets(new_offsets)
+        new_colors = [color] * nb_points + [color_highlight]
+        sc.set_color(new_colors)
+        new_sizes = [size] * nb_points + [size * 2]
+        sc.set_sizes(new_sizes)
+
+        fig.canvas.draw_idle()
+
+    return actions
+
+
+
+
+def setup_visualization(folder, algorithm_str, seed, deterministic_model):
+    if seed is None:
+        seed = np.random.randint(1e6)
+    if algorithm_str == &#39;DQN&#39;:
+        to_add = &#39;0.5/&#39;
+    else:
+        to_add = &#39;&#39;
+    algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model)
+    if algorithm_str == &#39;NSGA&#39;:
+        stats, msg = run_env(algorithm, env)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+        # Plot pareto front
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        sign = 1
+        a = sign * algorithm.res_eval[&#39;F&#39;][:, 0]
+        b = sign * algorithm.res_eval[&#39;F&#39;][:, 1]
+        sc = ax.scatter(a, b, picker=5)
+        data = sc.get_offsets().data
+        data_max = np.max(data, axis=0)
+        data_min = np.min(data, axis=0)
+        nb_points = data.shape[0]
+
+        def normalize(x):
+            return (x - data_min) / (data_max - data_min)
+
+        normalized_data = normalize(data)
+        size = 30
+        color = &#34;#004ab3&#34;
+        color_highlight = &#34;#b30000&#34;
+        colors = [color] * nb_points
+        sc.set_color(colors)
+        sizes = np.ones(nb_points) * size
+        sc.set_sizes(sizes)
+        text = ax.text(0, 0, &#34;&#34;, va=&#34;bottom&#34;, ha=&#34;left&#34;)
+
+        def onclick(event):
+            x = event.xdata
+            y = event.ydata
+
+            # find closest in dataset
+            point = np.array([x, y])
+            normalized_point = normalize(point)
+            dists = np.sqrt(np.sum((normalized_point - normalized_data) ** 2, axis=1))
+            closest_ind = np.argmin(dists)
+
+            # highlight it
+            sizes = np.ones(nb_points) * size
+            sizes[closest_ind] = size * 3
+            colors = [color] * nb_points
+            colors[closest_ind] = color_highlight
+            sc.set_sizes(sizes)  # you can set you markers to different sizes
+            sc.set_color(colors)
+
+            # rerun env
+            weights = algorithm.res_eval[&#39;X&#39;][closest_ind]
+            algorithm.policy.set_params(weights)
+            stats, msg = run_env(algorithm, env)
+            print(msg)
+            replot_stats(lines, stats, plots_i, cost_function, high)
+
+            # refresh figure
+            fig1.canvas.draw_idle()
+            tx = &#39;button=%d, x=%d, y=%d, xdata=%f, ydata=%f&#39; % (event.button, event.x, event.y, event.xdata, event.ydata)
+            text.set_text(tx)
+
+        cid = fig.canvas.mpl_connect(&#39;button_press_event&#39;, onclick)
+        plt.show()
+    elif &#39;GOAL_DQN&#39; in algorithm_str:
+        if cost_function.use_constraints:
+            goal = np.array([0.5, 1, 1])
+        else:
+            goal = np.array([0.5])
+
+        stats, msg = run_env(algorithm, env, goal, first=True)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+        if cost_function.use_constraints:
+            # Plot constraints as dotted line.
+            M_sanitary = cost_function.costs[0].compute_constraint(1)
+            line, = axs[1].plot([0, params[&#39;simulation_horizon&#39;]],
+                                [M_sanitary, M_sanitary],
+                                c=&#39;k&#39;,
+                                linestyle=&#39;--&#39;)
+            lines.append(line)
+            M_economic = cost_function.costs[1].compute_constraint(1)
+            line, = axs[3].plot([0, params[&#39;simulation_horizon&#39;]],
+                                [M_economic, M_economic],
+                                c=&#39;k&#39;,
+                                linestyle=&#39;--&#39;)
+            lines.append(line)
+
+            # Define the update function for model 2
+            def update(beta=widgets.FloatSlider(min=0, max=1, step=0.05, value=0.5),
+                       M_sanitary=widgets.FloatSlider(min=1000, max=62000, step=5000, value=62000),
+                       M_economic=widgets.FloatSlider(min=20, max=160, step=20, value=160)):
+                # normalize constraints
+                c_sanitary = cost_function.costs[0].compute_normalized_constraint(M_sanitary)
+                c_economic = cost_function.costs[1].compute_normalized_constraint(M_economic)
+                print(c_sanitary, c_economic)
+                stats, msg = run_env(algorithm, env, goal=np.array([beta, c_sanitary, c_economic]))
+                replot_stats(lines, stats, plots_i, cost_function, high, constraints=[c_sanitary, c_economic])
+                fig.canvas.draw_idle()
+                print(msg)
+        else:
+            # Define the update function for model 1
+            def update(beta=widgets.FloatSlider(min=0, max=1, step=0.05, value=0.5)):
+                stats, msg = run_env(algorithm, env, goal=np.array([beta]))
+                print(msg)
+                msg = &#39;&#39;
+                replot_stats(lines, stats, plots_i, cost_function, high)
+
+                fig.canvas.draw_idle()
+        interact(update);
+    elif algorithm_str == &#39;DQN&#39;:
+        stats, msg = run_env(algorithm, env, first=True)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+        # Define the update function
+        def update(beta=widgets.FloatSlider(min=0, max=1, step=0.05, value=0.5)):
+            print(&#39;Load a new DQN model for beta = {}&#39;.format(beta))
+            # Load a new DQN model for each new beta
+            algorithm, cost_function, env, params = setup_for_replay(folder + str(beta) + &#39;/&#39;, seed, deterministic_model)
+            stats, msg = run_env(algorithm, env, goal=np.array([beta]))
+            print(msg)
+            msg = &#39;&#39;
+            replot_stats(lines, stats, plots_i, cost_function, high)
+            fig.canvas.draw_idle()
+        interact(update);
+
+    else:
+        raise NotImplementedError
+
+
+
+def setup_for_replay(folder, seed=np.random.randint(1e6), deterministic_model=False):
+    from epidemioptim.environments.models import get_model
+    from epidemioptim.environments.cost_functions import get_cost_function
+    from epidemioptim.environments.gym_envs import get_env
+    from epidemioptim.optimization import get_algorithm
+
+    # print(&#39;Replaying: &#39;, folder)
+    with open(folder + &#39;params.json&#39;, &#39;r&#39;) as f:
+        params = json.load(f)
+
+    if deterministic_model:
+        params[&#39;model_params&#39;][&#39;stochastic&#39;] = False
+    params[&#39;logdir&#39;] = None#get_repo_path() + &#39;data/results/experiments&#39; + params[&#39;logdir&#39;].split(&#39;EpidemicDiscrete-v0&#39;)[1]
+    model = get_model(model_id=params[&#39;model_id&#39;],
+                        params=params[&#39;model_params&#39;])
+
+    # update reward params
+    params[&#39;cost_params&#39;][&#39;N_region&#39;] = int(model.pop_sizes[params[&#39;model_params&#39;][&#39;region&#39;]])
+    params[&#39;cost_params&#39;][&#39;N_country&#39;] = int(np.sum(list(model.pop_sizes.values())))
+
+    # set_seeds(seed)
+
+    cost_function = get_cost_function(cost_function_id=params[&#39;cost_id&#39;],
+                                      params=params[&#39;cost_params&#39;])
+
+    # Form the Gym-like environment
+    env = get_env(env_id=params[&#39;env_id&#39;],
+                  cost_function=cost_function,
+                  model=model,
+                  simulation_horizon=params[&#39;simulation_horizon&#39;],
+                  seed=seed)
+
+    # Get DQN algorithm parameterized by beta
+    algorithm = get_algorithm(algo_id=params[&#39;algo_id&#39;],
+                              env=env,
+                              params=params)
+
+
+    if params[&#39;algo_id&#39;] == &#39;NSGAII&#39;:
+        algorithm.load_model(folder + &#39;res_eval.pk&#39;)
+    else:
+        algorithm.load_model(folder + &#39;models/best_model.cp&#39;)
+
+    return algorithm, cost_function, env, params
+
+def replot_stats(lines, stats, plots_i, cost_function, high, constraints=None):
+    states = stats[&#39;stats_run&#39;][&#39;to_plot&#39;]
+    lockdown = np.array(stats[&#39;history&#39;][&#39;lockdown&#39;])
+    inds_lockdown = np.argwhere(lockdown == 1).flatten()
+    for i in range(len(plots_i)):
+        ind = plots_i[i]
+        lines[i].set_ydata(states[ind])
+        lines[i + 4].set_offsets(np.array([inds_lockdown, np.ones([inds_lockdown.size]) * (high[i] * 0.98)]).transpose())
+    if constraints:
+        c_death = cost_function.costs[0].compute_constraint(constraints[0])
+        lines[-2].set_ydata([c_death, c_death])
+        c_eco = cost_function.costs[1].compute_constraint(constraints[1])
+        lines[-1].set_ydata([c_eco, c_eco])
+        #print(c_death, c_eco)
+
+def run_env(algorithm, env, goal=None, first=False):
+    res, costs = algorithm.evaluate(n=1, goal=goal, reset_same_model= not first)
+    msg = &#39;----------------\n&#39;
+    for k in res.keys():
+        msg += str(k) + &#39;: {:.2f}\n&#39;.format(res[k])
+    stats = env.unwrapped.get_data()
+    return stats, msg
+
+def setup_fig_notebook(stats):
+    labels = stats[&#39;stats_run&#39;][&#39;labels&#39;]
+    t = stats[&#39;history&#39;][&#39;env_timesteps&#39;][1:]
+    states = stats[&#39;stats_run&#39;][&#39;to_plot&#39;]
+    lockdown = np.array(stats[&#39;history&#39;][&#39;lockdown&#39;])
+    legends = stats[&#39;stats_run&#39;][&#39;legends&#39;]
+    time_step_size = 1
+    inds_lockdown = np.argwhere(lockdown == 1).flatten() * time_step_size
+    high = [3100, 67000, 1, 180]
+
+    fig1, axs = plt.subplots(2, 2, figsize=(9, 7))
+    axs = axs.ravel()
+    lines = []
+    plots_i = [0, 1, 3, 4]
+    for i in range(len(plots_i)):
+        ind = plots_i[i]
+        axs[i].set_ylim([0, high[i]])
+        axs[i].set_xlim([0, 365])
+        axs[i].set_xlabel(&#39;days&#39;)
+        axs[i].set_ylabel(labels[ind])
+        if isinstance(states[ind], list):
+            line, axs[i].plot(t, np.array(states[ind]).transpose())
+            if legends is not None:
+                if legends[ind] is not None:
+                    axs[i].legend(legends[ind])
+        else:
+            line, = axs[i].plot(t, states[ind])
+        # line, = axs[i].plot(t, states[:, i])
+        lines.append(line)
+    for i in range(len(plots_i)):
+        line = axs[i].scatter(inds_lockdown, np.ones([inds_lockdown.size]) * (high[i] * 0.9),
+                              s=10,
+                              c=&#39;r&#39;)
+        lines.append(line)
+    return fig1, lines, plots_i, high, axs
+
+def get_action_base(action_str, start=None, stop=None, duration=53):
+    actions = np.zeros([duration])
+    if action_str == &#39;always&#39;:
+        actions = np.ones([duration])
+        if isinstance(start, int):
+            actions[:start] = 0
+        if isinstance(stop, int):
+            actions[stop:] = 0
+    elif action_str == &#39;never&#39;:
+        actions = np.zeros([duration])
+    else:
+        splitted_act_str = action_str.split(&#39;_&#39;)
+        nb_weeks = int(splitted_act_str[0])
+        every = int(splitted_act_str[-1])
+        start_week = 0
+        stop_week = 53
+        if isinstance(start, int):
+            start_week = start
+        if isinstance(stop, int):
+            stop_week = stop
+        counter = start_week
+        on = True
+        while counter &lt; stop_week:
+            if on:
+                actions[counter: min(counter + nb_weeks, stop_week)] = 1
+                counter += nb_weeks
+                on = False
+            else:
+                on = True
+                counter += max(every - nb_weeks, 0)
+    return actions</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="epidemioptim.analysis.notebook_utils.get_action_base"><code class="name flex">
+<span>def <span class="ident">get_action_base</span></span>(<span>action_str, start=None, stop=None, duration=53)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_action_base(action_str, start=None, stop=None, duration=53):
+    actions = np.zeros([duration])
+    if action_str == &#39;always&#39;:
+        actions = np.ones([duration])
+        if isinstance(start, int):
+            actions[:start] = 0
+        if isinstance(stop, int):
+            actions[stop:] = 0
+    elif action_str == &#39;never&#39;:
+        actions = np.zeros([duration])
+    else:
+        splitted_act_str = action_str.split(&#39;_&#39;)
+        nb_weeks = int(splitted_act_str[0])
+        every = int(splitted_act_str[-1])
+        start_week = 0
+        stop_week = 53
+        if isinstance(start, int):
+            start_week = start
+        if isinstance(stop, int):
+            stop_week = stop
+        counter = start_week
+        on = True
+        while counter &lt; stop_week:
+            if on:
+                actions[counter: min(counter + nb_weeks, stop_week)] = 1
+                counter += nb_weeks
+                on = False
+            else:
+                on = True
+                counter += max(every - nb_weeks, 0)
+    return actions</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.notebook_utils.replot_stats"><code class="name flex">
+<span>def <span class="ident">replot_stats</span></span>(<span>lines, stats, plots_i, cost_function, high, constraints=None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def replot_stats(lines, stats, plots_i, cost_function, high, constraints=None):
+    states = stats[&#39;stats_run&#39;][&#39;to_plot&#39;]
+    lockdown = np.array(stats[&#39;history&#39;][&#39;lockdown&#39;])
+    inds_lockdown = np.argwhere(lockdown == 1).flatten()
+    for i in range(len(plots_i)):
+        ind = plots_i[i]
+        lines[i].set_ydata(states[ind])
+        lines[i + 4].set_offsets(np.array([inds_lockdown, np.ones([inds_lockdown.size]) * (high[i] * 0.98)]).transpose())
+    if constraints:
+        c_death = cost_function.costs[0].compute_constraint(constraints[0])
+        lines[-2].set_ydata([c_death, c_death])
+        c_eco = cost_function.costs[1].compute_constraint(constraints[1])
+        lines[-1].set_ydata([c_eco, c_eco])</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.notebook_utils.run_env"><code class="name flex">
+<span>def <span class="ident">run_env</span></span>(<span>algorithm, env, goal=None, first=False)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_env(algorithm, env, goal=None, first=False):
+    res, costs = algorithm.evaluate(n=1, goal=goal, reset_same_model= not first)
+    msg = &#39;----------------\n&#39;
+    for k in res.keys():
+        msg += str(k) + &#39;: {:.2f}\n&#39;.format(res[k])
+    stats = env.unwrapped.get_data()
+    return stats, msg</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.notebook_utils.setup_diy"><code class="name flex">
+<span>def <span class="ident">setup_diy</span></span>(<span>seed, run_eval, n_evals, deterministic_model)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_diy(seed, run_eval, n_evals, deterministic_model):
+
+    if run_eval:
+        deterministic_model = False
+
+    algorithm, cost_function, env, params = setup_for_replay(get_repo_path() + &#34;/data/data_for_visualization/NSGA/1/&#34;, seed, deterministic_model)
+
+    def run_env_with_actions(actions, reset_same_model):
+
+        additional_keys = (&#39;costs&#39;, &#39;constraints&#39;)
+        # Setup saved values
+        episode = dict(zip(additional_keys, [[] for _ in range(len(additional_keys))] ))
+        env_states = []
+        aggregated_costs = []
+        dones = []
+        if reset_same_model:
+            env.reset_same_model()
+        state = env.reset()
+        env_states.append(state)
+
+        done = False
+        t = 0
+        counter = 0
+        while not done:
+            # Interact
+            next_state, agg_cost, done, info = env.step(actions[counter])
+
+            # Save stuff
+            state = next_state
+            t = env.unwrapped.t
+            counter += 1
+            aggregated_costs.append(agg_cost)
+            env_states.append(state)
+            dones.append(done)
+
+            for k in additional_keys:
+                episode[k].append(info[k])
+
+        # Form episode dict
+        episode.update(env_states=np.array(env_states),
+                       aggregated_costs=np.array(aggregated_costs),
+                       actions=np.array(actions),
+                       dones=np.array(dones))
+
+        aggregated_costs = np.sum(episode[&#39;aggregated_costs&#39;])
+        costs = np.sum(episode[&#39;costs&#39;], axis=0)
+        stats = env.unwrapped.get_data()
+
+        return stats, costs
+    global actions
+    actions = get_action_base(&#39;never&#39;)
+    stats, costs = run_env_with_actions(actions, reset_same_model=False)
+    fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+    #NSGA:
+
+    # Plot pareto front
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    sign = 1
+    a = sign * algorithm.res_eval[&#39;F&#39;][:, 0]
+    b = sign * algorithm.res_eval[&#39;F&#39;][:, 1]
+    sc = ax.scatter(a, b, picker=5)
+    data = sc.get_offsets().data
+    off_sets = sc.get_offsets()
+    nb_points = data.shape[0]
+
+    size = 30
+    color = &#34;#004ab3&#34;
+    color_highlight = &#34;#b30000&#34;
+    old_colors = [color] * nb_points
+    sc.set_color(old_colors)
+    sizes = np.ones(nb_points) * size
+    sc.set_sizes(sizes)
+    text = ax.text(0, 0, &#34;&#34;, va=&#34;bottom&#34;, ha=&#34;left&#34;)
+
+
+
+    checkboxes = [widgets.Checkbox(value=False,
+                                   description=&#39;Week {}&#39;.format(i + 1),
+                                   disabled=False,
+                                   indent=False) for i in range(53)]
+    button_widgets_ = dict(zip([&#39;Week {}&#39;.format(i) for i in range(53)],
+                              checkboxes))
+
+    start = widgets.Dropdown(options=[str(i) for i in range(1, 54)],
+                             value=&#39;1&#39;,
+                             description=&#34;# weeks before pattern starts&#34;,
+                             layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                             style={&#39;description_width&#39;: &#39;initial&#39;, &#39;widget_width&#39;: &#39;50%&#39;})
+
+    stop = widgets.Dropdown(options=[str(i) for i in range(1, 55)],
+                             value=&#39;54&#39;,
+                             description=&#34;# weeks before pattern stops&#34;,
+                             layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                             style={&#39;description_width&#39;: &#39;initial&#39;, &#39;widget_width&#39;: &#39;50%&#39;})
+
+    nb_weeks = widgets.Dropdown(options=[str(i) for i in range(0, 54)],
+                            value=&#39;0&#39;,
+                            description=&#34;Duration of lockdown phase (weeks)&#34;,
+                            layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                            style={&#39;description_width&#39;: &#39;initial&#39;, &#39;widget_width&#39;: &#39;50%&#39;})
+
+    every = widgets.Dropdown(options=[str(i) for i in range(1, 54)],
+                                value=&#39;1&#39;,
+                                description=&#34;Duration of the cycle or period (weeks)&#34;,
+                                layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                                style={&#39;description_width&#39;: &#39;initial&#39;, &#39;widget_width&#39;: &#39;50%&#39;})
+
+    set_button = widgets.ToggleButton(value=True,
+                                      description=&#39;Set to pattern&#39;,
+                                      disabled=False,
+                                      button_style=&#39;&#39;,  # &#39;success&#39;, &#39;info&#39;, &#39;warning&#39;, &#39;danger&#39; or &#39;&#39;
+                                      layout=Layout(width=&#39;50%&#39;, height=&#39;80px&#39;),
+                                      style={&#39;description_width&#39;: &#39;initial&#39;},
+                                      tooltip=&#39;Description&#39;,
+                                      icon=&#39;check&#39;  # (FontAwesome names without the `fa-` prefix)
+                                      )
+
+    @interact(start=start, stop=stop, nb_weeks=nb_weeks, every=every, set_button=set_button, **button_widgets_)
+    def update(start, stop, nb_weeks, every, set_button, **button_widgets):
+
+        start = int(start) - 1
+        stop = int(stop) - 1
+        nb_weeks = int(nb_weeks)
+        every = int(every)
+        action_str = str(nb_weeks) + &#39;_&#39; + str(every)
+        if set_button:
+            print(&#39;Set to pattern. Closing {} weeks every {} weeks.&#39;.format(nb_weeks, every))
+        else:
+            print(&#39;Custom strategy.&#39;)
+
+            if every &lt; nb_weeks:
+                print(&#39;When &#34;every&#34; is superior or equal to &#34;nb_weeks&#34;, lockdown is always on.&#39;)
+        actions = get_action_base(action_str, start, stop)
+
+        if set_button:
+            for i in range(53):
+                button_widgets_[&#39;Week {}&#39;.format(i)].value = bool(actions[i])
+        else:
+            for i in range(53):
+                actions[i] = int(button_widgets[&#39;Week {}&#39;.format(i)])
+
+        stats, costs = run_env_with_actions(actions, reset_same_model=deterministic_model)
+
+        if run_eval:
+            all_costs = [run_env_with_actions(actions, reset_same_model=False)[1] for _ in range(n_evals)]
+            all_costs = np.array(all_costs)
+            print(all_costs)
+            means = all_costs.mean(axis=0)
+            x, y = means
+            stds = all_costs.std(axis=0)
+            msg = &#39;\nEvaluation (over {} seeds):&#39;.format(n_evals)
+            msg += &#39;\n\t Death toll: {} +/- {}&#39;.format(int(means[0]), int(stds[0]))
+            msg += &#39;\n\t Economic cost: {:.2f} +/- {:.2f} B€.&#39;.format(int(means[1]), int(stds[1]))
+            print(msg)
+        else:
+            x, y = costs
+        print(&#39;\nDeath toll: {}, Economic cost: {:.2f} B€.&#39;.format(int(costs[0]), costs[1]))
+        replot_stats(lines, stats, plots_i, cost_function, high)
+
+        # update PAreto:
+        new_offsets = np.concatenate([off_sets, np.array([[x, y]])], axis=0)
+        sc.set_offsets(new_offsets)
+        new_colors = [color] * nb_points + [color_highlight]
+        sc.set_color(new_colors)
+        new_sizes = [size] * nb_points + [size * 2]
+        sc.set_sizes(new_sizes)
+
+        fig.canvas.draw_idle()
+
+    return actions</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.notebook_utils.setup_fig_notebook"><code class="name flex">
+<span>def <span class="ident">setup_fig_notebook</span></span>(<span>stats)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_fig_notebook(stats):
+    labels = stats[&#39;stats_run&#39;][&#39;labels&#39;]
+    t = stats[&#39;history&#39;][&#39;env_timesteps&#39;][1:]
+    states = stats[&#39;stats_run&#39;][&#39;to_plot&#39;]
+    lockdown = np.array(stats[&#39;history&#39;][&#39;lockdown&#39;])
+    legends = stats[&#39;stats_run&#39;][&#39;legends&#39;]
+    time_step_size = 1
+    inds_lockdown = np.argwhere(lockdown == 1).flatten() * time_step_size
+    high = [3100, 67000, 1, 180]
+
+    fig1, axs = plt.subplots(2, 2, figsize=(9, 7))
+    axs = axs.ravel()
+    lines = []
+    plots_i = [0, 1, 3, 4]
+    for i in range(len(plots_i)):
+        ind = plots_i[i]
+        axs[i].set_ylim([0, high[i]])
+        axs[i].set_xlim([0, 365])
+        axs[i].set_xlabel(&#39;days&#39;)
+        axs[i].set_ylabel(labels[ind])
+        if isinstance(states[ind], list):
+            line, axs[i].plot(t, np.array(states[ind]).transpose())
+            if legends is not None:
+                if legends[ind] is not None:
+                    axs[i].legend(legends[ind])
+        else:
+            line, = axs[i].plot(t, states[ind])
+        # line, = axs[i].plot(t, states[:, i])
+        lines.append(line)
+    for i in range(len(plots_i)):
+        line = axs[i].scatter(inds_lockdown, np.ones([inds_lockdown.size]) * (high[i] * 0.9),
+                              s=10,
+                              c=&#39;r&#39;)
+        lines.append(line)
+    return fig1, lines, plots_i, high, axs</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.notebook_utils.setup_for_replay"><code class="name flex">
+<span>def <span class="ident">setup_for_replay</span></span>(<span>folder, seed=448174, deterministic_model=False)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_for_replay(folder, seed=np.random.randint(1e6), deterministic_model=False):
+    from epidemioptim.environments.models import get_model
+    from epidemioptim.environments.cost_functions import get_cost_function
+    from epidemioptim.environments.gym_envs import get_env
+    from epidemioptim.optimization import get_algorithm
+
+    # print(&#39;Replaying: &#39;, folder)
+    with open(folder + &#39;params.json&#39;, &#39;r&#39;) as f:
+        params = json.load(f)
+
+    if deterministic_model:
+        params[&#39;model_params&#39;][&#39;stochastic&#39;] = False
+    params[&#39;logdir&#39;] = None#get_repo_path() + &#39;data/results/experiments&#39; + params[&#39;logdir&#39;].split(&#39;EpidemicDiscrete-v0&#39;)[1]
+    model = get_model(model_id=params[&#39;model_id&#39;],
+                        params=params[&#39;model_params&#39;])
+
+    # update reward params
+    params[&#39;cost_params&#39;][&#39;N_region&#39;] = int(model.pop_sizes[params[&#39;model_params&#39;][&#39;region&#39;]])
+    params[&#39;cost_params&#39;][&#39;N_country&#39;] = int(np.sum(list(model.pop_sizes.values())))
+
+    # set_seeds(seed)
+
+    cost_function = get_cost_function(cost_function_id=params[&#39;cost_id&#39;],
+                                      params=params[&#39;cost_params&#39;])
+
+    # Form the Gym-like environment
+    env = get_env(env_id=params[&#39;env_id&#39;],
+                  cost_function=cost_function,
+                  model=model,
+                  simulation_horizon=params[&#39;simulation_horizon&#39;],
+                  seed=seed)
+
+    # Get DQN algorithm parameterized by beta
+    algorithm = get_algorithm(algo_id=params[&#39;algo_id&#39;],
+                              env=env,
+                              params=params)
+
+
+    if params[&#39;algo_id&#39;] == &#39;NSGAII&#39;:
+        algorithm.load_model(folder + &#39;res_eval.pk&#39;)
+    else:
+        algorithm.load_model(folder + &#39;models/best_model.cp&#39;)
+
+    return algorithm, cost_function, env, params</code></pre>
+</details>
+</dd>
+<dt id="epidemioptim.analysis.notebook_utils.setup_visualization"><code class="name flex">
+<span>def <span class="ident">setup_visualization</span></span>(<span>folder, algorithm_str, seed, deterministic_model)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_visualization(folder, algorithm_str, seed, deterministic_model):
+    if seed is None:
+        seed = np.random.randint(1e6)
+    if algorithm_str == &#39;DQN&#39;:
+        to_add = &#39;0.5/&#39;
+    else:
+        to_add = &#39;&#39;
+    algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model)
+    if algorithm_str == &#39;NSGA&#39;:
+        stats, msg = run_env(algorithm, env)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+        # Plot pareto front
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        sign = 1
+        a = sign * algorithm.res_eval[&#39;F&#39;][:, 0]
+        b = sign * algorithm.res_eval[&#39;F&#39;][:, 1]
+        sc = ax.scatter(a, b, picker=5)
+        data = sc.get_offsets().data
+        data_max = np.max(data, axis=0)
+        data_min = np.min(data, axis=0)
+        nb_points = data.shape[0]
+
+        def normalize(x):
+            return (x - data_min) / (data_max - data_min)
+
+        normalized_data = normalize(data)
+        size = 30
+        color = &#34;#004ab3&#34;
+        color_highlight = &#34;#b30000&#34;
+        colors = [color] * nb_points
+        sc.set_color(colors)
+        sizes = np.ones(nb_points) * size
+        sc.set_sizes(sizes)
+        text = ax.text(0, 0, &#34;&#34;, va=&#34;bottom&#34;, ha=&#34;left&#34;)
+
+        def onclick(event):
+            x = event.xdata
+            y = event.ydata
+
+            # find closest in dataset
+            point = np.array([x, y])
+            normalized_point = normalize(point)
+            dists = np.sqrt(np.sum((normalized_point - normalized_data) ** 2, axis=1))
+            closest_ind = np.argmin(dists)
+
+            # highlight it
+            sizes = np.ones(nb_points) * size
+            sizes[closest_ind] = size * 3
+            colors = [color] * nb_points
+            colors[closest_ind] = color_highlight
+            sc.set_sizes(sizes)  # you can set you markers to different sizes
+            sc.set_color(colors)
+
+            # rerun env
+            weights = algorithm.res_eval[&#39;X&#39;][closest_ind]
+            algorithm.policy.set_params(weights)
+            stats, msg = run_env(algorithm, env)
+            print(msg)
+            replot_stats(lines, stats, plots_i, cost_function, high)
+
+            # refresh figure
+            fig1.canvas.draw_idle()
+            tx = &#39;button=%d, x=%d, y=%d, xdata=%f, ydata=%f&#39; % (event.button, event.x, event.y, event.xdata, event.ydata)
+            text.set_text(tx)
+
+        cid = fig.canvas.mpl_connect(&#39;button_press_event&#39;, onclick)
+        plt.show()
+    elif &#39;GOAL_DQN&#39; in algorithm_str:
+        if cost_function.use_constraints:
+            goal = np.array([0.5, 1, 1])
+        else:
+            goal = np.array([0.5])
+
+        stats, msg = run_env(algorithm, env, goal, first=True)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+        if cost_function.use_constraints:
+            # Plot constraints as dotted line.
+            M_sanitary = cost_function.costs[0].compute_constraint(1)
+            line, = axs[1].plot([0, params[&#39;simulation_horizon&#39;]],
+                                [M_sanitary, M_sanitary],
+                                c=&#39;k&#39;,
+                                linestyle=&#39;--&#39;)
+            lines.append(line)
+            M_economic = cost_function.costs[1].compute_constraint(1)
+            line, = axs[3].plot([0, params[&#39;simulation_horizon&#39;]],
+                                [M_economic, M_economic],
+                                c=&#39;k&#39;,
+                                linestyle=&#39;--&#39;)
+            lines.append(line)
+
+            # Define the update function for model 2
+            def update(beta=widgets.FloatSlider(min=0, max=1, step=0.05, value=0.5),
+                       M_sanitary=widgets.FloatSlider(min=1000, max=62000, step=5000, value=62000),
+                       M_economic=widgets.FloatSlider(min=20, max=160, step=20, value=160)):
+                # normalize constraints
+                c_sanitary = cost_function.costs[0].compute_normalized_constraint(M_sanitary)
+                c_economic = cost_function.costs[1].compute_normalized_constraint(M_economic)
+                print(c_sanitary, c_economic)
+                stats, msg = run_env(algorithm, env, goal=np.array([beta, c_sanitary, c_economic]))
+                replot_stats(lines, stats, plots_i, cost_function, high, constraints=[c_sanitary, c_economic])
+                fig.canvas.draw_idle()
+                print(msg)
+        else:
+            # Define the update function for model 1
+            def update(beta=widgets.FloatSlider(min=0, max=1, step=0.05, value=0.5)):
+                stats, msg = run_env(algorithm, env, goal=np.array([beta]))
+                print(msg)
+                msg = &#39;&#39;
+                replot_stats(lines, stats, plots_i, cost_function, high)
+
+                fig.canvas.draw_idle()
+        interact(update);
+    elif algorithm_str == &#39;DQN&#39;:
+        stats, msg = run_env(algorithm, env, first=True)
+        fig, lines, plots_i, high, axs = setup_fig_notebook(stats)
+
+        # Define the update function
+        def update(beta=widgets.FloatSlider(min=0, max=1, step=0.05, value=0.5)):
+            print(&#39;Load a new DQN model for beta = {}&#39;.format(beta))
+            # Load a new DQN model for each new beta
+            algorithm, cost_function, env, params = setup_for_replay(folder + str(beta) + &#39;/&#39;, seed, deterministic_model)
+            stats, msg = run_env(algorithm, env, goal=np.array([beta]))
+            print(msg)
+            msg = &#39;&#39;
+            replot_stats(lines, stats, plots_i, cost_function, high)
+            fig.canvas.draw_idle()
+        interact(update);
+
+    else:
+        raise NotImplementedError</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="epidemioptim.analysis" href="index.html">epidemioptim.analysis</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="epidemioptim.analysis.notebook_utils.get_action_base" href="#epidemioptim.analysis.notebook_utils.get_action_base">get_action_base</a></code></li>
+<li><code><a title="epidemioptim.analysis.notebook_utils.replot_stats" href="#epidemioptim.analysis.notebook_utils.replot_stats">replot_stats</a></code></li>
+<li><code><a title="epidemioptim.analysis.notebook_utils.run_env" href="#epidemioptim.analysis.notebook_utils.run_env">run_env</a></code></li>
+<li><code><a title="epidemioptim.analysis.notebook_utils.setup_diy" href="#epidemioptim.analysis.notebook_utils.setup_diy">setup_diy</a></code></li>
+<li><code><a title="epidemioptim.analysis.notebook_utils.setup_fig_notebook" href="#epidemioptim.analysis.notebook_utils.setup_fig_notebook">setup_fig_notebook</a></code></li>
+<li><code><a title="epidemioptim.analysis.notebook_utils.setup_for_replay" href="#epidemioptim.analysis.notebook_utils.setup_for_replay">setup_for_replay</a></code></li>
+<li><code><a title="epidemioptim.analysis.notebook_utils.setup_visualization" href="#epidemioptim.analysis.notebook_utils.setup_visualization">setup_visualization</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+</footer>
+</body>
+</html>
