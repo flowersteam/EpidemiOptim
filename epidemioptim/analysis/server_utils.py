@@ -12,8 +12,9 @@ sys.path.append('../../')
 
 from epidemioptim.utils import *
 from epidemioptim.analysis.notebook_utils import setup_for_replay,replot_stats,setup_fig_notebook,run_env,get_action_base
-from ipywidgets import HTML,Layout,VBox,FloatSlider,IntSlider,HBox,Label,ToggleButton,Dropdown,Checkbox,interactive_output,Box, Text, Output
+from ipywidgets import HTML,Layout,VBox,FloatSlider,IntSlider,HBox,Label,ToggleButton,Dropdown,Checkbox,interactive_output,Box, Text, Output, Button
 from IPython.display import display
+import time
 # About
 
 
@@ -249,11 +250,19 @@ def algorithm_description(algorithm):
                                  +'The first plot represents the Pareto front found by one run of the NSGA-II algorithm. The red dot is the average performance of the strategy you design (computed over 30 simulations). The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. '
                                  +'<h3 ' + h3_style + 'Try it yourself!</h3>'
                                  +'<p align="justify" ' + p_style + '>'
-                                 +'To perform better than NSGA-II, you need to get closer to the origin of the plot (0, 0). Note that algorithms train policy that are '
-                                  'reactive to the epidemic and can adapt to its state as it progresses. You are designing, on the other hand, a <span style="font-weight:500;">fixed-strategy</span> that is evaluated on 30 different simulated epidemics.'
+                                 +'To perform better than NSGA-II, you need to get closer to the origin of the plot (0, 0). Note that algorithms train policies that are '
+                                  'reactive to the epidemic and can adapt to its state as it progresses. You are designing, on the other hand, '
+                                  'a <span style="font-weight:500;">fixed-strategy</span> that is evaluated on 10 different simulated epidemics. This explains why running '
+                                  'several evaluations might result in different results. The graphs shows only one of the 10 simulations.'
                                  + '<br>You can design your strategy with two tools:'
-                                 + '<ol ' + p_style +'><li>The four first sliders enable you to define a pattern of the form <span style="font-weight:500;"> </span> implement lock-down N1 weeks every N2 weeks. The first two sliders control the start and end of the pattern (in weeks), the two following sliders control the duration of the lock-down and the period of the pattern respectively.</li>'
-                                 +'<li>The checkbox control the enforcement of the lockdown on a weekly basis. Pressing the <span style="font-weight:500;">reset</span> button synchronizes the checkboxes with the pattern defined by the sliders. Checkboxes can then be checked/unchecked to finetune the control strategy.</li></ol>'
+                                 + '<ol ' + p_style +'><li>The four dropdown menus allow to define a pattern of the form: '
+                                 + '<span style="font-weight:500;"> implement lock-down N1 weeks every N2 weeks</span>.'
+                                 + ' The first two menus control the start and end of the pattern (in weeks), the following two respectively '
+                                 + 'control the duration of the lock-down and the period of the pattern. Click <span style="font-weight:500;">"Set to pattern"</span> '
+                                   'to synchronize the checkboxes and implement the intervention. </li>'
+                                 +'<li>The checkboxes control the enforcement of the lockdown on a weekly basis. You can finetune the intervention defined by the '
+                                  'pattern by checking/unchecking specific boxes. Once you are ready, run the simulations by clicking <span style="font-weight:500;">"Run '
+                                  'simulations"</span>.</li></ol>'
                                  + '</p>'
                                  +'</font>'))
             
@@ -325,7 +334,7 @@ def center_vbox(children):
 
 
 
-def run_env_with_actions(actions,env, reset_same_model):
+def run_env_with_actions(actions, env, reset_same_model):
 
     additional_keys = ('costs', 'constraints')
     # Setup saved values
@@ -369,21 +378,32 @@ def run_env_with_actions(actions,env, reset_same_model):
 
 def try_it_ui(checkbox_objects,box_layout):
     number_of_week=52
-    number_of_week_per_row=4
-    offset_button=5
+    number_of_week_per_row=5
+    offset_button=10
 
     weekBox=Box(children=[])
     for i in range(int(number_of_week/number_of_week_per_row)):
         weekBox=VBox([weekBox,Box(checkbox_objects[number_of_week_per_row*(i)+offset_button:
                                                    number_of_week_per_row*(i+1)+offset_button])])
-    setBox=Box([checkbox_objects[4]],layout=Layout(display='flex',
+    setBox=Box([checkbox_objects[6]],layout=Layout(display='flex',
                                                    flex_flow='column',
                                                    align_items='center',
                                                    width='100%'))
-    ui=Box(children=[HBox(checkbox_objects[0:2]),
-                      HBox(checkbox_objects[2:4]),
-                      setBox,
-                      weekBox]
+    runBox = Box([checkbox_objects[8]], layout=Layout(display='flex',
+                                                      flex_flow='column',
+                                                      align_items='center',
+                                                      width='100%'))
+    ui=Box(children=[HBox([checkbox_objects[0], checkbox_objects[2], checkbox_objects[1]]),
+                     checkbox_objects[2],
+                     HBox([checkbox_objects[3], checkbox_objects[2], checkbox_objects[4]]),
+                     checkbox_objects[5],
+                     setBox,
+                     checkbox_objects[7],
+                     weekBox,
+                     checkbox_objects[7],
+                     runBox,
+                     checkbox_objects[7],
+                     ]
             ,layout=box_layout)
     return ui
 def test_layout(algorithm_str,seed,deterministic_model):
@@ -683,8 +703,9 @@ def test_layout(algorithm_str,seed,deterministic_model):
             final_layout = center_vbox([str_html, is_deter, slider_goal,fig.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
             return final_layout
     elif algorithm_str == 'yourself':
+        algorithm, cost_function, env, params = setup_for_replay(folder + to_add, seed, deterministic_model=False)
         style={'description_width': '250px', 'widget_width': '50%'}
-        run_eval = False 
+        run_eval = True
         n_evals = 10  # number of evaluation rolloutsseed = None  # None picks a random seed
         str_html=algorithm_description(algorithm_str)
         global actions
@@ -715,90 +736,142 @@ def test_layout(algorithm_str,seed,deterministic_model):
         data_max = np.max(data, axis=0)
         data_min = np.min(data, axis=0)
         nb_points = data.shape[0]
-        set_button = ToggleButton(value=True,
+        set_button = Button(value=True,
                                       description='Set to pattern',
                                       disabled=False,
                                       button_style='',  # 'success', 'info', 'warning', 'danger' or ''
-                                      layout=Layout(width='50%', height='80px'),
+                                      layout=Layout(width='30%', height='50px'),
                                       style=style,
-                                      tooltip='Description',
+                                      tooltip='Click to reset to pattern defined above.',
                                       icon='check'  # (FontAwesome names without the `fa-` prefix)
                                       )
+
+        run_button = Button(value=True,
+                            description='Run simulations',
+                            disabled=False,
+                            button_style='',  # 'success', 'info', 'warning', 'danger' or ''
+                            layout=Layout(width='30%', height='50px'),
+                            style=style,
+                            tooltip='Click to run a simulation with the intervention defined by the checkboxes.',
+                            icon='check'  # (FontAwesome names without the `fa-` prefix)
+                            )
         start = Dropdown(options=[str(i) for i in range(1, 54)],
                                  value='1',
                                  description="# weeks before pattern starts",
-                                 layout=Layout(width='50%', height='80px'),
+                                 layout=Layout(width='35%', height='30px'),
                                  style=style)
 
         stop = Dropdown(options=[str(i) for i in range(1, 55)],
                                  value='54',
                                  description="# weeks before pattern stops",
-                                 layout=Layout(width='50%', height='80px'),
+                                 layout=Layout(width='35%', height='30px'),
                                  style=style)
 
         nb_weeks = Dropdown(options=[str(i) for i in range(0, 54)],
                                     value='0',
                                     description="Duration of lockdown phase (weeks)",
-                                    layout=Layout(width='50%', height='80px'),
+                                    layout=Layout(width='35%', height='30px'),
                                     style=style)
 
         every = Dropdown(options=[str(i) for i in range(1, 54)],
                                  value='1',
                                  description="Duration of the cycle or period (weeks)",
-                                 layout=Layout(width='50%', height='80px'),
+                                 layout=Layout(width='35%', height='30px'),
                                  style=style)
-        names = ['start','stop','nb_weeks','every','set_button']
-        checkbox_objects = [start,stop,nb_weeks,every,set_button]
+        fake_stats1 = HTML(value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+        names = ['start','stop', 'fake', 'nb_weeks', 'every', 'fake', 'set_button', 'fake', 'run_button', 'fake']
+        checkbox_objects = [start,stop,fake_stats1, nb_weeks,every, fake_stats1, set_button, fake_stats1, run_button, fake_stats1]
+        arg_dict_2 = {names[i]: checkbox for i, checkbox in enumerate(checkbox_objects)}
         for i in range(52):
             desc='Week {}'.format(i + 1)
             checkbox_objects.append(Checkbox(value=False, description=desc))
             names.append(desc)
         arg_dict = {names[i]: checkbox for i, checkbox in enumerate(checkbox_objects)}
-
+        del arg_dict['set_button']
+        del arg_dict['run_button']
         box_layout = Layout(overflow_y='auto',
-                    border='3px solid black',
-                    height='450px',
-                    display='block',width='800px')
-        ui = Box(children=checkbox_objects, layout=box_layout)
+                    #border='3px solid black',
+                    #height='450px',
+                    display='block',width='950px')
+        # ui = Box(children=checkbox_objects, layout=box_layout)
         ui=try_it_ui(checkbox_objects,box_layout)
+        # global ACT
+        # ACT = np.zeros([52])
         def update_try(**kwargs):
-            start=int(kwargs['start'])-1
-            stop=int(kwargs['stop'])-1
-            nb_weeks=int(kwargs['nb_weeks'])
-            every=int(kwargs['every'])
-            action_str = str(nb_weeks) + '_' + str(every)
-            print(action_str)
-            set_button=kwargs['set_button']
-            if set_button:
-                print('Set to pattern. Closing {} weeks every {} weeks.'.format(nb_weeks, every))
-            else:
-                print('Custom strategy.')
+            # start=int(kwargs['start'])-1
+            # stop=int(kwargs['stop'])-1
+            # nb_weeks=int(kwargs['nb_weeks'])
+            # every=int(kwargs['every'])
+            # action_str = str(nb_weeks) + '_' + str(every)
+            # set_button=kwargs['set_button']
+            # t_i = time.time()
+            # actions = get_action_base(action_str, start, stop)
+            # if not np.all(ACT == actions):
+            #     assert False
+            #     ACT = actions.copy()
+            # if set_button:
+            #     for i in range(52):
+            #         checkbox_objects[8+i].value = bool(actions[i])
+            #
+            actions = np.array([int(kwargs['Week {}'.format(i+1)]) for i in range(52)])
+            # for i in range(52):
+            #     actions[i] = int(kwargs['Week {}'.format(i+1)])
+            # stats, costs = run_env_with_actions(actions, env, reset_same_model=deterministic_model)
+            # # if run_eval:
+            # #     all_costs = [run_env_with_actions(actions, env, reset_same_model=False)[1] for _ in range(n_evals)]
+            # #     all_costs = np.array(all_costs)
+            # #     print(all_costs)
+            # #     means = all_costs.mean(axis=0)
+            # #     x, y = means
+            # #     stds = all_costs.std(axis=0)
+            # #     # msg = '\nEvaluation (over {} seeds):'.format(n_evals)
+            # #     # msg += '\n\t Death toll: {} +/- {}'.format(int(means[0]), int(stds[0]))
+            # #     # msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B€.'.format(int(means[1]), int(stds[1]))
+            # #     # print(msg)
+            # # else:
+            # x, y = costs
+            # # print('\nDeath toll: {}, Economic cost: {:.2f} B€.'.format(int(costs[0]), costs[1]))
+            # replot_stats(lines, stats, plots_i, cost_function, high)
+            #
+            # # update PAreto:
+            # new_offsets = np.concatenate([off_sets, np.array([[x, y]])], axis=0)
+            # sc.set_offsets(new_offsets)
+            # new_colors = [color] * nb_points + [color_highlight]
+            # sc.set_color(new_colors)
+            # new_sizes = [size] * nb_points + [size * 2]
+            # sc.set_sizes(new_sizes)
+            #
+            # update_fig(fig)
+            # update_fig(fig1)
+            # update_stats(stats, lockdown_stats, costs_stats)
+            return actions
 
-                if every < nb_weeks:
-                    print('When "every" is superior or equal to "nb_weeks", lockdown is always on.')
-            actions = get_action_base(action_str, start, stop)
-            if set_button:
-                for i in range(52):
-                    checkbox_objects[5+i].value = bool(actions[i])
-        
-            else:
-                for i in range(52):
-                    actions[i] = int(kwargs['Week {}'.format(i+1)])
-            stats, costs = run_env_with_actions(actions,env, reset_same_model=deterministic_model)
+        def update_set_pattern(b):
+            start_value = int(start.value) - 1
+            stop_value = int(stop.value) - 1
+            nb_weeks_value = int(nb_weeks.value)
+            every_value = int(every.value)
+
+            # start = int(kwargs['start']) - 1
+            # stop = int(kwargs['stop']) - 1
+            # nb_weeks = int(kwargs['nb_weeks'])
+            # every = int(kwargs['every'])
+            action_str = str(nb_weeks_value) + '_' + str(every_value)
+            actions = get_action_base(action_str, start_value, stop_value)
+            for i in range(52):
+                checkbox_objects[10 + i].value = bool(actions[i])
+
+        def run_simulation(b):
+            actions = np.array([int(cb.value) for cb in checkbox_objects[10:]])
+            stats, costs = run_env_with_actions(actions, env, reset_same_model=deterministic_model)
             if run_eval:
-                all_costs = [run_env_with_actions(actions, reset_same_model=False)[1] for _ in range(n_evals)]
+                all_costs = [run_env_with_actions(actions, env, reset_same_model=False)[1] for _ in range(n_evals)]
                 all_costs = np.array(all_costs)
-                print(all_costs)
                 means = all_costs.mean(axis=0)
                 x, y = means
-                stds = all_costs.std(axis=0)
-                msg = '\nEvaluation (over {} seeds):'.format(n_evals)
-                msg += '\n\t Death toll: {} +/- {}'.format(int(means[0]), int(stds[0]))
-                msg += '\n\t Economic cost: {:.2f} +/- {:.2f} B€.'.format(int(means[1]), int(stds[1]))
-                print(msg)
             else:
                 x, y = costs
-            print('\nDeath toll: {}, Economic cost: {:.2f} B€.'.format(int(costs[0]), costs[1]))
+            # print('\nDeath toll: {}, Economic cost: {:.2f} B€.'.format(int(costs[0]), costs[1]))
             replot_stats(lines, stats, plots_i, cost_function, high)
 
             # update PAreto:
@@ -813,7 +886,12 @@ def test_layout(algorithm_str,seed,deterministic_model):
             update_fig(fig1)
             update_stats(stats, lockdown_stats, costs_stats)
             return actions
+
         out = interactive_output(update_try, arg_dict)
+        # out2 = interactive_output(update_set_pattern, arg_dict_2)
+        set_button.on_click(update_set_pattern)
+        run_button.on_click(run_simulation)
+
         fig=canvas_setup(fig)
         fig1=canvas_setup(fig1)
         final_layout = center_vbox([str_html,ui,fig.canvas, fig1.canvas, HBox([lockdown_stats, fake_stats, costs_stats])])
