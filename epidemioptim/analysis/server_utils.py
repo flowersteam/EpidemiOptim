@@ -406,6 +406,8 @@ def try_it_ui(checkbox_objects,box_layout):
                      ]
             ,layout=box_layout)
     return ui
+
+
 def test_layout(algorithm_str,seed,deterministic_model):
     def update_algo_deter(change):
         deterministic_model=change.new
@@ -496,6 +498,11 @@ def test_layout(algorithm_str,seed,deterministic_model):
             replot_stats(lines, stats, plots_i, cost_function, high)
             update_fig(fig)
             update_stats(stats, lockdown_stats, costs_stats)
+
+        def update_goal(change):
+            beta=slider_goal.value
+            deterministic_model=is_deter.value
+
 
         slider.observe(update_lines, names='value')
         is_deter.observe(update_lines,names='value')

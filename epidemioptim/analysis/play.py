@@ -4,7 +4,8 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-from epidemioptim.utils import plot_stats, get_repo_path, setup_for_replay
+from epidemioptim.utils import plot_stats, get_repo_path
+from epidemioptim.analysis.notebook_utils import setup_for_replay
 
 NB_EPISODES = 5
 FOLDER = get_repo_path() + "/data/results/experiments/NSGA-II (budget x15)/"
