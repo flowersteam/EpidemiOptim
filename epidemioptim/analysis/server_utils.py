@@ -45,21 +45,35 @@ def introduction():
                            +'Hand-designing such strategies is not trivial because of the number of possible interventions and the difficulty to predict their long-term effects.  '
                             'This task can be seen as an optimization problem where state-of-the-art  machine  learning  algorithms  might  '
                             'bring  significant value. </p>'
-                           +'<p align="justify" ' + p_style + '>'
-                           + 'This website presents an interactive demo of a set of machine learning methods we presented in our research paper: '
+                           + '<p align="justify" ' + p_style + '>'
+                           + 'This website presents an interactive demo of a set of machine learning methods applied to the automatic design of a lock-down intervention '
+                             'strategy in the context of the COVID19 epidemic in the French Ile-de-France region. Technical details can be found in the associated paper: '
                            + '<a href="https://arxiv.org/pdf/2010.04452.pdf" style="color:#004c8f;" target="_blank">EpidemiOptim: A Toolbox for the Optimization of Control '
                              'Policies in Epidemiological Models</a>. The full code of this toolbox is open-source and available on github '
                            + '<a href="https://github.com/flowersteam/EpidemiOptim"> here </a>.'
                            + '</p>'
+
                            + '<p>&nbsp;</p>'
-                           +'<h3 ' + h3_style + 'Interact with trained models, design your own intervention strategy!</h3>'
-                           +'<p align="justify" ' + p_style + '>'
-                           +'To demonstrate the use of EpidemiOptim, we run experiments to optimize the design of an on/off lock-down policy in the context of the COVID-19 '
-                            'epidemic in the French region of Ile-de-France. </p>'
+                           + '<h3 ' + h3_style + 'What is the AI doing?</h3>'
+                           +'<p>&nbsp;</p> '
+                           + '<center><figure> <img src="epidemioptim.png" alt="Intervention Loop" width="700px" /> <figcaption ' + p_style +'>'
+                           'AI is used to train a lock-down intervention strategy to minimize health and economic cost in simulated Covid19 epidemics.'
+                           +'</figcaption></figure></center>'
+                           + '<p>&nbsp;</p>'
+
                            + '<p align="justify" ' + p_style + '>'
+                           + 'The AI implements the intervention strategy. It interacts with simulated epidemics via epidemiological models fitted on real data from the COVID19 '
+                             'epidemic. In each simulation, the intervention strategy faces a COVID19 epidemic for one year. Each week, it makes a '
+                             'decision&#8212;whether to lock-down or not&#8212;based on the current state of the epidemic (number of infected, asymptomatic, hospitalized, deaths, etc.). '
+                             'Its objective is to make the right decision to minimize two costs: the number of deaths and the economic cost resulting from lock-down enforcement '
+                             'and GDP opportunity costs from ill or dead people put out of work.'
+                           + '<p>&nbsp;</p>'
+                           +'<h3 ' + h3_style + 'Design your own strategy and interact with trained models!</h3>'
+                           +'<p align="justify" ' + p_style + '>'
                            +'We have two objectives here: minimizing the death toll and minimizing the economic recess. '
-                           +'In the tabs below, you will be able to <span style="font-weight:500;">explore strategies optimized by various optimization algorithms</span>. '
-                           +'In the last tab, you will be able to <span style="font-weight:500;">design your own strategy</span>, apply it over a year of epidemic and observe its health and economic consequences.'
+                           + 'In the first tab below, you can <span style="font-weight:500;">design your own strategy</span>, apply it over a year of epidemic and observe its '
+                             'health and economic consequences. '
+                           +"In the next tabs, you can <span style='font-weight:500;'>explore strategies optimized by various optimization algorithms</span>. Let's go!"
                            +'</p><p>&nbsp;</p><p>&nbsp;</p> '
 
                            +'</font>'))
@@ -107,11 +121,11 @@ def algorithm_description(algorithm):
                                   margin='auto',
                                   ),
                     value=("<font color='black'><font face = 'Verdana'>" +
-                           '<center><h2 ' + h2_style_2 + 'Algo 1: Deep Q-Networks (DQN)</h2></center>'
+                           '<center><h2 ' + h2_style_2 + 'Deep Q-Networks (DQN)</h2></center>'
                            + '<p>&nbsp;</p>'
                            +'<h3 ' + h3_style + 'Objective</h3>'
                            +'<p align="justify" ' + p_style + '>'
-                           +'We want to minimize two costs: the death toll <var>C<sub>health</sub></var> and the economic recess <var>C<sub>economic</sub></var> computed over a one-year period.'
+                           +'We want to minimize two costs: the death toll <var>C<sub>health</sub></var> and the economic recess <var>C<sub>health</sub></var> computed over a one-year period.'
                            + '</p>'
                            + '<h3 ' + h3_style + 'The algorithm</h3>'
                            +'<p align="justify" ' + p_style + '>'
@@ -119,14 +133,14 @@ def algorithm_description(algorithm):
                            + 'DQN)</span>. DQN is traditionally used to minimize a unique cost function. To circumvent this problem, we train several control policies, '
                            + 'where each policy minimizes a certain combination of the two costs:</p>'
                            + '<p align="center" ' + p_style + '>'
-                           +'<var>C</var> = (1 - &#946) &#215 <var>C<sub>h</sub></var> +  &#946 &#215 <var>C<sub>e</sub></var> ,'
+                           +'<var>C</var> = (1 - &#946) &#215 <var>C<sub>health</sub></var>+  &#946 &#215 <var>C<sub>economic</sub></var> ,'
                            + '</p>'
                            + '<p align="justify" ' + p_style + '>'
-                           +'where <var>C</var> is the aggregated cost and &#946 is the mixing parameter. The lower the &#946 the more important the health cost.</p>'
+                           +'where <var>C</var> is the aggregated cost and &#946 is the mixing parameter. The lower &#946 is, the more important the health cost.</p>'
                            +'<h3 ' + h3_style + 'What is plotted</h3>'
                            +'<p align="justify" ' + p_style + '>'
-                           +'The four plots below show the evolution of the daily economic and health costs over a one-year period (left: per day; right: cumulated). Red dots '
-                            'indicate lock-down enforcement for the corresponding week. '
+                           +'The four plots below show the evolution of the daily (left) and cumulative (right) health (top) and economic (bottom) costs  over a one-year period.'
+                           + ' Red dots indicate lock-down enforcement for the corresponding week. '
                            +'<h3 ' + h3_style + 'Try it yourself!</h3>'
                            +'<p align="justify" ' + p_style + '>'
                            +'The slider &#946 allows to control the mixing of the two costs. &#946 = 1 results in the pure minimization of the economic cost. '
@@ -140,7 +154,7 @@ def algorithm_description(algorithm):
                                   margin='auto',
                                   ),
                     value=("<font color='black'><font size = 5><font face = 'Verdana'>" +
-                           '<center><h2 ' + h2_style_2 + 'Algo 2: Goal-Conditioned Deep Q-Networks (Goal-DQN)</h2></center>'
+                           '<center><h2 ' + h2_style_2 + 'Goal-Conditioned Deep Q-Networks (Goal-DQN)</h2></center>'
                            + '<p>&nbsp;</p>'
                            +'<h3 ' + h3_style + 'Objective</h3>'
                            +'<p align="justify" ' + p_style + '>'
@@ -150,18 +164,18 @@ def algorithm_description(algorithm):
                            +'<p align="justify" ' + p_style + '>'
                            +'This algorithm is a variant of the traditional <span style="font-weight:500;">Deep Q-Network</span>. In the <span style="font-weight:500;">Goal-Conditioned Q-Networks (Goal-DQN)</span>, we train one policy to minmize all the combinations of the health and economic costs:'
                            + '<p align="center" ' + p_style + '>'
-                           +'<var>C</var> = (1 - &#946) &#215 <var>C<sub>h</sub></var> +  &#946 &#215 <var>C<sub>e</sub></var> ,'
+                           +'<var>C</var> = (1 - &#946) &#215 <var>C<sub>health</sub></var>+  &#946 &#215 <var>C<sub>economic</sub></var> ,'
                            + '</p>'
                            + '<p align="justify" ' + p_style + '>'
                            +'for all values of &#946 in [0, 1].</p>'
                            + '<p align="justify" ' + p_style + '>'
                            +'To do so, the policy receives the value of &#946 corresponding to the mixture of costs it needs to minimize. This dramatically reduces '
-                            'training time compared to a simple DQN (Algo 1 tab), as only one policy is trained.'
+                            'training time compared to a simple DQN (second tab), as only one policy is trained.'
                            + '</p>'
                            +'<h3 ' + h3_style + 'What is plotted</h3>'
                            +'<p align="justify" ' + p_style + '>'
-                           +'The four plots below show the evolution of the daily economic and health costs over a one-year period (left: per day; right: cumulated). Red dots '
-                            'indicate lock-down enforcement for the corresponding week. '
+                           +'The four plots below show the evolution of the daily (left) and cumulative (right) health (top) and economic (bottom) costs  over a one-year period. '
+                           +'Red dots indicate lock-down enforcement for the corresponding week. '
                            +'<h3 ' + h3_style + 'Try it yourself!</h3>'
                            +'<p align="justify" ' + p_style + '>'
                            +'The slider &#946 allows to control the mixing of the two costs. &#946 = 1 results in the pure minimization of the economic cost. &#946 = 0 '
@@ -175,7 +189,7 @@ def algorithm_description(algorithm):
                                   margin='auto',
                                   ),
                     value=("<font color='black'><font size = 5><font face = 'Verdana'>" +
-                           '<center><h2 ' + h2_style_2 + 'Algo 3: Goal-Conditioned Deep Q-Networks with Constraints (Goal-DQN-C)</h2></center>'
+                           '<center><h2 ' + h2_style_2 + 'Goal-Conditioned Deep Q-Networks with Constraints (Goal-DQN-C)</h2></center>'
                            + '<p>&nbsp;</p>'
                            +'<h3 ' + h3_style + 'Objective</h3>'
                            +'<p align="justify" ' + p_style + '>'
@@ -185,7 +199,7 @@ def algorithm_description(algorithm):
                            +'<p align="justify" ' + p_style + '>'
                            +'This algorithm is a variant of the traditional <span style="font-weight:500;">Deep Q-Network</span>. In the <span style="font-weight:500;">Goal-Conditioned Q-Networks with Constraints (Goal-DQN-C)</span>, we train one policy to minmize all the combinations of the health and economic costs:'
                            + '<p align="center" ' + p_style + '>'
-                           +'<var>C</var> = (1 - &#946) &#215 <var>C<sub>h</sub></var> +  &#946 &#215 <var>C<sub>e</sub></var> ,'
+                           +'<var>C</var> = (1 - &#946) &#215 <var>C<sub>health</sub></var>+  &#946 &#215 <var>C<sub>economic</sub></var> ,'
                            + '</p>'
                            + '<p align="justify" ' + p_style + '>'
                            +'for all values of &#946 in [0, 1].</p>'
@@ -194,8 +208,8 @@ def algorithm_description(algorithm):
                            + '</p>'
                            +'<h3 ' + h3_style + 'What is plotted</h3>'
                            +'<p align="justify" ' + p_style + '>'
-                           +'The four plots below show the evolution of the daily economic and health costs over a one-year period (left: per day; right: cumulated). Red dots '
-                            'indicate lock-down enforcement for the corresponding week. '
+                           +'The four plots below show the evolution of the daily (left) and cumulative (right) health (top) and economic (bottom) costs  over a one-year period. '
+                           + 'Red dots indicate lock-down enforcement for the corresponding week. '
                            +'<h3 ' + h3_style + 'Try it yourself!</h3>'
                            +'<p align="justify" ' + p_style + '>'
                            +'The slider &#946 allows to control the mixing of the two costs. &#946 = 1 results in the pure minimization of the economic cost. &#946 = 0 '
@@ -210,7 +224,7 @@ def algorithm_description(algorithm):
                                   margin='auto',
                                   ),
                     value=("<font color='black'><font size = 5><font face = 'Verdana'>" +
-                           '<center><h2 ' + h2_style_2 + 'Algo 4: Non-dominated Sorting Genetic Algorithm II (NSGA-II)</h2></center>'
+                           '<center><h2 ' + h2_style_2 + 'Non-dominated Sorting Genetic Algorithm II (NSGA-II)</h2></center>'
                            + '<p>&nbsp;</p>'
                            +'<h3 ' + h3_style + 'Objective</h3>'
                            +'<p align="justify" ' + p_style + '>'
@@ -222,7 +236,10 @@ def algorithm_description(algorithm):
                            +'<span style="font-weight:500;">Pareto Front</span>, the set of <span style="font-weight:500;">non-dominated solutions</span>: solutions for which one cannot find any other solution that performs better on both dimensions (better health cost <span style="font-weight:500;">and</span> better economic cost). The result of this algorithm is thus a set of control policies, each having their particular trade-off with respect to the two costs.'
                            +'<h3 ' + h3_style + 'What is plotted</h3>'
                            +'<p align="justify" ' + p_style + '>'
-                           +'The first plot represents the Pareto front found by one run of the NSGA-II algorithm. Note that no solution performs better than any other on both dimensions, or worse on both dimensions. Each point represent the average performance of a given policy on the two costs, after it is run on 30 different simulations of the epidemic. The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. '
+                           +'The first plot represents the Pareto front found by one run of the NSGA-II algorithm. Note that no solution performs better than any other on both '
+                            'dimensions, or worse on both dimensions. Each point represent the average performance of a given policy on the two costs, after it is run on 30 '
+                            'different  simulations of the epidemic. The four plots below show the evolution of the daily (left) and cumulative (right) health (top) and economic (bottom) costs  over a one-year period. '
+                            'Red dots indicate lock-down enforcement for the corresponding week. '
                            +'<h3 ' + h3_style + 'Try it yourself!</h3>'
                            +'<p align="justify" ' + p_style + '>'
                            +'You can click on points in the first plot to select the corresponding policy and see its consequences in terms of the two costs in the graphs below. '
@@ -247,11 +264,13 @@ def algorithm_description(algorithm):
                                  + 'Here, you are the algorithm!'
                                  +'<h3 ' + h3_style + 'What is plotted</h3>'
                                  +'<p align="justify" ' + p_style + '>'
-                                 +'The first plot represents the Pareto front found by one run of the NSGA-II algorithm. The red dot is the average performance of the strategy you design (computed over 30 simulations). The four plots below show the evolution of the daily economic and health costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. '
+                                 +'The first plot represents the Pareto front found by one run of the NSGA-II algorithm. The red dot is the average performance of the strategy '
+                                  'you design (computed over 10 simulations). The four plots below show the evolution of the daily (left) and cumulative (right) health (top) and '
+                                  'economic (bottom) costs over a one-year period. Red dots indicate lock-down enforcement for the corresponding week. '
                                  +'<h3 ' + h3_style + 'Try it yourself!</h3>'
                                  +'<p align="justify" ' + p_style + '>'
-                                 +'To perform better than NSGA-II, you need to get closer to the origin of the plot (0, 0). Note that algorithms train policies that are '
-                                  'reactive to the epidemic and can adapt to its state as it progresses. You are designing, on the other hand, '
+                                 +'To perform better than NSGA-II, you need to get closer to the origin of the plot (0, 0). Note that algorithms train intervention strategies '
+                                  'that are reactive to the epidemic and can adapt to its state as it progresses. You are designing, on the other hand, '
                                   'a <span style="font-weight:500;">fixed-strategy</span> that is evaluated on 10 different simulated epidemics. This explains why running '
                                   'several evaluations might result in different results. The graphs shows only one of the 10 simulations.'
                                  + '<br>You can design your strategy with two tools:'
@@ -318,7 +337,7 @@ def plot_pareto(algorithm,size,color):
     sizes = np.ones(nb_points) * size
     sc.set_sizes(sizes)
     ax.set_xlabel('Total Deaths',fontsize=14)
-    ax.set_ylabel('Total GDP Loss (B)',fontsize=14)
+    ax.set_ylabel('Total GDP Loss (B€)',fontsize=14)
 
     return fig,ax,sc
 def normalize(x,data_min,data_max):
