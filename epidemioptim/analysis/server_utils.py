@@ -105,9 +105,9 @@ def footer():
                                   + '<p>&nbsp;</p>'
                                   + '<code> @article{colas2020epidemioptim, <br>'
                                   + '&nbsp;&nbsp;&nbsp;&nbsp;title={EpidemiOptim: A Toolbox for the Optimization of Control Policies in Epidemiological<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Models}, <br>'
-                                  + '&nbsp;&nbsp;&nbsp;&nbsp;author={Colas, C{\'e}dric and Hejblum, Boris and Rouillon, S{\'e}bastien and Thi{\'e}baut, '
+                                  + "&nbsp;&nbsp;&nbsp;&nbsp;author={Colas, C{\\'e}dric and Hejblum, Boris and Rouillon, S{\\'e}bastien and Thi{\\'e}baut, "
                                     '<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rodolphe and Oudeyer, '
-                                    ' Pierre-Yves and Moulin-Frier, Cl{\'e}ment and Prague, M{\'e}lanie}, <br>'
+                                    " Pierre-Yves and Moulin-Frier, Cl{\\'e}ment and Prague, M{\\'e}lanie}, <br>"
                                   + '&nbsp;&nbsp;&nbsp;&nbsp;journal={arXiv preprint arXiv:2010.04452}, <br>'
                                   + '&nbsp;&nbsp;&nbsp;&nbsp;year={2020}} </code>'
                                   + '</p><p>&nbsp;</p><p>&nbsp;</p>'
