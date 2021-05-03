@@ -70,7 +70,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     add = parser.add_argument
     add('--config', type=str, default=CONFIG, help='config id')
-    add('--expe-name', type=str, default='', help='name of the experiment')
+    add('--expe_name', type=str, default='', help='name of the experiment')
     add('--trial_id', type=int, default=1, help='trial identifier')
     add('--beta-default', type=float, default=0.5, help='default mixing param')
     kwargs = vars(parser.parse_args())

@@ -29,6 +29,17 @@ enforcement of a lock-down on a weekly basis.
 
 The EpidemiOptim library runs with Python>=3.6. All requirements are listed in the `requirements.txt` file.
 
+### Setting it up
+```
+git clone https://github.com/anonymousauthor312/EpidemiOptim.git
+cd EpidemiOptim
+conda create -n epidemioptim python=3.6
+conda activate epidemioptim
+pip install torch==1.6.0+cpu torchvision==0.7.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+pip install -r requirements.txt
+pip install -e ./
+```
+
 ### Running an experiment
 
 Experiments can be run with the `epidemioptim/train.py` script:
