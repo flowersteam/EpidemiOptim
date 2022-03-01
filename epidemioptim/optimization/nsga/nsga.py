@@ -193,7 +193,7 @@ class NSGAII(BaseAlgorithm):
         self.res_run.F_std = F_std
 
         self.history = self.res_run.history
-        self.log(res_eval)
+        self.log(self.res_eval)
 
 
     def evaluate(self, n=None, all=False, best=False, goal=None, reset_same_model=False):
@@ -202,7 +202,7 @@ class NSGAII(BaseAlgorithm):
         if all:
             costs_mean = []
             costs_std = []
-            for w in self.res.X:
+            for w in self.res_run.X:
                 self.policy.set_params(w)
                 episodes = run_rollout(policy=self,
                                        env=self.env,
@@ -221,7 +221,7 @@ class NSGAII(BaseAlgorithm):
             costs_std = np.array(costs_std)
             costs_std = costs_std[front_ids]
             costs_mean = costs_mean[front_ids]
-            weights = self.res.X[front_ids]
+            weights = self.res_run.X[front_ids]
             res['F'] = costs_mean
             res['F_std'] = costs_std
             res['X'] = weights
@@ -294,7 +294,7 @@ class NSGAII(BaseAlgorithm):
 
     def log(self, res_eval):
 
-        self.res.problem = None
+        self.res_run.problem = None
         for h in self.res_run.history:
             h.problem = None
             h.initialization = None
@@ -308,5 +308,5 @@ class NSGAII(BaseAlgorithm):
         print('Run has terminated successfully')
 
         plot = Scatter()
-        plot.add(res_eval['F'], color="red")
+        plot.add(res_eval[0]['F'], color="red")
         plot.show()
