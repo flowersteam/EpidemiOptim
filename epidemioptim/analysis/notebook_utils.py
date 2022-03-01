@@ -7,6 +7,7 @@ from ipywidgets import *
 # # # # # # # # # # # # # # # # # # # # # # # #
 # Notebook utils
 # # # # # # # # # # # # # # # # # # # # # # # #
+# Note that the data/data_for_visualization folder is not created during training. You should copy it the outputs of the training runs (stored in results/EpidemicDiscrete-v0)
 
 def setup_diy(seed, run_eval, n_evals, deterministic_model):
 

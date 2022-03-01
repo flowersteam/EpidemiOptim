@@ -4,10 +4,11 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-from epidemioptim.utils import plot_stats, get_repo_path, setup_for_replay
+from epidemioptim.utils import plot_stats, get_repo_path
+from notebook_utils import setup_for_replay
 
 NB_EPISODES = 5
-FOLDER = get_repo_path() + "/data/results/experiments/NSGA-II (budget x15)/"
+FOLDER = get_repo_path() + "/data/results/EpidemicDiscrete-v0/DQN/"
 SAVE = True
 
 def play(folder, nb_eps, seed, save=False):

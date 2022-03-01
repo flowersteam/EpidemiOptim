@@ -326,13 +326,22 @@ class DiscreteDist(BaseDist):
 
 
 def get_repo_path():
-    dir_path = os.path.dirname(os.path.realpath(__file__)).split('/')
-    if dir_path.count('epidemioptim') == 1:
-        start_ind = dir_path.index('epidemioptim')
-    else:
-        start_ind = - (list(reversed(dir_path)).index('epidemioptim') + 1)
+    try:
+        dir_path = os.path.dirname(os.path.realpath(__file__)).split('/')
+        if dir_path.count('epidemioptim') == 1:
+            start_ind = dir_path.index('epidemioptim')
+        else:
+            start_ind = - (list(reversed(dir_path)).index('epidemioptim') + 1)
 
-    repo_path = '/'.join(dir_path[:start_ind]) + '/'
+        repo_path = '/'.join(dir_path[:start_ind]) + '/'
+    except:  # fix attempt for windows paths, may need finetuning
+        dir_path = os.path.dirname(os.path.realpath(__file__)).split('\\')
+        if dir_path.count('epidemioptim') == 1:
+            start_ind = dir_path.index('epidemioptim')
+        else:
+            start_ind = - (list(reversed(dir_path)).index('epidemioptim') + 1)
+
+        repo_path = '\\'.join(dir_path[:start_ind]) + "\\"
     return repo_path
 
 
@@ -350,18 +359,15 @@ def get_logdir(params):
 
     """
     repo_path = get_repo_path()
-    logdir = repo_path + 'data/results/' + params['env_id'] + '/' + params['algo_id'] + '/' + params['expe_name']
+    logdir_base = repo_path + 'data/results/' + params['env_id'] + '/' + params['algo_id'] + '/' + params['expe_name']
+    logdir = logdir_base + str(params['trial_id']) + '/'
     if os.path.exists(logdir):
-        directory = logdir + '_'
-        trial_id = params['trial_id']
-        i = 0
+        i = 1
         while True:
-            logdir = directory + str(trial_id + i * 100) + '/'
+            logdir = logdir_base + str(params['trial_id'] + i) + '/'
             if not os.path.exists(logdir):
                 break
             i += 1
-    else:
-        logdir += '/'
     os.makedirs(logdir)
     print('Logging to: ', logdir)
     params['logdir'] = logdir
