@@ -74,7 +74,6 @@ if __name__ == '__main__':
                                time_jump=stats['time_jump'],
                                icu_capacity=stats['icu_capacity'],
                                axs=ax1)
-        plt.savefig('/home/flowers/Desktop/distrib.pdf')
 
         ax2, fig2 = plot_stats(t=stats['history']['env_timesteps'][1:],
                                states=stats['stats_run']['to_plot'],

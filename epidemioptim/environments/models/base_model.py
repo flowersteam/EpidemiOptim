@@ -42,7 +42,7 @@ class BaseModel(ABC):
         self.initial_state = None
         self.initial_internal_params = None
         self.current_state = None
-        self.range_delay = range_delay
+        self.range_delay = range_delay  # how many steps to run before optimization starts
         self.reset()  # reset model to initial states and parameters
 
     def reset(self, delay=None) -> None:
@@ -79,7 +79,7 @@ class BaseModel(ABC):
         Parameters
         ----------
         delay: int
-               Delay before the episode starts in days.
+               Delay before the episode starts in steps.
 
         Returns
         -------
