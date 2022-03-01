@@ -13,6 +13,8 @@ The EpidemicOptimization suite is a library that allows to interface optimizatio
 
 This library is designed to be easily customized. The underlying propagation model, reward function, state and action spaces can be modified easily.
 
+[Click here to play online with the model](https://epidemioptim.bordeaux.inria.fr/)
+
 ### What's already there
 
 * **Epidemiological models**: This library comes with a region-based mechanistic model of the French COVID-19 epidemic fitted on real data, published [here](https://www.medrxiv.org/content/medrxiv/early/2020/04/24/2020.04.21.20073536.full.pdf).
@@ -54,6 +56,12 @@ reference should be added to their respective get functions (e.g. `epidemioptim/
 A visualization notebook can be found in `epidemioptim/analysis/Visualization EpidemiOptim.ipynb`. It allows the interactive visualizations of one run per condition presented in
  the paper. The user will be able to tune the parameter balance the economic and health costs, to modify constraints on their maximal cumulative values, or to explore the Pareto
   front resulting from the multi-objective optimization of the NSGA-II algorithm.
+
+If you want to visualize your own runs, copy them from the `data/results` folder (where they are stored by the training process) to the `data/data_for_visualization` folder while 
+respecting the organization. 
+
+This notebook is also hoster in an online application [here](https://epidemioptim.bordeaux.inria.fr/).
+)
   
 ### Please contribute !
 

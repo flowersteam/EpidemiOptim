@@ -6,12 +6,12 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="EpidemiOptim", # Replace with your own username
     version="0.0.1",
-    author="Example Author",
-    author_email="author@example.com",
+    author="Cédric Colas",
+    author_email="cdric.colas@gmail.com",
     description="EpidemiOptim turns epidemiological models into OpenAI Gym environment for the optimization of intervention policies.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/anonymousauthor312/EpidemiOptim",
+    url="https://github.com/flowersteam/EpidemiOptim",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
